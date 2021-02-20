@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactAudioPlayer from 'react-audio-player'
 import { Card } from 'react-bootstrap'
+import ReactPlayer from 'react-player'
 
 export default class Song extends Component {
     render() {
@@ -14,7 +15,8 @@ export default class Song extends Component {
                             {this.props.artist.name}
                         </Card.Text>
                     </Card.Body>
-                    <ReactAudioPlayer
+
+                    <ReactPlayer
                         src={this.props.preview}
                         controls
                     />
