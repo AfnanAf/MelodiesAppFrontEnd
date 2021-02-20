@@ -15,7 +15,12 @@ export default class SongsList extends Component {
 
     loadSongs = () => {
         if (this.state.searchQuery != "") {
-            axios.get("https://api.deezer.com/search?q=" + this.state.searchQuery)
+            axios.get("https://api.deezer.com/search?q=" + this.state.searchQuery, {
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "GET"
+                }
+            })
                 .then(res => {
                     console.log(res.data.data);
                     this.setState({

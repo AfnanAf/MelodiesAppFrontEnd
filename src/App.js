@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import AddPlaylist from './AddPlaylist'
@@ -6,6 +7,27 @@ import PlaylistList from './PlaylistList'
 import SongsList from './SongsList'
 
 export default class App extends Component {
+
+  state = {
+    favSongs: []
+  }
+
+  addSong = (song) => {
+    axios.post("/song/add", song, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    })
+      .then(res => {
+        console.log("Added!!")
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+        console.log(song)
+      })
+  }
+
   render() {
     return (
       <Router>
@@ -35,7 +57,7 @@ export default class App extends Component {
 
         <Route
           path="/AddSong"
-          component={() => <AddSong />}
+          component={() => <AddSong addSong={this.addSong} />}
         ></Route>
 
       </Router>
