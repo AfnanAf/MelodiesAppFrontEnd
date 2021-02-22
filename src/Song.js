@@ -24,6 +24,8 @@ export default class Song extends Component {
         song1["image"] = song.album.cover_big
         song1["mp3Url"] = song.preview
         song1["artistName"] = song.artist.name
+        song1["user"] = this.props.userId
+        console.log(this.props.userId);
         console.log(song1)
 
         axios.post("/song/add", song1, {
@@ -40,33 +42,6 @@ export default class Song extends Component {
             })
     }
 
-    handleUnFavorite = (song) => {
-        console.log("unfav clicked !!!!!");
-
-        this.setState({
-            isFav: !this.state.isFav,
-        })
-
-        const song1 = {}
-        song1["name"] = song.title
-        song1["image"] = song.album.cover_big
-        song1["mp3Url"] = song.preview
-        song1["artistName"] = song.artist.name
-        console.log(song1)
-
-        axios.delete("/song/delete", song1, {
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem("token")
-            }
-        })
-            .then(res => {
-                console.log("deleted!!")
-                console.log(res);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }
     render() {
         return (
             <div>
@@ -75,9 +50,14 @@ export default class Song extends Component {
                     <Card.Body>
 
                         <Card.Title className="cardtitle"><span>{this.props.title}</span>
-                            {this.state.isFav ? <span onClick={() => this.handleUnFavorite(this.props)}> <MdFavorite /> </span>
-                                : <span onClick={() => this.handleFavorite(this.props)}><MdFavoriteBorder /> </span>
-                            }
+                            {this.props.isAuth ? (
+                                this.state.isFav ? 
+                                <span> <MdFavorite /></span>
+                                :
+                                <span onClick={() => this.handleFavorite(this.props)}><MdFavoriteBorder /> </span>
+                            )
+                            :
+                            null}
                         </Card.Title>
 
                         <Card.Text>

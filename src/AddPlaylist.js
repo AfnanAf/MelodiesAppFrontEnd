@@ -15,6 +15,8 @@ export default class AddPlaylist extends Component {
 
         const updatedPlaylist = {...this.state.newPlaylist}
         updatedPlaylist[key] = value
+        updatedPlaylist["user"] = this.props.userId
+
         console.log(updatedPlaylist)
         this.setState({
             newPlaylist: updatedPlaylist

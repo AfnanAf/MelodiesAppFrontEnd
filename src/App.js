@@ -16,27 +16,31 @@ export default class App extends Component {
     favSongs: [],
     isAuth: false,
     user: null,
+    userEmail: "",
+    userProfile: {},
+    userId: {},
     message: null,
-    userEmail: null
+    successMessage: null,
   };
 
-  getProfile = (user) => {
-    axios.get("/user/profile", {
-      data: {
-        emailAddress: this.state.userEmail,
+  getProfile = () => {
+    axios.get("/user/profile?email=" + this.state.userEmail, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
       }
     })
       .then(res => {
-        console.log("got profile" + this.state.userEmail);
-        console.log(res);
-        return res;
+        console.log("got profile " + this.state.userEmail);
+        console.log(res.data);
+        console.log("user id: " + res.data.userId);
+        this.setState({
+          userProfile: res.data,
+          userId: { userId: res.data.userId }
+        })
       })
       .catch(err => {
         console.log(err);
-        console.log(this.state.userEmail);
-
       })
-
   }
 
   registerHandler = (user) => {
@@ -44,6 +48,11 @@ export default class App extends Component {
       .post("/user/registration", user)
       .then((response) => {
         console.log(response);
+        this.setState({
+          successMessage: "Successfully registered !!!",
+          message: null
+        })
+
       })
       .catch((error) => {
         console.log(error);
@@ -60,24 +69,32 @@ export default class App extends Component {
         if (response.data.token != null) {
           localStorage.setItem("token", response.data.token);
           let user = decode(response.data.token);
-          this.setState({
-            userEmail: user.sub
-          })
-          console.log(user.sub);
 
           this.setState({
+            userEmail: user.sub,
             isAuth: true,
-            user: user
+            user: user,
+            successMessage: "Successfully logged in!!!",
+            message: null
           })
+        } else {
+          this.setState({
+            isAuth: false,
+            user: null,
+            message: "Incorrect username or password",
+          });
         }
+        this.getProfile()
 
       })
       .catch((error) => {
         console.log(error);
         this.setState({
-          isAuth: false
+          isAuth: false,
+          message: "Error Occured. Please try again later!!!",
         })
       });
+
   };
 
   addPlaylist = (playlist) => {
@@ -112,6 +129,18 @@ export default class App extends Component {
       })
   }
 
+  onLogoutHandler = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token")
+    this.setState({
+      isAuth: false,
+      user: null,
+      successMessage: "Successfully logged out!",
+      message: null
+
+    })
+  }
+
   render() {
     return (
       <Router>
@@ -120,18 +149,30 @@ export default class App extends Component {
           <div>
             <Link to="/SongsList">Songs</Link>{" "}
             <Link to="/PlaylistList">Playlists</Link>{" "}
-            <Link to="/AddPlaylist">Add Playlist</Link>{" "}
-            <Link to="/AddSong">Add Song</Link>{" "}
-            <Link to="/login">Login</Link>{" "}
-            <Link to="/register">Sign up</Link>{" "}
-            <Link to="/profile">Profile</Link>{" "}
+            {this.state.isAuth ? (
+              <span>
+                <Link to="/AddPlaylist">Add Playlist</Link>{" "}
+                <Link to="/AddSong">Add Song</Link>{" "}
+                <span className="userlogin">
+                  {this.state.user ? "Welcome " + this.state.userEmail : null} {"  "}
+                  <Link to="/profile">Profile</Link>{" "}
+                  <Link to="/logout" onClick={this.onLogoutHandler}>Logout </Link>{" "}
+                </span>
+              </span>
+            ) : (
+                <span>
+                  <Link to="/register">Register</Link> {"  "}
+                  <Link to="/login">Login</Link> {"  "}
+                </span>
+              )}
 
+            {" "}
           </div>
         </nav>
 
         <Route
           path="/SongsList"
-          component={() => <SongsList />}
+          component={() => <SongsList isAuth={this.state.isAuth} userId={this.state.userId} />}
         ></Route>
 
         <Route
@@ -141,12 +182,12 @@ export default class App extends Component {
 
         <Route
           path="/AddPlaylist"
-          component={() => <AddPlaylist addPlaylist={this.addPlaylist} />}
+          component={() => <AddPlaylist userId={this.state.userId} addPlaylist={this.addPlaylist} />}
         ></Route>
 
         <Route
           path="/AddSong"
-          component={() => <AddSong addSong={this.addSong} />}
+          component={() => <AddSong userId={this.state.userId} addSong={this.addSong} />}
         ></Route>
 
         <Route
@@ -161,7 +202,7 @@ export default class App extends Component {
 
         <Route
           path="/profile"
-          component={() => <Profile getProfile={this.getProfile(this.state.userToGetProfile)} />}
+          component={() => this.state.isAuth ? <Profile profile={this.state.userProfile} isAuth={this.state.isAuth} userId={this.state.userId} /> : null}
         ></Route>
       </Router>
     )

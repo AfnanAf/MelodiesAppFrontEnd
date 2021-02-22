@@ -40,17 +40,15 @@ export default class SongsList extends Component {
         console.log("q :" + this.state.searchQuery)
     }
 
-
     render() {
         return (
             <div>
-                <h1>Songs List</h1>
                 <input type="text" onChange={(e) => this.handleSearch(e)}></input>
                 <CardDeck>
 
                     {this.state.songs.map((song, index) =>
                         <div key={index}>
-                            <Song {...song} />
+                            <Song {...song} userId={this.props.userId} isAuth={this.props.isAuth} />
                         </div>)}
                 </CardDeck>
             </div>
