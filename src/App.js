@@ -9,8 +9,10 @@ import SongsList from './SongsList'
 import Login from './user/Login'
 import Profile from './user/Profile'
 import Register from './user/Register'
-import { Alert}  from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import Fade from 'react-bootstrap/Fade'
+import { Redirect } from "react-router-dom";
+import Home from './Home'
 
 export default class App extends Component {
 
@@ -23,6 +25,7 @@ export default class App extends Component {
     userId: {},
     message: null,
     successMessage: null,
+    redirect: null
   };
 
   getProfile = () => {
@@ -39,7 +42,7 @@ export default class App extends Component {
           userProfile: res.data,
           userId: { userId: res.data.userId }
         })
-        console.log("profile "+this.state.userProfile.playLists)
+        console.log("profile " + this.state.userProfile.playLists)
 
       })
       .catch(err => {
@@ -54,7 +57,8 @@ export default class App extends Component {
         console.log(response);
         this.setState({
           successMessage: "Successfully registered !!!",
-          message: null
+          message: null,
+          redirect: "/login"
         })
 
       })
@@ -79,7 +83,8 @@ export default class App extends Component {
             isAuth: true,
             user: user,
             successMessage: "Successfully logged in!!!",
-            message: null
+            message: null,
+            redirect: "/home"
           })
         } else {
           this.setState({
@@ -112,19 +117,20 @@ export default class App extends Component {
         console.log("Added!!")
         console.log(res)
         this.setState({
-          
+
           successMessage: "The Playlist is added successfully",
-          message: null
-    
+          message: null,
+          redirect: "/PlaylistList"
+
         })
       })
       .catch(err => {
         console.log(err)
         this.setState({
-          
+
           successMessage: null,
           message: "Error Occured. Please try again later!"
-    
+
         })
       })
   }
@@ -140,19 +146,20 @@ export default class App extends Component {
         console.log("Added!!")
         console.log(res)
         this.setState({
-          
+
           successMessage: "The Song is added successfully",
-          message: null
-    
+          message: null,
+          redirect: "/profile"
+
         })
       })
       .catch(err => {
         console.log(err)
         this.setState({
-          
+
           successMessage: null,
           message: "Error Occured. Please try again later!"
-    
+
         })
       })
   }
@@ -164,25 +171,31 @@ export default class App extends Component {
       isAuth: false,
       user: null,
       successMessage: "Successfully logged out!",
-      message: null
-
+      message: null,
+      redirect: "/home"
     })
   }
 
   render() {
+    const redirect = (this.state.redirect != null)?
+      <Redirect to={this.state.redirect} />:
+      null;
+
     const playLists = this.state.userProfile.playLists;
     const message = this.state.message ? (
       <Alert variant="danger" transition={Fade} >{this.state.message}</Alert>
-  ): null;
-  const successMessage = this.state.successMessage ? (
+    ) : null;
+    const successMessage = this.state.successMessage ? (
       <Alert variant="success">{this.state.successMessage}</Alert>
     ) : null;
     return (
       <Router>
+        {redirect}
         {this.state.message}
         <nav>
-        {message} {successMessage}
+          {message} {successMessage}
           <div>
+            <Link to="/home">Home</Link>{" "}
             <Link to="/SongsList">Songs</Link>{" "}
             <Link to="/PlaylistList">Playlists</Link>{" "}
             {this.state.isAuth ? (
@@ -207,6 +220,11 @@ export default class App extends Component {
         </nav>
 
         <Route
+          path="/home"
+          component={() => <Home />}
+        ></Route>
+
+        <Route
           path="/SongsList"
           component={() => <SongsList isAuth={this.state.isAuth} userId={this.state.userId} />}
         ></Route>
@@ -214,7 +232,7 @@ export default class App extends Component {
         <Route
           path="/PlaylistList"
           component={
-          () =>  <PlaylistList playlists={playLists}/>}
+            () => <PlaylistList playlists={playLists} />}
         ></Route>
 
         <Route
