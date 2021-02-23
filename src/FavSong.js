@@ -7,27 +7,8 @@ import axios from 'axios';
 export default class FavSong extends Component {
     state = {
         isFav: true,
-    }
-
-    handleUnFavorite = (songId) => {
-        console.log("unfav clicked !!!!!");
-
-        this.setState({
-            isFav: !this.state.isFav,
-        })
-
-        axios.delete("/song/delete?id=" + songId, {
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem("token")
-            }
-        })
-            .then(res => {
-                console.log("deleted!!")
-                console.log(res);
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        failedMessage: this.props.failedMessage,
+        successMessage: this.props.successMessage
     }
 
     render() {
@@ -37,9 +18,9 @@ export default class FavSong extends Component {
                 <Card.Body>
 
                     <Card.Title className="cardtitle"><span>{this.props.name}</span>
-                        {this.props.isAuth? (this.state.isFav ? <span onClick={() => this.handleUnFavorite(this.props.id)}> <MdFavorite /> </span>
+                        {this.props.isAuth ? (this.state.isFav ? <span onClick={() => this.props.setMessage(this.props.id)}> <MdFavorite /> </span>
                             : <span><MdFavoriteBorder /> </span>
-                        ):null}
+                        ) : null}
                     </Card.Title>
 
                     <Card.Text>
