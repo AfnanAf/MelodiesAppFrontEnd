@@ -1,14 +1,24 @@
 import React, { Component } from 'react'
 import { Form } from "react-bootstrap";
-
+import { Alert } from "react-bootstrap";
+import Fade from "react-bootstrap/Fade";
 export default class AddSong extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            newSong: {}
+            newSong: {},
+            failedMessage:""
         }
     }
-
+     validateURL(url) {
+        var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+          '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+          '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+          '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+          '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+          '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+        return !!pattern.test(url);
+      }
     handleChange = (e) => {
         const key = e.target.name
         console.log("key "+key)
@@ -29,12 +39,29 @@ export default class AddSong extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+        if(!this.validateURL(this.state.newSong.mp3Url)){
+         this.setState({
+             failedMessage:"invalid mp3 url !"
+         })
 
-        this.props.addSong(this.state.newSong);
+        }else if(this.state.newSong.name == null && this.state.newSong.artistName == null){
+            this.setState({
+                failedMessage:"the Song must have a name and artist name !"
+            })
+
+        }else{
+            this.props.addSong(this.state.newSong);
+        }
     }
     render() {
+        const failedMessage = this.state.failedMessage ? (
+            <Alert variant="danger" transition={Fade}>
+              {this.state.failedMessage}
+            </Alert>
+          ) : null;
         return (
             <div>
+                 {failedMessage}
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Label>Name</Form.Label>
                     <input

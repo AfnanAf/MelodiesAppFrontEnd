@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import {Form  } from "react-bootstrap";
-
+import { Alert } from "react-bootstrap";
+import Fade from "react-bootstrap/Fade";
 export default class AddPlaylist extends Component {
     constructor(props){
         super(props);
         this.state ={
-            newPlaylist : {}
+            newPlaylist : {},
+            failedMessage:""
         }
     }
 
@@ -26,12 +28,24 @@ export default class AddPlaylist extends Component {
 
     handleSubmit =(e) =>{
         e.preventDefault()
-
-        this.props.addPlaylist(this.state.newPlaylist);
+        if(this.state.newPlaylist.name == null ){
+            this.setState({
+                failedMessage:"Playlis must have a name !"
+            })
+        }else{
+            this.props.addPlaylist(this.state.newPlaylist);
+        }
+       
     }
     render() {
+        const failedMessage = this.state.failedMessage ? (
+            <Alert variant="danger" transition={Fade}>
+              {this.state.failedMessage}
+            </Alert>
+          ) : null;
         return (
             <div>
+                {failedMessage}
                 <Form onSubmit={this.handleSubmit}>
                         <Form.Label>Name</Form.Label>
                         <input

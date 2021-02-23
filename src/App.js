@@ -9,6 +9,8 @@ import SongsList from './SongsList'
 import Login from './user/Login'
 import Profile from './user/Profile'
 import Register from './user/Register'
+import { Alert}  from "react-bootstrap";
+import Fade from 'react-bootstrap/Fade'
 
 export default class App extends Component {
 
@@ -109,9 +111,21 @@ export default class App extends Component {
       .then(res => {
         console.log("Added!!")
         console.log(res)
+        this.setState({
+          
+          successMessage: "The Playlist is added successfully",
+          message: null
+    
+        })
       })
       .catch(err => {
         console.log(err)
+        this.setState({
+          
+          successMessage: null,
+          message: "Error Occured. Please try again later!"
+    
+        })
       })
   }
 
@@ -125,9 +139,21 @@ export default class App extends Component {
       .then(res => {
         console.log("Added!!")
         console.log(res)
+        this.setState({
+          
+          successMessage: "The Song is added successfully",
+          message: null
+    
+        })
       })
       .catch(err => {
         console.log(err)
+        this.setState({
+          
+          successMessage: null,
+          message: "Error Occured. Please try again later!"
+    
+        })
       })
   }
 
@@ -145,10 +171,17 @@ export default class App extends Component {
 
   render() {
     const playLists = this.state.userProfile.playLists;
+    const message = this.state.message ? (
+      <Alert variant="danger" transition={Fade} >{this.state.message}</Alert>
+  ): null;
+  const successMessage = this.state.successMessage ? (
+      <Alert variant="success">{this.state.successMessage}</Alert>
+    ) : null;
     return (
       <Router>
         {this.state.message}
         <nav>
+        {message} {successMessage}
           <div>
             <Link to="/SongsList">Songs</Link>{" "}
             <Link to="/PlaylistList">Playlists</Link>{" "}
