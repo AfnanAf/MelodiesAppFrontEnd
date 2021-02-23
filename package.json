@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@syncfusion/ej2-react-grids": "^18.4.43",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
@@ -43,5 +44,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8082/melodiesapp"
+  "proxy": "http://localhost:8089/melodiesapp"
 }

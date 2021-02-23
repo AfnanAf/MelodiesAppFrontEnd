@@ -37,6 +37,8 @@ export default class App extends Component {
           userProfile: res.data,
           userId: { userId: res.data.userId }
         })
+        console.log("profile "+this.state.userProfile.playLists)
+
       })
       .catch(err => {
         console.log(err);
@@ -142,6 +144,7 @@ export default class App extends Component {
   }
 
   render() {
+    const playLists = this.state.userProfile.playLists;
     return (
       <Router>
         {this.state.message}
@@ -177,7 +180,8 @@ export default class App extends Component {
 
         <Route
           path="/PlaylistList"
-          component={() => <PlaylistList />}
+          component={
+          () =>  <PlaylistList playlists={playLists}/>}
         ></Route>
 
         <Route
