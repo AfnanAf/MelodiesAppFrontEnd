@@ -11,14 +11,15 @@ export default class Register extends Component {
   };
   validateEmail = (email) => {
     if (
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test( email
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+        email
       )
     ) {
       return true;
     } else {
       return false;
     }
-  }
+  };
 
   registerHandler = () => {
     console.log(this.state);
@@ -45,26 +46,17 @@ export default class Register extends Component {
     console.log(temp);
     this.setState({
       temp,
-      // password: temp["password"],
-      // passwordConfirm: temp["passwordConfirm"]
+     
     });
   };
 
   passwordHandler = (e) => {
-    // let temp = { ... this.state }
-    // temp[e.target.name] = e.target.value;
-    // console.log(temp);
-    // this.setState({
-    //     password: temp["password"],
-    //     passwordConfirm: temp["passwordConfirm"]
-    // })
     let temp = this.state.temp;
     temp["password"] = e.target.value;
     console.log(temp);
 
     this.setState({
       password: temp["password"],
-      // passwordConfirm: temp["passwordConfirm"]
     });
 
     if (e.target.value === this.state.passwordConfirm) {
@@ -80,7 +72,6 @@ export default class Register extends Component {
     let temp = this.state.temp;
     temp[e.target.name] = e.target.value;
     this.setState({
-      // password: temp["password"],
       passwordConfirm: temp["passwordConfirm"],
     });
     if (e.target.value === this.state.password) {

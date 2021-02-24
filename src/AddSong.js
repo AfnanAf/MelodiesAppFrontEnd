@@ -62,12 +62,13 @@ export default class AddSong extends Component {
         return (
             <div>
                  {failedMessage}
-                <Form onSubmit={this.handleSubmit}>
+                 <Form.Group>
+              
                     <Form.Label>Name</Form.Label>
-                    <input
+                    <Form.Control
                         name="name"
                         type="text"
-                        onChange={this.handleChange}></input>
+                        onChange={this.handleChange}></Form.Control>
                     <div>
                         <label>image</label>
                         <input
@@ -92,7 +93,7 @@ export default class AddSong extends Component {
                     <div>
                         <input type="submit" value="Add Song"></input>
                     </div>
-                </Form>
+                </Form.Group>
             </div>
         )
     }
