@@ -13,6 +13,7 @@ import { Alert } from "react-bootstrap";
 import Fade from 'react-bootstrap/Fade'
 import { Redirect } from "react-router-dom";
 import Home from './Home'
+import FavSong from './FavSong'
 
 export default class App extends Component {
 
@@ -23,9 +24,9 @@ export default class App extends Component {
     userEmail: "",
     userProfile: {},
     userId: {},
-    message: null,
+    failedMessage: null,
     successMessage: null,
-    redirect: null
+    redirect: null,
   };
 
   getProfile = () => {
@@ -57,7 +58,7 @@ export default class App extends Component {
         console.log(response);
         this.setState({
           successMessage: "Successfully registered !!!",
-          message: null,
+          failedMessage: null,
           redirect: "/login"
         })
 
@@ -83,14 +84,14 @@ export default class App extends Component {
             isAuth: true,
             user: user,
             successMessage: "Successfully logged in!!!",
-            message: null,
+            failedMessage: null,
             redirect: "/home"
           })
         } else {
           this.setState({
             isAuth: false,
             user: null,
-            message: "Incorrect username or password",
+            failedMessage: "Incorrect username or password",
           });
         }
         this.getProfile()
@@ -100,7 +101,7 @@ export default class App extends Component {
         console.log(error);
         this.setState({
           isAuth: false,
-          message: "Error Occured. Please try again later!!!",
+          failedMessage: "Error Occured. Please try again later!!!",
         })
       });
 
@@ -116,10 +117,11 @@ export default class App extends Component {
       .then(res => {
         console.log("Added!!")
         console.log(res)
+        this.getProfile()
         this.setState({
 
           successMessage: "The Playlist is added successfully",
-          message: null,
+          failedMessage: null,
           redirect: "/PlaylistList"
 
         })
@@ -129,7 +131,7 @@ export default class App extends Component {
         this.setState({
 
           successMessage: null,
-          message: "Error Occured. Please try again later!"
+          failedMessage: "Error Occured. Please try again later!"
 
         })
       })
@@ -145,12 +147,13 @@ export default class App extends Component {
       .then(res => {
         console.log("Added!!")
         console.log(res)
+        this.getProfile()
+        // this.loadFavSongs()
         this.setState({
 
           successMessage: "The Song is added successfully",
-          message: null,
-          redirect: "/profile"
-
+          failedMessage: null,
+          redirect: "/profile",
         })
       })
       .catch(err => {
@@ -158,9 +161,69 @@ export default class App extends Component {
         this.setState({
 
           successMessage: null,
-          message: "Error Occured. Please try again later!"
+          failedMessage: "Error Occured. Please try again later!"
 
         })
+      })
+  }
+
+  handleUnFavorite = (songId) => {
+    console.log("unfav clicked !!!!!");
+
+    if (songId != null) {
+
+      axios.delete("/song/delete?id=" + songId, {
+        headers: {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+        }
+      })
+        .then(res => {
+          console.log("deleted!!")
+          console.log(res);
+          this.getProfile()
+          this.setState({
+            failedMessage: "",
+            successMessage: "The song deleted successfully"
+          })
+        })
+        .catch(err => {
+          console.log(err);
+          this.setState({
+            failedMessage: "Error acuured during deleting the song, please try again later!",
+            successMessage: ""
+          })
+        })
+    } else {
+      this.setState({
+        failedMessage: "The song already has deleted",
+        successMessage: ""
+      })
+    }
+  }
+
+  handleFavorite = (song) => {
+    console.log("fav clicked !!!!!");
+
+    const song1 = {}
+    song1["name"] = song.title
+    song1["image"] = song.album.cover_big
+    song1["mp3Url"] = song.preview
+    song1["artistName"] = song.artist.name
+    song1["user"] = this.state.userId
+    console.log(song1)
+
+    axios.post("/song/add", song1, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    })
+      .then(res => {
+        console.log("Added!!")
+        console.log(res);
+        this.getProfile();
+      })
+      .catch(err => {
+        console.log(err);
       })
   }
 
@@ -171,19 +234,38 @@ export default class App extends Component {
       isAuth: false,
       user: null,
       successMessage: "Successfully logged out!",
-      message: null,
+      failedMessage: null,
       redirect: "/home"
     })
   }
 
+  loadFavSongs = () => {
+    axios.get("/song/index")
+      .then(res => {
+        console.log(res);
+        if (res.data.id == this.state.userProfile.userId) {
+          this.setState({
+            favSongs: res.data
+          })
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  loadPlaylist = () => {
+
+  }
+
   render() {
-    const redirect = (this.state.redirect != null)?
-      <Redirect to={this.state.redirect} />:
+    const redirect = (this.state.redirect != null) ?
+      <Redirect to={this.state.redirect} /> :
       null;
 
     const playLists = this.state.userProfile.playLists;
-    const message = this.state.message ? (
-      <Alert variant="danger" transition={Fade} >{this.state.message}</Alert>
+    const failedMessage = this.state.failedMessage ? (
+      <Alert variant="danger" transition={Fade} >{this.state.failedMessage}</Alert>
     ) : null;
     const successMessage = this.state.successMessage ? (
       <Alert variant="success">{this.state.successMessage}</Alert>
@@ -191,9 +273,9 @@ export default class App extends Component {
     return (
       <Router>
         {redirect}
-        {this.state.message}
+        {this.state.failedMessage}
         <nav>
-          {message} {successMessage}
+          {failedMessage} {successMessage}
           <div>
             <Link to="/home">Home</Link>{" "}
             <Link to="/SongsList">Songs</Link>{" "}
@@ -226,7 +308,7 @@ export default class App extends Component {
 
         <Route
           path="/SongsList"
-          component={() => <SongsList isAuth={this.state.isAuth} userId={this.state.userId} />}
+          component={() => <SongsList handleFav={this.handleFavorite} isAuth={this.state.isAuth} userId={this.state.userId} />}
         ></Route>
 
         <Route
@@ -257,7 +339,7 @@ export default class App extends Component {
 
         <Route
           path="/profile"
-          component={() => this.state.isAuth ? <Profile profile={this.state.userProfile} isAuth={this.state.isAuth} userId={this.state.userId} /> : null}
+          component={() => this.state.isAuth ? <Profile profile={this.state.userProfile} loadFavSongs={this.loadFavSongs} handleunFav={this.handleUnFavorite} isAuth={this.state.isAuth} userId={this.state.userId} /> : null}
         ></Route>
       </Router>
     )

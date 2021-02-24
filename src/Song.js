@@ -8,38 +8,44 @@ export default class Song extends Component {
     state = {
         song: null,
         isFav: false,
-        favSongs: []
     }
 
 
-    handleFavorite = (song) => {
-        console.log("fav clicked !!!!!");
+    // handleFavorite = (song) => {
+    //     console.log("fav clicked !!!!!");
 
+    //     this.setState({
+    //         isFav: !this.state.isFav,
+    //     })
+
+    //     const song1 = {}
+    //     song1["name"] = song.title
+    //     song1["image"] = song.album.cover_big
+    //     song1["mp3Url"] = song.preview
+    //     song1["artistName"] = song.artist.name
+    //     song1["user"] = this.props.userId
+    //     console.log(this.props.userId);
+    //     console.log(song1)
+
+    //     axios.post("/song/add", song1, {
+    //         headers: {
+    //             "Authorization": "Bearer " + localStorage.getItem("token")
+    //         }
+    //     })
+    //         .then(res => {
+    //             console.log("Added!!")
+    //             console.log(res);
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // }
+
+    favorite = (song) => {
         this.setState({
             isFav: !this.state.isFav,
         })
-
-        const song1 = {}
-        song1["name"] = song.title
-        song1["image"] = song.album.cover_big
-        song1["mp3Url"] = song.preview
-        song1["artistName"] = song.artist.name
-        song1["user"] = this.props.userId
-        console.log(this.props.userId);
-        console.log(song1)
-
-        axios.post("/song/add", song1, {
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem("token")
-            }
-        })
-            .then(res => {
-                console.log("Added!!")
-                console.log(res);
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        this.props.handleFav(song)
     }
 
     render() {
@@ -51,13 +57,12 @@ export default class Song extends Component {
 
                         <Card.Title className="cardtitle"><span>{this.props.title}</span>
                             {this.props.isAuth ? (
-                                this.state.isFav ? 
-                                <span> <MdFavorite /></span>
-                                :
-                                <span onClick={() => this.handleFavorite(this.props)}><MdFavoriteBorder /> </span>
-                            )
-                            :
-                            null}
+                                this.state.isFav ?
+                                    <span> <MdFavorite /></span>
+                                    :
+                                    <span onClick={() => this.favorite(this.props)}><MdFavoriteBorder /> </span>
+                                ) :
+                                null}
                         </Card.Title>
 
                         <Card.Text>

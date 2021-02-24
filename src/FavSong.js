@@ -7,8 +7,14 @@ import axios from 'axios';
 export default class FavSong extends Component {
     state = {
         isFav: true,
-        failedMessage: this.props.failedMessage,
-        successMessage: this.props.successMessage
+    }
+
+    unfavorite = (songId) => {
+        this.setState({
+            isFav: !this.state.isFav,
+        })
+        this.props.handleUnFav(songId)
+    
     }
 
     render() {
@@ -18,7 +24,7 @@ export default class FavSong extends Component {
                 <Card.Body>
 
                     <Card.Title className="cardtitle"><span>{this.props.name}</span>
-                        {this.props.isAuth ? (this.state.isFav ? <span onClick={() => this.props.setMessage(this.props.id)}> <MdFavorite /> </span>
+                        {this.props.isAuth ? (this.state.isFav ? <span onClick={() => this.unfavorite(this.props.id)}> <MdFavorite /> </span>
                             : <span><MdFavoriteBorder /> </span>
                         ) : null}
                     </Card.Title>

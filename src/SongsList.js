@@ -48,7 +48,7 @@ export default class SongsList extends Component {
 
                     {this.state.songs.map((song, index) =>
                         <div key={index}>
-                            <Song {...song} userId={this.props.userId} isAuth={this.props.isAuth} />
+                            <Song {...song} handleFav={this.props.handleFav} isFav={this.props.isFav} userId={this.props.userId} isAuth={this.props.isAuth} />
                         </div>)}
                 </CardDeck>
             </div>
