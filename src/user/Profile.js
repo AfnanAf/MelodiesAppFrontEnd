@@ -11,16 +11,11 @@ import { Container, Form, Button } from 'react-bootstrap'
 import EditProfile from "./EditProfile";
 export default class Profile extends Component {
   state = {
-    songs: this.props.profile.songs,
+    songs: this.props.favSongs,
     playlists: this.props.profile.playlists,
     isPasswordChange: false,
     isProfileEdit: false,
   };
-
-  // componentDidMount() {
-  //     this.loadSongs();
-  //     this.loadPlaylist();
-  // }
 
   // shouldComponentUpdate(nextProps, nextState) {
   //     console.log(nextProps, nextState);
@@ -80,6 +75,7 @@ export default class Profile extends Component {
             successMessage: "Password changed successfully !!!",
             failedMessage: null,
             redirect: "/profile",
+            isProfileEdit: false,
           });
         } else {
           this.setState({
@@ -121,6 +117,7 @@ export default class Profile extends Component {
         {this.state.successMessage}
       </Alert>
     ) : null;
+
     return (
       <div>
         {failedMessage} {successMessage}
@@ -154,6 +151,7 @@ export default class Profile extends Component {
               <FavSong
                 {...song}
                 handleUnFav={this.props.handleunFav}
+                addPlaylist={this.addPlaylist}
                 isAuth={this.props.isAuth}
               />
             </div>

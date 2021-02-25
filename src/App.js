@@ -29,6 +29,10 @@ export default class App extends Component {
     redirect: null,
   };
 
+  componentDidMount() {
+    this.loadFavSongs();
+  }
+
   getProfile = () => {
     axios.get("/user/profile?email=" + this.state.userEmail, {
       headers: {
@@ -119,20 +123,16 @@ export default class App extends Component {
         console.log(res)
         this.getProfile()
         this.setState({
-
           successMessage: "The Playlist is added successfully",
           failedMessage: null,
           redirect: "/PlaylistList"
-
         })
       })
       .catch(err => {
         console.log(err)
         this.setState({
-
           successMessage: null,
           failedMessage: "Error Occured. Please try again later!"
-
         })
       })
   }
@@ -145,24 +145,20 @@ export default class App extends Component {
       }
     })
       .then(res => {
-        console.log("Added!!")
-        console.log(res)
-        this.getProfile()
-        // this.loadFavSongs()
+        console.log("Added!!");
+        console.log(res);
+        this.loadFavSongs();
         this.setState({
-
           successMessage: "The Song is added successfully",
           failedMessage: null,
           redirect: "/profile",
         })
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
         this.setState({
-
           successMessage: null,
           failedMessage: "Error Occured. Please try again later!"
-
         })
       })
   }
@@ -180,7 +176,7 @@ export default class App extends Component {
         .then(res => {
           console.log("deleted!!")
           console.log(res);
-          this.getProfile()
+          this.loadFavSongs();
           this.setState({
             failedMessage: "",
             successMessage: "The song deleted successfully"
@@ -220,7 +216,7 @@ export default class App extends Component {
       .then(res => {
         console.log("Added!!")
         console.log(res);
-        this.getProfile();
+        this.loadFavSongs();
       })
       .catch(err => {
         console.log(err);
@@ -242,11 +238,15 @@ export default class App extends Component {
   loadFavSongs = () => {
     axios.get("/song/index")
       .then(res => {
-        console.log(res);
-        if (res.data.id == this.state.userProfile.userId) {
-          this.setState({
-            favSongs: res.data
-          })
+        console.log("fav songs loaded");
+        console.log(res.data);
+        for (var i = 0; i < res.data.length; i++) {
+          console.log("for loop i: "+i);
+          if (res.data[i].user.userId == this.state.userProfile.userId) {
+            this.setState({
+              favSongs: res.data
+            })
+          }
         }
       })
       .catch(err => {
@@ -254,9 +254,9 @@ export default class App extends Component {
       })
   }
 
-  loadPlaylist = () => {
+  // loadPlaylist = () => {
 
-  }
+  // }
 
   render() {
     const redirect = (this.state.redirect != null) ?
@@ -339,7 +339,7 @@ export default class App extends Component {
 
         <Route
           path="/profile"
-          component={() => this.state.isAuth ? <Profile profile={this.state.userProfile} loadFavSongs={this.loadFavSongs} handleunFav={this.handleUnFavorite} isAuth={this.state.isAuth} userId={this.state.userId} /> : null}
+          component={() => this.state.isAuth ? <Profile favSongs={this.state.favSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} /> : null}
         ></Route>
       </Router>
     )
