@@ -3,10 +3,9 @@ import Table from "react-bootstrap/Table";
 import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SongsPlaylist from "./SongsPlaylist";
-import Playlist from "./Playlist";
 
 export default class PlaylistList extends Component {
-  state = {};
+
   render() {
     return (
       <Router>
@@ -20,34 +19,26 @@ export default class PlaylistList extends Component {
           </thead>
 
           <tbody>
-            {this.props.playlists.map(
-              (playlist, index) => (
-                <tr>
-                  <td>{index + 1}</td>
-                  <td>
-                    <Link
-                      to={{
-                        pathname: "/SongsPlaylist",
-                        state: { playlistSongs: playlist.songs },
-                      }}
-                    >
-                      {" "}
-                      {playlist.name}
-                    </Link>
-                  </td>
-
-                  <Route
+            {this.props.playlists.map((playlist, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>
+                  <Link to="/SongsPlaylist">
+                    {" "}{playlist.name}
+                  </Link>
+                </td>
+                <Route
+                    path="/SongsPlaylist"
                     component={() => (
                       <SongsPlaylist path="/SongsPlaylist"
-                        playlistSongs={this.props.playlists.songs}
+                        playlistId={playlist.id}
                       ></SongsPlaylist>
                     )}
                   ></Route>
-                </tr>
-              )
-            
+              </tr>
+
+            )
             )}
-           
           </tbody>
         </Table>
       </Router>

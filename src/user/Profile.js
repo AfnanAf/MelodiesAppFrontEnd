@@ -6,158 +6,161 @@ import { Redirect } from "react-router-dom";
 import NewPassword from "./NewPassword";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Fade from "react-bootstrap/Fade";
-import { Container, Form, Button } from 'react-bootstrap'
+import { Container, Form, Button } from 'react-bootstrap'
 
 import EditProfile from "./EditProfile";
 export default class Profile extends Component {
-  state = {
-    songs: this.props.favSongs,
-    playlists: this.props.profile.playlists,
-    isPasswordChange: false,
-    isProfileEdit: false,
-  };
+    state = {
+        songs: this.props.favSongs,
+        playlists: this.props.profile.playlists,
+        isPasswordChange: false,
+        isProfileEdit: false,
+    };
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //     console.log(nextProps, nextState);
-  //     console.log(this.props, this.state);
-  //     this.loadSongs();
-  //     this.loadPlaylist();
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log(nextProps, nextState);
+    //     console.log(this.props, this.state);
+    //     this.loadSongs();
+    //     this.loadPlaylist();
 
-  //     return false;
-  // }
+    //     return false;
+    // }
 
-  redirectToLogin = () => {
-    if (this.props.isAuth) return <Redirect to="/login" />;
-  };
+    componentDidMount() {
+        // this.props.loadFavSongs();
+    }
+
+    redirectToLogin = () => {
+        if (this.props.isAuth) return <Redirect to="/login" />;
+    };
 
 
-  editUserInfo = (user) => {
-    axios
-      .put("/user/edit", user, {
-        headers: {
-          "Authorization": "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        console.log("edited user respose ==== " + response.data);
+    editUserInfo = (user) => {
+        axios
+            .put("/user/edit", user, {
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token"),
+                },
+            })
+            .then((response) => {
+                console.log("edited user respose ==== " + response.data);
 
+                this.setState({
+                    successMessage: "Your Profile is edited successfully !!!",
+                    failedMessage: null,
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+                this.setState({
+                    successMessage: null,
+                    failedMessage:
+                        "Error occurred during requesting change profile info , try again ",
+                });
+            });
+    };
+
+    changePasswordHandler = (currentPassword, newPassword) => {
+        const user = this.props.profile;
+
+        user["password"] = newPassword;
+        console.log("user with new Password " + user);
+
+        axios
+            .put("/user/changePassword?currentPassword=" + currentPassword, user, {
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token"),
+                },
+            })
+            .then((response) => {
+                console.log("respose ==== " + response.data);
+                if (response.data == true) {
+                    this.setState({
+                        successMessage: "Password changed successfully !!!",
+                        failedMessage: null,
+                        redirect: "/profile",
+                        isProfileEdit: false,
+                    });
+                } else {
+                    this.setState({
+                        successMessage: null,
+                        failedMessage: "Error occurred during changing your password , try again ",
+                    });
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                this.setState({
+                    successMessage: null,
+                    failedMessage:
+                        "Error occurred during requesting change password , try again ",
+                });
+            });
+    };
+
+    changePasswordForm = () => {
         this.setState({
-          successMessage: "Your Profile is edited successfully !!!",
-          failedMessage: null,
+            isPasswordChange: !this.state.isPasswordChange,
         });
-      })
-      .catch((error) => {
-        console.log(error);
+    };
+    editProfile = () => {
         this.setState({
-          successMessage: null,
-          failedMessage:
-            "Error occurred during requesting change profile info , try again ",
+            isProfileEdit: !this.state.isProfileEdit,
         });
-      });
-  };
+    };
+    render() {
+        const failedMessage = this.state.failedMessage ? (
+            <Alert variant="danger" transition={Fade}>
+                {this.state.failedMessage}
+            </Alert>
+        ) : null;
 
-  changePasswordHandler = (currentPassword, newPassword) => {
-    const user = this.props.profile;
+        const successMessage = this.state.successMessage ? (
+            <Alert variant="success" transition={Fade}>
+                {this.state.successMessage}
+            </Alert>
+        ) : null;
 
-    user["password"] = newPassword;
-    console.log("user with new Password " + user);
+        return (
+            <div>
+                {failedMessage} {successMessage}
+                {this.state.isPasswordChange ? (
+                    <NewPassword
+                        path="/NewPassword"
+                        userCurrentPassword={this.props.profile.password}
+                        changePasswordHandler={this.changePasswordHandler}
+                    ></NewPassword>
+                ) : null}
+                <Button onClick={this.editProfile}>Edit Profile</Button>
+                {this.state.isProfileEdit ? (
+                    <EditProfile
+                        profile={this.props.profile}
+                        editUserInfo={this.editUserInfo}
+                    />
+                ) : (
+                        <span>
+                            <p>First Name: {this.props.profile.firstName}</p>
+                            <p>Last Name: {this.props.profile.lastName}</p>
+                            <p>Email: {this.props.profile.emailAddress}</p>
 
-    axios
-      .put("/user/changePassword?currentPassword=" + currentPassword, user, {
-        headers: {
-          "Authorization": "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        console.log("respose ==== " + response.data);
-        if (response.data == true) {
-          this.setState({
-            successMessage: "Password changed successfully !!!",
-            failedMessage: null,
-            redirect: "/profile",
-            isProfileEdit: false,
-          });
-        } else {
-          this.setState({
-            successMessage: null,
-            failedMessage:
-              "Error occurred during changing your password , try again ",
-          });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        this.setState({
-          successMessage: null,
-          failedMessage:
-            "Error occurred during requesting change password , try again ",
-        });
-      });
-  };
-
-  changePasswordForm = () => {
-    this.setState({
-      isPasswordChange: !this.state.isPasswordChange,
-    });
-  };
-  editProfile = () => {
-    this.setState({
-      isProfileEdit: !this.state.isProfileEdit,
-    });
-  };
-  render() {
-    const failedMessage = this.state.failedMessage ? (
-      <Alert variant="danger" transition={Fade}>
-        {this.state.failedMessage}
-      </Alert>
-    ) : null;
-
-    const successMessage = this.state.successMessage ? (
-      <Alert variant="success" transition={Fade}>
-        {this.state.successMessage}
-      </Alert>
-    ) : null;
-
-    return (
-      <div>
-        {failedMessage} {successMessage}
-        {this.state.isPasswordChange ? (
-          <NewPassword
-            path="/NewPassword"
-            userCurrentPassword={this.props.profile.password}
-            changePasswordHandler={this.changePasswordHandler}
-          ></NewPassword>
-        ) : null}
-        <Button onClick={this.editProfile}>Edit Profile</Button>
-        {this.state.isProfileEdit ? (
-          <EditProfile
-            profile={this.props.profile}
-            editUserInfo={this.editUserInfo}
-          />
-        ) : (
-          <span>
-            <p>First Name: {this.props.profile.firstName}</p>
-            <p>Last Name: {this.props.profile.lastName}</p>
-            <p>Email: {this.props.profile.emailAddress}</p>
-
-            <p>
-              Password: <a onClick={this.changePasswordForm}>Change Password</a>
-            </p>
-          </span>
-        )}
-        <CardDeck>
-          {this.state.songs.map((song, index) => (
-            <div key={index}>
-              <FavSong
-                {...song}
-                handleUnFav={this.props.handleunFav}
-                addPlaylist={this.addPlaylist}
-                isAuth={this.props.isAuth}
-              />
+                            <p>
+                                Password: <a onClick={this.changePasswordForm}>Change Password</a>
+                            </p>
+                        </span>
+                    )}
+                <CardDeck>
+                    {this.state.songs.map((song, index) => (
+                        <div key={index}>
+                            <FavSong
+                                {...song}
+                                handleUnFav={this.props.handleunFav}
+                                addPlaylist={this.addPlaylist}
+                                isAuth={this.props.isAuth}
+                            />
+                        </div>
+                    ))}
+                </CardDeck>
             </div>
-          ))}
-        </CardDeck>
-      </div>
-    );
-  }
+        );
+    }
 }

@@ -19,6 +19,7 @@ export default class App extends Component {
 
   state = {
     favSongs: [],
+    playlistSongs: [],
     isAuth: false,
     user: null,
     userEmail: "",
@@ -53,6 +54,8 @@ export default class App extends Component {
       .catch(err => {
         console.log(err);
       })
+
+      this.loadFavSongs()
   }
 
   registerHandler = (user) => {
@@ -264,9 +267,11 @@ export default class App extends Component {
       null;
 
     const playLists = this.state.userProfile.playLists;
+
     const failedMessage = this.state.failedMessage ? (
       <Alert variant="danger" transition={Fade} >{this.state.failedMessage}</Alert>
     ) : null;
+
     const successMessage = this.state.successMessage ? (
       <Alert variant="success">{this.state.successMessage}</Alert>
     ) : null;
@@ -314,7 +319,7 @@ export default class App extends Component {
         <Route
           path="/PlaylistList"
           component={
-            () => <PlaylistList playlists={playLists} />}
+            () => this.state.isAuth ? <PlaylistList playlists={playLists} /> : null}
         ></Route>
 
         <Route
@@ -339,7 +344,7 @@ export default class App extends Component {
 
         <Route
           path="/profile"
-          component={() => this.state.isAuth ? <Profile favSongs={this.state.favSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} /> : null}
+          component={() => this.state.isAuth ? <Profile favSongs={this.state.favSongs} loadFavSongs={this.loadFavSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} /> : null}
         ></Route>
       </Router>
     )
