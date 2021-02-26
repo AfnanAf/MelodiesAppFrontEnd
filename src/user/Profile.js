@@ -159,7 +159,7 @@ export default class Profile extends Component {
                                 handleUnFav={this.props.handleunFav}
                                 addPlaylist={this.addPlaylist}
                                 isAuth={this.props.isAuth}
-                                playlists={this.state.playlists}
+                                playlists={this.props.playlists}
                             />
                         </div>
                     ))}

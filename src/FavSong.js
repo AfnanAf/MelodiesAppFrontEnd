@@ -4,6 +4,7 @@ import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import ReactAudioPlayer from 'react-audio-player';
 import axios from 'axios';
 import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton'
 
 export default class FavSong extends Component {
     state = {
@@ -28,6 +29,7 @@ export default class FavSong extends Component {
     }
 
     render() {
+        const playlistsNum = this.props.playlists.length;
         return (
             <Card className="card">
                 <Card.Img variant="top" src={this.props.image} />
@@ -40,18 +42,28 @@ export default class FavSong extends Component {
                         {this.props.isAuth ? (this.state.isAdded ? <span onClick={() => this.addToPlaylist(this.props.id)}>  </span>
                             : <span> </span>
                         ) : null}
-                        <Dropdown>
+
+                        {/* {playlistsNum <= 0 ? */}
+                        {/* <Dropdown>
                             <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                playlists
+                                {this.props.playlists[1].name}
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                {/* {this.props.isAuth ? (this.playlists.map((playlist, index) => {
-                                    <Dropdown.Item key={index} onClick={()=>this.addToPlaylist(playlist)}>{playlist.name}</Dropdown.Item>
-
-                                })) : null} */}
+                                {this.props.playlists.map((playlist, index) => {
+                                    <Dropdown.Item href={`#/action-${index}`}>{playlist.name}</Dropdown.Item>
+                                })}
                             </Dropdown.Menu>
-                        </Dropdown>
+
+                        </Dropdown> */}
+
+                        <DropdownButton id="dropdown-basic-button" title={this.props.playlists[0].name}>
+                            {this.props.playlists.map((playlist, index) => {
+                                <Dropdown.Item key={index} href={`#/action-${index}`}>{playlist.name}</Dropdown.Item>
+                            })}
+                        </DropdownButton>
+
+                        {/* : null} */}
                     </Card.Title>
 
                     <Card.Text>
