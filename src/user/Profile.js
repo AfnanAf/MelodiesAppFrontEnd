@@ -160,6 +160,8 @@ export default class Profile extends Component {
                                 addPlaylist={this.addPlaylist}
                                 isAuth={this.props.isAuth}
                                 playlists={this.props.playlists}
+                                editSong={this.props.editSong}
+                                userId={this.props.userId}
                             />
                         </div>
                     ))}

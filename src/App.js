@@ -29,7 +29,7 @@ export default class App extends Component {
     failedMessage: null,
     successMessage: null,
     redirect: null,
-    users:[]
+    users: []
   };
 
   componentDidMount() {
@@ -57,7 +57,7 @@ export default class App extends Component {
         console.log(err);
       })
 
-      this.loadFavSongs()
+    this.loadFavSongs()
   }
 
   registerHandler = (user) => {
@@ -104,7 +104,7 @@ export default class App extends Component {
           });
         }
         this.getProfile()
-this.getUsers()
+        this.getUsers()
       })
       .catch((error) => {
         console.log(error);
@@ -155,6 +155,31 @@ this.getUsers()
         this.loadFavSongs();
         this.setState({
           successMessage: "The Song is added successfully",
+          failedMessage: null,
+          redirect: "/profile",
+        })
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          successMessage: null,
+          failedMessage: "Error Occured. Please try again later!"
+        })
+      })
+  }
+
+  editSong = (song) => {
+    axios.put("/song/edit", song, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    })
+      .then(res => {
+        console.log("Edited!!");
+        console.log(res);
+        this.loadFavSongs();
+        this.setState({
+          successMessage: "The Song is edited successfully",
           failedMessage: null,
           redirect: "/profile",
         })
@@ -246,7 +271,7 @@ this.getUsers()
         console.log("fav songs loaded");
         console.log(res.data);
         for (var i = 0; i < res.data.length; i++) {
-          console.log("for loop i: "+i);
+          console.log("for loop i: " + i);
           if (res.data[i].user.userId == this.state.userProfile.userId) {
             this.setState({
               favSongs: res.data
@@ -264,9 +289,9 @@ this.getUsers()
       .then(res => {
         console.log("users are loaded");
         console.log(res.data);
-      this.setState({
-        users: res.data
-      })
+        this.setState({
+          users: res.data
+        })
       })
       .catch(err => {
         console.log(err);
@@ -301,8 +326,8 @@ this.getUsers()
             <Link to="/home">Home</Link>{" "}
             <Link to="/SongsList">Songs</Link>{" "}
             <Link to="/PlaylistList">Playlists</Link>{" "}
-            {this.state.isAuth && userRole == 'ROLE_ADMIN' ?  <Link to="/Users">Users</Link>:null} {" "} 
-           
+            {this.state.isAuth && userRole == 'ROLE_ADMIN' ? <Link to="/Users">Users</Link> : null} {" "}
+
 
             {this.state.isAuth ? (
               <span>
@@ -363,13 +388,13 @@ this.getUsers()
 
         <Route
           path="/profile"
-          component={() => this.state.isAuth ? <Profile playlists={playLists} email={this.state.userEmail} getProfile={this.getProfile} favSongs={this.state.favSongs} loadFavSongs={this.loadFavSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} /> : null}
+          component={() => this.state.isAuth ? <Profile playlists={playLists} email={this.state.userEmail} getProfile={this.getProfile} favSongs={this.state.favSongs} loadFavSongs={this.loadFavSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} editSong={this.editSong} /> : null}
         ></Route>
 
-       <Route
+        <Route
           path="/Users"
-          component={() => this.state.isAuth && userRole == 'ROLE_ADMIN' ? <UsersList  /> : null}
-          // component={() => this.state.isAuth && userRole == 'ROLE_ADMIN' ? <UsersList  loadUsers={this.getUsers()} /> : null}
+          component={() => this.state.isAuth && userRole == 'ROLE_ADMIN' ? <UsersList /> : null}
+        // component={() => this.state.isAuth && userRole == 'ROLE_ADMIN' ? <UsersList  loadUsers={this.getUsers()} /> : null}
 
         ></Route>
       </Router>
