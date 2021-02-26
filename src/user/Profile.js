@@ -35,18 +35,19 @@ export default class Profile extends Component {
     };
 
 
-    editUserInfo = (user) => {
+    editUserInfo = (user, email) => {
         axios
-            .put("/user/edit", user, {
+            .put("/user/edit?email=" + email, user, {
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem("token"),
                 },
             })
             .then((response) => {
-                console.log("edited user respose ==== " + response.data);
+                console.log("edited user respose ==== ");
+                console.log(response.data);
 
                 this.setState({
-                    successMessage: "Your Profile is edited successfully !!!",
+                    successMessage: response.data.message,
                     failedMessage: null,
                 });
             })
@@ -58,6 +59,7 @@ export default class Profile extends Component {
                         "Error occurred during requesting change profile info , try again ",
                 });
             });
+            this.props.getProfile();
     };
 
     changePasswordHandler = (currentPassword, newPassword) => {
@@ -134,6 +136,7 @@ export default class Profile extends Component {
                 <Button onClick={this.editProfile}>Edit Profile</Button>
                 {this.state.isProfileEdit ? (
                     <EditProfile
+                        email={this.props.email}
                         profile={this.props.profile}
                         editUserInfo={this.editUserInfo}
                     />
@@ -156,6 +159,7 @@ export default class Profile extends Component {
                                 handleUnFav={this.props.handleunFav}
                                 addPlaylist={this.addPlaylist}
                                 isAuth={this.props.isAuth}
+                                playlists={this.state.playlists}
                             />
                         </div>
                     ))}

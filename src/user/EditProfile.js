@@ -31,7 +31,7 @@ export default class EditProfile extends Component {
     //     failedMessage: "invalid email address!",
     //   });
     // } else {
-      this.props.editUserInfo(this.state.editedUser);
+      this.props.editUserInfo(this.state.editedUser, this.props.email);
       this.setState({
         failedMessage: "",
       });
