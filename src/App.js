@@ -14,6 +14,7 @@ import Fade from 'react-bootstrap/Fade'
 import { Redirect } from "react-router-dom";
 import Home from './Home'
 import FavSong from './FavSong'
+import UsersList from './user/UsersList'
 
 export default class App extends Component {
 
@@ -28,6 +29,7 @@ export default class App extends Component {
     failedMessage: null,
     successMessage: null,
     redirect: null,
+    users:[]
   };
 
   componentDidMount() {
@@ -102,7 +104,7 @@ export default class App extends Component {
           });
         }
         this.getProfile()
-
+this.getUsers()
       })
       .catch((error) => {
         console.log(error);
@@ -257,6 +259,20 @@ export default class App extends Component {
       })
   }
 
+  getUsers = () => {
+    axios.get("/user/index")
+      .then(res => {
+        console.log("users are loaded");
+        console.log(res.data);
+      this.setState({
+        users: res.data
+      })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
   // loadPlaylist = () => {
 
   // }
@@ -267,7 +283,7 @@ export default class App extends Component {
       null;
 
     const playLists = this.state.userProfile.playLists;
-
+    const userRole = this.state.userProfile.userRole;
     const failedMessage = this.state.failedMessage ? (
       <Alert variant="danger" transition={Fade} >{this.state.failedMessage}</Alert>
     ) : null;
@@ -285,6 +301,9 @@ export default class App extends Component {
             <Link to="/home">Home</Link>{" "}
             <Link to="/SongsList">Songs</Link>{" "}
             <Link to="/PlaylistList">Playlists</Link>{" "}
+            {this.state.isAuth && userRole == 'ROLE_ADMIN' ?  <Link to="/Users">Users</Link>:null} {" "} 
+           
+
             {this.state.isAuth ? (
               <span>
                 <Link to="/AddPlaylist">Add Playlist</Link>{" "}
@@ -345,6 +364,13 @@ export default class App extends Component {
         <Route
           path="/profile"
           component={() => this.state.isAuth ? <Profile favSongs={this.state.favSongs} loadFavSongs={this.loadFavSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} /> : null}
+        ></Route>
+
+       <Route
+          path="/Users"
+          component={() => this.state.isAuth && userRole == 'ROLE_ADMIN' ? <UsersList  /> : null}
+          // component={() => this.state.isAuth && userRole == 'ROLE_ADMIN' ? <UsersList  loadUsers={this.getUsers()} /> : null}
+
         ></Route>
       </Router>
     )
