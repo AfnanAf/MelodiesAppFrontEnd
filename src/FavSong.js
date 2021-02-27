@@ -149,10 +149,10 @@ export default class FavSong extends Component {
 
                         </Dropdown> */}
 
-                            <DropdownButton id="dropdown-basic-button" title={this.props.playlists[0].name}>
-                                {this.props.playlists.map((playlist, index) => {
+                            <DropdownButton id="dropdown-basic-button" title="Add to playlist">
+                                {this.props.playlists.map((playlist, index) => (
                                     <Dropdown.Item key={index} href={`#/action-${index}`}>{playlist.name}</Dropdown.Item>
-                                })}
+                                ))}
                             </DropdownButton>
 
                             {/* : null} */}
