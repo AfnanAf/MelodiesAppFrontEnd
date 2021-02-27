@@ -363,7 +363,7 @@ export default class App extends Component {
         <Route
           path="/PlaylistList"
           component={
-            () => this.state.isAuth ? <PlaylistList playlists={playLists} /> : null}
+            () => this.state.isAuth ? <PlaylistList playlists={playLists} userId={this.state.userId} email={this.state.userEmail} /> : null}
         ></Route>
 
         <Route

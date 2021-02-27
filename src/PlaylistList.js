@@ -3,17 +3,18 @@ import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
 import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Playlist from "./Playlist";
 import SongsPlaylist from "./SongsPlaylist";
 
 export default class PlaylistList extends Component {
 
   state = {
-    playlists: this.props.playlists
+    playlists: this.props.playlists,
+    editedPlaylist: {},
   }
-  deletePlaylist = (playlistId) => {
-    // e.preventDefault()
-    console.log(playlistId)
 
+  deletePlaylist = (playlistId) => {
+    console.log(playlistId)
 
     axios.delete("/playlist/delete?id=" + playlistId, {
       headers: {
@@ -23,11 +24,11 @@ export default class PlaylistList extends Component {
       .then(res => {
         console.log("playlist deleted !");
         console.log(res.data);
+        this.loadPlaylists()
         this.setState({
           successMessage: "playlist is deleted successfully",
           failedMessage: null
         })
-        this.loadPlaylists()
       })
       .catch(err => {
         console.log(err);
@@ -36,22 +37,44 @@ export default class PlaylistList extends Component {
           failedMessage: "Error during deleting a playlist"
         })
       })
-
   }
 
-  loadPlaylists() {
-    axios.get("/playlist/index")
+  editPlaylist(playlist) {
+    axios.put("/playlist/edit", playlist, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    })
       .then(res => {
-        console.log("playlists >")
         console.log(res.data)
+        this.loadPlaylists()
         this.setState({
-          playlists:res.data
+          editedPlaylist: res.data
         })
       })
       .catch(err => {
         console.log(err)
       })
   }
+
+  loadPlaylists() {
+    axios.get("/user/profile?email=" + this.props.email, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    })
+      .then(res => {
+        console.log("playlists >")
+        console.log(res.data)
+        this.setState({
+          playlists: res.data.playLists
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   render() {
     return (
       <Router>
@@ -66,25 +89,7 @@ export default class PlaylistList extends Component {
 
           <tbody>
             {this.state.playlists.map((playlist, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>
-                  <Link to="/SongsPlaylist">
-                    {" "}{playlist.name}
-                  </Link>
-                </td>
-                <Route
-                  path="/SongsPlaylist"
-                  component={() => (
-                    <SongsPlaylist path="/SongsPlaylist"
-                      playlistId={playlist.id}
-                    ></SongsPlaylist>
-                  )}
-                ></Route>
-                <td>
-                  <Link onClick={() => this.deletePlaylist(playlist.id)} >Delete </Link>
-                </td>
-              </tr>
+              <Playlist editPlaylist={this.editPlaylist} deletePlaylist={this.deletePlaylist} playlist={playlist} key={index} userId={this.props.userId} />
             )
             )}
           </tbody>
