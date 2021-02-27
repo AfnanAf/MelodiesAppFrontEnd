@@ -2,13 +2,16 @@ import React, { Component } from "react";
 import { Alert } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
 import { Container, Form, Button } from "react-bootstrap";
-
+import axios from "axios";
+import Image from 'react-bootstrap/Image';
 export default class AddSong extends Component {
   constructor(props) {
     super(props);
     this.state = {
       newSong: {},
       failedMessage: "",
+      selectedFile: undefined,
+      imageUrl:""
     };
   }
   validateURL(url) {
@@ -57,6 +60,29 @@ export default class AddSong extends Component {
       this.props.addSong(this.state.newSong);
     }
   };
+  onFileChangeHandler = (e) => {
+    e.preventDefault();
+    this.setState({
+        selectedFile: e.target.files[0]
+    });
+    const formData = new FormData();
+    formData.append('file', this.state.selectedFile);
+// this.setState({
+//   imageUrl:URL.createObjectURL(this.state.selectedFile)
+// })
+console.log("selected filee "+formData)
+    axios.post("/upload",formData, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token"),
+      }
+    }).then(res => {
+        
+          console.log("image uploadded !!")
+            console.log(res.data);
+            // alert("File uploaded successfully.")
+      
+    });
+};
   render() {
     const failedMessage = this.state.failedMessage ? (
       <Alert variant="danger" transition={Fade}>
@@ -76,12 +102,14 @@ export default class AddSong extends Component {
             ></Form.Control>
             <Form.Group>
               <Form.Label>Image</Form.Label>
+              {/* <Image src={this.state.imageUrl != null ? this.state.imageUrl:null} rounded /> */}
+
               <Form.Control
                 name="image"
-                type="text"
-                onChange={this.handleChange}
+                type="file"
+                onChange={this.onFileChangeHandler}
               ></Form.Control>
-            </Form.Group>
+             </Form.Group>
 
             <Form.Group>
               <Form.Label>Mp3 Url</Form.Label>
