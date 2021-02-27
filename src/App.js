@@ -298,9 +298,67 @@ export default class App extends Component {
       })
   }
 
-  // loadPlaylist = () => {
+  loadPlaylists() {
+    axios.get("/user/profile?email=" + this.props.email, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    })
+      .then(res => {
+        console.log("playlists >")
+        console.log(res.data)
+        this.setState({
+          playlists: res.data.playLists
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
-  // }
+  deletePlaylist = (playlistId) => {
+    console.log(playlistId)
+
+    axios.delete("/playlist/delete?id=" + playlistId, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    })
+      .then(res => {
+        console.log("playlist deleted !");
+        console.log(res.data);
+        this.getProfile()
+        this.setState({
+          successMessage: "playlist is deleted successfully",
+          failedMessage: null
+        })
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          successMessage: null,
+          failedMessage: "Error during deleting a playlist"
+        })
+      })
+  }
+
+  editPlaylist=(playlist)=> {
+    axios.put("/playlist/edit", playlist, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    })
+      .then(res => {
+        console.log(res.data)
+        this.getProfile()
+        this.setState({
+          editedPlaylist: res.data
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   render() {
     const redirect = (this.state.redirect != null) ?
@@ -363,7 +421,7 @@ export default class App extends Component {
         <Route
           path="/PlaylistList"
           component={
-            () => this.state.isAuth ? <PlaylistList playlists={playLists} userId={this.state.userId} email={this.state.userEmail} /> : null}
+            () => this.state.isAuth ? <PlaylistList deletePlaylist={this.deletePlaylist} editPlaylist={this.editPlaylist} playlists={playLists} userId={this.state.userId} email={this.state.userEmail} /> : null}
         ></Route>
 
         <Route
@@ -388,7 +446,7 @@ export default class App extends Component {
 
         <Route
           path="/profile"
-          component={() => this.state.isAuth ? <Profile playlists={playLists} email={this.state.userEmail} getProfile={this.getProfile} favSongs={this.state.favSongs} loadFavSongs={this.loadFavSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} editSong={this.editSong} addSong={this.addSong}/> : null}
+          component={() => this.state.isAuth ? <Profile playlists={playLists} email={this.state.userEmail} getProfile={this.getProfile} favSongs={this.state.favSongs} loadFavSongs={this.loadFavSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} editSong={this.editSong} addSong={this.addSong} /> : null}
         ></Route>
 
         <Route

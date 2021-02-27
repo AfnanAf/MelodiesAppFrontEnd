@@ -76,12 +76,12 @@ export default class FavSong extends Component {
         console.log(this.state);
 
         let editedSongInfo = this.state.editedSong;
-        editedSongInfo["image"] = this.props.image;
-        editedSongInfo["id"] = this.props.id;
+        editedSongInfo["image"] = this.props.song.image;
+        editedSongInfo["id"] = this.props.song.id;
         editedSongInfo["artistName"] = this.state.artistName;
         editedSongInfo["name"] = this.state.songName;
         editedSongInfo["mp3Url"] = this.state.mp3Url;
-        editedSongInfo["user"] = this.props.userId;
+        editedSongInfo["user"] = this.props.song.userId;
 
 
         console.log(editedSongInfo);
@@ -154,11 +154,8 @@ export default class FavSong extends Component {
                     (<Card.Body>
 
                         <Card.Title className="cardtitle"><span>{this.props.song.name}</span>
-                            {this.props.isAuth ? (this.state.isFav ? <span onClick={() => this.unfavorite(this.props.id)}> <MdFavorite /> </span>
+                            {this.props.isAuth ? (this.state.isFav ? <span onClick={() => this.unfavorite(this.props.song.id)}> <MdFavorite /> </span>
                                 : <span><MdFavoriteBorder /> </span>
-                            ) : null}
-                            {this.props.isAuth ? (this.state.isAdded ? <span onClick={() => this.addToPlaylist(this.props.id)}>  </span>
-                                : <span> </span>
                             ) : null}
 
                             {/* <Dropdown>
@@ -173,7 +170,7 @@ export default class FavSong extends Component {
                             </Dropdown.Menu>
 
                         </Dropdown> */}
-                            {playlistsNum <= 0 ?
+                            {/* {playlistsNum = 0 ? */}
 
                                 <DropdownButton id="dropdown-basic-button" title="+">
                                     {this.props.playlists.map((playlist, index) => (
@@ -181,15 +178,15 @@ export default class FavSong extends Component {
                                     ))}
                                 </DropdownButton>
 
-                                :
+                                {/* :
                                 <DropdownButton id="dropdown-basic-button" title="+">
                                     <Dropdown.Item onClick={() => this.redirectToAddPlaylist()}>you don't have any playlist, create one from here</Dropdown.Item>
                                 </DropdownButton>
-                            }
+                            } */}
                         </Card.Title>
 
                         <Card.Text>
-                            {this.props.artistName}
+                            {this.props.song.artistName}
                         </Card.Text>
                         <ReactAudioPlayer className="audioplayer"
                             src={this.props.song.mp3Url}

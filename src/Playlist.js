@@ -20,22 +20,22 @@ export default class Playlist extends Component {
         })
     }
 
-    editPlaylist(playlist) {
-        axios.put("/playlist/edit", playlist, {
-          headers: {
-            "Authorization": "Bearer " + localStorage.getItem("token")
-          }
-        })
-        .then(res=>{
-          console.log(res.data)
-          this.setState({
-            editedPlaylist: res.data
-          })
-        })
-        .catch(err=>{
-          console.log(err)
-        })
-      }
+    // editPlaylist(playlist) {
+    //     axios.put("/playlist/edit", playlist, {
+    //       headers: {
+    //         "Authorization": "Bearer " + localStorage.getItem("token")
+    //       }
+    //     })
+    //     .then(res=>{
+    //       console.log(res.data)
+    //       this.setState({
+    //         editedPlaylist: res.data
+    //       })
+    //     })
+    //     .catch(err=>{
+    //       console.log(err)
+    //     })
+    //   }
     
     changeHandler = () => {
         console.log(this.state);
@@ -60,7 +60,7 @@ export default class Playlist extends Component {
         this.changeHandler()
         console.log(this.state);
 
-        this.editPlaylist(this.state.editedPlaylist);
+        this.props.editPlaylist(this.state.editedPlaylist);
         this.setState({
             failedMessage: "",
             isEdit: true
