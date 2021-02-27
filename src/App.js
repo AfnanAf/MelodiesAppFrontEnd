@@ -388,7 +388,7 @@ export default class App extends Component {
 
         <Route
           path="/profile"
-          component={() => this.state.isAuth ? <Profile playlists={playLists} email={this.state.userEmail} getProfile={this.getProfile} favSongs={this.state.favSongs} loadFavSongs={this.loadFavSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} editSong={this.editSong} /> : null}
+          component={() => this.state.isAuth ? <Profile playlists={playLists} email={this.state.userEmail} getProfile={this.getProfile} favSongs={this.state.favSongs} loadFavSongs={this.loadFavSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} editSong={this.editSong} addSong={this.addSong}/> : null}
         ></Route>
 
         <Route

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Profiler } from 'react'
 import { Card } from 'react-bootstrap'
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import ReactAudioPlayer from 'react-audio-player';
@@ -6,6 +6,7 @@ import axios from 'axios';
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import { Button } from 'react-bootstrap';
+import { Redirect, Router } from 'react-router-dom';
 
 export default class FavSong extends Component {
     state = {
@@ -13,12 +14,13 @@ export default class FavSong extends Component {
         isAdded: false,
         playlistAddedTo: [],
         isEdit: true,
-
         editedSong: {},
         failedMessage: "",
-        songName: this.props.name,
-        artistName: this.props.artistName,
-        mp3Url: this.props.mp3Url,
+        songName: this.props.song.name,
+        artistName: this.props.song.artistName,
+        mp3Url: this.props.song.mp3Url,
+        newSong: this.props.song,
+        redirect: null,
     }
 
     unfavorite = (songId) => {
@@ -119,15 +121,39 @@ export default class FavSong extends Component {
     //     }
     // }
 
+    addSongToPlaylist = (playlistId) => {
+        console.log(playlistId)
+        const newSong = this.state.newSong;
+        var playlist = [{ id: playlistId }];
+        console.log(playlist)
+        newSong["playlists"] = playlist;
+        console.log(newSong["playlists"])
+        console.log(newSong)
+        this.props.addSong(this.state.newSong);
+    }
+
+    redirectToAddPlaylist() {
+        this.setState({
+            redirect: "/AddPlaylist"
+        })
+    }
     render() {
         const playlistsNum = this.props.playlists.length;
+
+        const redirect = (this.state.redirect != null) ?
+            <Redirect to={this.state.redirect} /> :
+            null;
+
         return (
+
             <Card className="card">
-                <Card.Img variant="top" src={this.props.image} />
+                {redirect}
+
+                <Card.Img variant="top" src={this.props.song.image} />
                 {this.state.isEdit ?
                     (<Card.Body>
 
-                        <Card.Title className="cardtitle"><span>{this.props.name}</span>
+                        <Card.Title className="cardtitle"><span>{this.props.song.name}</span>
                             {this.props.isAuth ? (this.state.isFav ? <span onClick={() => this.unfavorite(this.props.id)}> <MdFavorite /> </span>
                                 : <span><MdFavoriteBorder /> </span>
                             ) : null}
@@ -135,7 +161,6 @@ export default class FavSong extends Component {
                                 : <span> </span>
                             ) : null}
 
-                            {/* {playlistsNum <= 0 ? */}
                             {/* <Dropdown>
                             <Dropdown.Toggle variant="success" id="dropdown-basic">
                                 {this.props.playlists[1].name}
@@ -148,21 +173,26 @@ export default class FavSong extends Component {
                             </Dropdown.Menu>
 
                         </Dropdown> */}
+                            {playlistsNum <= 0 ?
 
-                            <DropdownButton id="dropdown-basic-button" title="Add to playlist">
-                                {this.props.playlists.map((playlist, index) => (
-                                    <Dropdown.Item key={index} href={`#/action-${index}`}>{playlist.name}</Dropdown.Item>
-                                ))}
-                            </DropdownButton>
+                                <DropdownButton id="dropdown-basic-button" title="+">
+                                    {this.props.playlists.map((playlist, index) => (
+                                        <Dropdown.Item onClick={() => this.addSongToPlaylist(playlist.id)} key={index} href={`#/playlist-${index}`}>{playlist.name}</Dropdown.Item>
+                                    ))}
+                                </DropdownButton>
 
-                            {/* : null} */}
+                                :
+                                <DropdownButton id="dropdown-basic-button" title="+">
+                                    <Dropdown.Item onClick={() => this.redirectToAddPlaylist()}>you don't have any playlist, create one from here</Dropdown.Item>
+                                </DropdownButton>
+                            }
                         </Card.Title>
 
                         <Card.Text>
                             {this.props.artistName}
                         </Card.Text>
                         <ReactAudioPlayer className="audioplayer"
-                            src={this.props.mp3Url}
+                            src={this.props.song.mp3Url}
                             controls />
                     </Card.Body>
 
@@ -188,7 +218,6 @@ export default class FavSong extends Component {
                     <small className="text-muted" onClick={() => this.editSongForm()}>Edit Song</small>
                 </Card.Footer>
             </Card>
-
         )
     }
 }

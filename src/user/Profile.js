@@ -155,13 +155,14 @@ export default class Profile extends Component {
                     {this.state.songs.map((song, index) => (
                         <div key={index}>
                             <FavSong
-                                {...song}
+                                song={song}
                                 handleUnFav={this.props.handleunFav}
                                 addPlaylist={this.addPlaylist}
                                 isAuth={this.props.isAuth}
                                 playlists={this.props.playlists}
                                 editSong={this.props.editSong}
                                 userId={this.props.userId}
+                                addSong={this.props.addSong}
                             />
                         </div>
                     ))}
