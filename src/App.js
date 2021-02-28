@@ -387,7 +387,7 @@ export default class App extends Component {
         <Header
           brand="Melodies"
           color="info"
-          rightLinks={<HeaderLinks isAuth={this.state.isAuth} onLogoutHandler={this.onLogoutHandler} userRole={userRole} />}
+          leftLinks={<HeaderLinks isAuth={this.state.isAuth} onLogoutHandler={this.onLogoutHandler} userRole={userRole} />}
           fixed
           color="transparent"
           changeColorOnScroll={{

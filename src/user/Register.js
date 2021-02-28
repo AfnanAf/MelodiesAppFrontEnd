@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { Alert } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
+import SectionRegister from "./SectionRegister"
+
 export default class Register extends Component {
   state = {
     password: "",
@@ -91,7 +93,7 @@ export default class Register extends Component {
     return (
       <div>
         {failedMessage}
-        <Container>
+        {/* <Container>
           <Form.Group>
             <Form.Label>First Name</Form.Label>
             <Form.Control
@@ -139,7 +141,8 @@ export default class Register extends Component {
           <Button variant="primary" block onClick={this.registerHandler}>
             Register
           </Button>
-        </Container>
+        </Container> */}
+        <SectionRegister changeHandler={this.changeHandler} passwordHandler={this.passwordHandler} confirmPassword={this.confirmPassword} registerHandler={this.registerHandler} />
       </div>
     );
   }

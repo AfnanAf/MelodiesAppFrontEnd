@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
+import SectionLogin from './SectionLogin';
 
 export default class Login extends Component {
     state = {}
@@ -10,6 +11,7 @@ export default class Login extends Component {
 
 
 changeHandler = (e) => {
+    console.log("changeHandler hereeeeeee")
     let temp = {... this.state}
     temp[e.target.name] = e.target.value;
     this.setState(temp)
@@ -19,7 +21,7 @@ changeHandler = (e) => {
     render() {
         return (
             <div>
-                <Container>
+                {/* <Container>
                    
                     <Form.Group>
                         <Form.Label>Email Address</Form.Label>
@@ -33,8 +35,8 @@ changeHandler = (e) => {
 
 
                     <Button variant="primary" block onClick={this.loginHandler}>Login</Button>
-                </Container>
-                
+                </Container> */}
+                <SectionLogin changeHandler={this.changeHandler} loginHandler={this.loginHandler} />
             </div>
         )
     }

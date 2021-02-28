@@ -6,7 +6,7 @@ import Song from './Song';
 export default class SongsList extends Component {
     state = {
         songs: [],
-        searchQuery: "a",
+        searchQuery: "r",
     }
 
     componentDidMount() {

@@ -33,135 +33,72 @@ export default function HeaderLinks(props) {
   const [hover, setHover] = useState(false);
 
   return (
+    <div>
+      <List className={classes.list}>
+        <ListItem className={classes.listItem}>
+        </ListItem>
 
-    <List className={classes.list}>
-      <ListItem className={classes.listItem}>
-      </ListItem>
-
-      <ListItem className={classes.listItem}>
-        {/* <Button
+        <ListItem className={classes.listItem}>
+          {/* <Button
             color="transparent"
             className={classes.navLink}
           ></Button> */}
-        <Link
-          style={{ textDecoration: 'none' }}
-          color="transparent"
-          className={classes.navLink}
-          to="/home">Home</Link>{" "}
+          <Link
+            style={{ textDecoration: 'none' }}
+            color="transparent"
+            className={classes.navLink}
+            to="/home">Home</Link>{" "}
 
-      </ListItem>
+        </ListItem>
 
-      <ListItem className={classes.listItem}>
+        <ListItem className={classes.listItem}>
 
-        <Link
-          style={{ textDecoration: 'none' }}
-          color="transparent"
-          className={classes.navLink}
-          to="/SongsList">Songs</Link>
+          <Link
+            style={{ textDecoration: 'none' }}
+            color="transparent"
+            className={classes.navLink}
+            to="/SongsList">Songs</Link>
 
-      </ListItem>
+        </ListItem>
 
-      {props.isAuth && props.userRole == 'ROLE_ADMIN' ? <ListItem className={classes.listItem}>
+        {props.isAuth && props.userRole == 'ROLE_ADMIN' ? <ListItem className={classes.listItem}>
 
-        <Link
-          style={{ textDecoration: 'none' }}
-          color="transparent"
-          className={classes.navLink}
-          to="/Users">Users</Link>
+          <Link
+            style={{ textDecoration: 'none' }}
+            color="transparent"
+            className={classes.navLink}
+            to="/Users">Users</Link>
 
-      </ListItem> : null}
+        </ListItem> : null}
 
-      {props.isAuth ? (
-        <span>
-
-          <ListItem className={classes.listItem}>
-
-            <Link
-              style={{ textDecoration: 'none' }}
-              color="transparent"
-              className={classes.navLink}
-              to="/AddPlaylist">Add Playlist</Link>
-
-          </ListItem>
-          <ListItem className={classes.listItem}>
-
-            <Link
-              style={{ textDecoration: 'none' }}
-              color="transparent"
-              className={classes.navLink}
-              to="/AddSong">Add Song</Link>{" "}
-
-          </ListItem>
-
-          <ListItem style={{float: 'right',textAlign: 'right'}} className={classes.listItem}>
-            <CustomDropdown
-              left
-              caret={false}
-              hoverColor="black"
-              dropdownHeader=""
-              buttonText={
-
-                <BsPeopleCircle />
-
-              }
-              buttonProps={{
-                className:
-                  classes.navLink + " " + classes.imageDropdownButton,
-                color: "transparent",
-              }}
-              dropdownList={[
-                <Link onMouseEnter={() => {
-                  setHover(true);
-                }}
-                  onMouseLeave={() => {
-                    setHover(false);
-                  }}
-                  style={{
-                    paddingRight: 120 + 'px',
-                    textDecoration: 'none', color: 'black',
-                    ...(hover ? { color: 'white' } : { color: 'black' })
-                  }}
-
-                  to="/profile">Profile
-                  </Link>,
-                <Link onMouseEnter={() => {
-                  setHover(true);
-                }}
-                  onMouseLeave={() => {
-                    setHover(false);
-                  }}
-                  style={{
-                    paddingRight: 120 + 'px',
-                    textDecoration: 'none', color: 'black',
-                    ...(hover ? { color: 'white' } : { color: 'black' })
-                  }}
-
-                  to="/logout" onClick={props.onLogoutHandler}>Sign Out
-</Link>]}
-            />
-          </ListItem>
-
-        </span>
-      ) : (
+        {props.isAuth ? (
           <span>
-            <ListItem className={classes.listItem}>
-              <Link
-                style={{ textDecoration: 'none' }}
-                color="transparent"
-                className={classes.navLink}
-                to="/register">Register</Link>
-            </ListItem>
-            <ListItem className={classes.listItem}>
-              <Link
-                style={{ textDecoration: 'none' }}
-                color="transparent"
-                className={classes.navLink}
-                to="/login">Login</Link>
-            </ListItem>
-          </span>
-        )}
 
-      {/* <ListItem className={classes.listItem}>
+            <ListItem className={classes.listItem}>
+
+              <Link
+                style={{ textDecoration: 'none' }}
+                color="transparent"
+                className={classes.navLink}
+                to="/AddPlaylist">Add Playlist</Link>
+
+            </ListItem>
+            <ListItem className={classes.listItem}>
+
+              <Link
+                style={{ textDecoration: 'none' }}
+                color="transparent"
+                className={classes.navLink}
+                to="/AddSong">Add Song</Link>{" "}
+
+            </ListItem>
+
+          </span>
+        ) : (
+            null
+          )}
+
+        {/* <ListItem className={classes.listItem}>
         <Tooltip title="Delete">
           <IconButton aria-label="Delete">
             <DeleteIcon />
@@ -217,6 +154,74 @@ export default function HeaderLinks(props) {
           </Button>
         </Tooltip>
       </ListItem> */}
-    </List >
+      </List >
+      <span style={{ position: 'absolute', right: 0 }} >
+        {!props.isAuth ? (
+          <span>
+            <ListItem className={classes.listItem}>
+              <Link
+                style={{ textDecoration: 'none' }}
+                color="transparent"
+                className={classes.navLink}
+                to="/register">Sign Up</Link>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+              <Link
+                style={{ textDecoration: 'none' }}
+                color="transparent"
+                className={classes.navLink}
+                to="/login">Sign In</Link>
+            </ListItem>
+          </span>
+        ) :
+          (<ListItem className={classes.listItem}>
+            <CustomDropdown
+              right
+              caret={false}
+              hoverColor="black"
+              dropdownHeader=""
+              buttonText={
+
+                <BsPeopleCircle style={{ width: 2.3 + 'em', height: 2.3 + 'em' }} />
+
+              }
+              buttonProps={{
+                className:
+                  classes.navLink + " " + classes.imageDropdownButton,
+                color: "transparent",
+              }}
+              dropdownList={[
+                <Link onMouseEnter={() => {
+                  setHover(true);
+                }}
+                  onMouseLeave={() => {
+                    setHover(false);
+                  }}
+                  style={{
+                    paddingRight: 120 + 'px',
+                    textDecoration: 'none', color: 'black',
+                    ...(hover ? { color: 'white' } : { color: 'black' })
+                  }}
+
+                  to="/profile">Profile
+           </Link>,
+                <Link onMouseEnter={() => {
+                  setHover(true);
+                }}
+                  onMouseLeave={() => {
+                    setHover(false);
+                  }}
+                  style={{
+                    paddingRight: 120 + 'px',
+                    textDecoration: 'none', color: 'black',
+                    ...(hover ? { color: 'white' } : { color: 'black' })
+                  }}
+
+                  to="/logout" onClick={props.onLogoutHandler}>Sign Out
+</Link>]}
+            />
+          </ListItem>)}
+      </span>
+    </div>
   );
 }
