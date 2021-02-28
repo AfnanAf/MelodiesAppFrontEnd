@@ -2,6 +2,11 @@ import axios from 'axios';
 import React, { Component } from 'react'
 import { CardDeck } from 'react-bootstrap';
 import Song from './Song';
+import Parallax from "./components/Parallax/Parallax";
+import GridContainer from "./components/Grid/GridContainer.js";
+import GridItem from "./components/Grid/GridItem.js";
+import { Input } from '@material-ui/core';
+import { FaSearch } from "react-icons/fa";
 
 export default class SongsList extends Component {
     state = {
@@ -43,7 +48,21 @@ export default class SongsList extends Component {
     render() {
         return (
             <div>
-                <input type="text" onChange={(e) => this.handleSearch(e)}></input>
+                <Parallax style={{height: 30+'em'}} image={require("./assets/img/bg3.jpg")}>
+                    <div >
+                        <GridContainer>
+                            <GridItem style={{paddingTop: 9+'em'}}>
+                                <div >
+                                    <h1 >Music For Everyone.</h1>
+                                    <h3 >
+                                        Life Is One Grand Sweet Song So Start Searching Your Music.</h3>
+                                    <Input placeholder="Search..." style={{ width: 50 + '%' }} type="text" onChange={(e) => this.handleSearch(e)} />
+                                    <FaSearch />
+                                </div>
+                            </GridItem>
+                        </GridContainer>
+                    </div>
+                </Parallax>
                 <CardDeck>
 
                     {this.state.songs.map((song, index) =>
