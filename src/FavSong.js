@@ -139,6 +139,7 @@ export default class FavSong extends Component {
     }
     render() {
         const playlistsNum = this.props.playlists.length;
+        console.log("num "+playlistsNum)
 
         const redirect = (this.state.redirect != null) ?
             <Redirect to={this.state.redirect} /> :
@@ -170,19 +171,19 @@ export default class FavSong extends Component {
                             </Dropdown.Menu>
 
                         </Dropdown> */}
-                            {/* {playlistsNum = 0 ? */}
+                            {playlistsNum > 0 ? (
 
                                 <DropdownButton id="dropdown-basic-button" title="+">
                                     {this.props.playlists.map((playlist, index) => (
                                         <Dropdown.Item onClick={() => this.addSongToPlaylist(playlist.id)} key={index} href={`#/playlist-${index}`}>{playlist.name}</Dropdown.Item>
                                     ))}
                                 </DropdownButton>
-
-                                {/* :
-                                <DropdownButton id="dropdown-basic-button" title="+">
-                                    <Dropdown.Item onClick={() => this.redirectToAddPlaylist()}>you don't have any playlist, create one from here</Dropdown.Item>
-                                </DropdownButton>
-                            } */}
+                            )
+                                : (
+                                    <DropdownButton id="dropdown-basic-button" title="+">
+                                        <Dropdown.Item onClick={() => this.redirectToAddPlaylist()}>you don't have any playlist, create one from here</Dropdown.Item>
+                                    </DropdownButton>
+                                )}
                         </Card.Title>
 
                         <Card.Text>

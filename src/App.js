@@ -415,7 +415,7 @@ export default class App extends Component {
 
         <Route
           path="/SongsList"
-          component={() => <SongsList handleFav={this.handleFavorite} isAuth={this.state.isAuth} userId={this.state.userId} />}
+          component={() => <SongsList playlists={playLists} addSong={this.addSong} handleFav={this.handleFavorite} isAuth={this.state.isAuth} userId={this.state.userId} />}
         ></Route>
 
         <Route

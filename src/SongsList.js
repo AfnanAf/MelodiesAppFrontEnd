@@ -6,7 +6,7 @@ import Song from './Song';
 export default class SongsList extends Component {
     state = {
         songs: [],
-        searchQuery: "a"
+        searchQuery: "a",
     }
 
     componentDidMount() {
@@ -48,7 +48,7 @@ export default class SongsList extends Component {
 
                     {this.state.songs.map((song, index) =>
                         <div key={index}>
-                            <Song {...song} handleFav={this.props.handleFav} isFav={this.props.isFav} userId={this.props.userId} isAuth={this.props.isAuth} />
+                            <Song playlists={this.props.playlists} addSong={this.props.addSong} song={song} handleFav={this.props.handleFav} isFav={this.props.isFav} userId={this.props.userId} isAuth={this.props.isAuth} />
                         </div>)}
                 </CardDeck>
             </div>
