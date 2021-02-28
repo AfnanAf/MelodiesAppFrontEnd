@@ -13,8 +13,15 @@ import { Alert } from "react-bootstrap";
 import Fade from 'react-bootstrap/Fade'
 import { Redirect } from "react-router-dom";
 import Home from './Home'
-import FavSong from './FavSong'
 import UsersList from './user/UsersList'
+import Header from "./Header/Header.js";
+import HeaderLinks from "./Header/HeaderLinks.js";
+import { makeStyles } from "@material-ui/core/styles";
+
+import styles from "./assets/jss/material-kit-react/views/componentsSections/navbarsStyle";
+
+const useStyles = makeStyles(styles);
+
 
 export default class App extends Component {
 
@@ -342,7 +349,7 @@ export default class App extends Component {
       })
   }
 
-  editPlaylist=(playlist)=> {
+  editPlaylist = (playlist) => {
     axios.put("/playlist/edit", playlist, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
@@ -374,38 +381,26 @@ export default class App extends Component {
     const successMessage = this.state.successMessage ? (
       <Alert variant="success">{this.state.successMessage}</Alert>
     ) : null;
+
     return (
       <Router>
+        <Header
+          brand="Melodies"
+          color="info"
+          rightLinks={<HeaderLinks isAuth={this.state.isAuth} onLogoutHandler={this.onLogoutHandler} userRole={userRole} />}
+          fixed
+          color="transparent"
+          changeColorOnScroll={{
+            height: 400,
+            color: "white"
+          }}
+        // {...rest}
+        />
+
         {redirect}
         {this.state.failedMessage}
         <nav>
           {failedMessage} {successMessage}
-          <div>
-            <Link to="/home">Home</Link>{" "}
-            <Link to="/SongsList">Songs</Link>{" "}
-            <Link to="/PlaylistList">Playlists</Link>{" "}
-            {this.state.isAuth && userRole == 'ROLE_ADMIN' ? <Link to="/Users">Users</Link> : null} {" "}
-
-
-            {this.state.isAuth ? (
-              <span>
-                <Link to="/AddPlaylist">Add Playlist</Link>{" "}
-                <Link to="/AddSong">Add Song</Link>{" "}
-                <span className="userlogin">
-                  {this.state.user ? "Welcome " + this.state.userEmail : null} {"  "}
-                  <Link to="/profile">Profile</Link>{" "}
-                  <Link to="/logout" onClick={this.onLogoutHandler}>Logout </Link>{" "}
-                </span>
-              </span>
-            ) : (
-                <span>
-                  <Link to="/register">Register</Link> {"  "}
-                  <Link to="/login">Login</Link> {"  "}
-                </span>
-              )}
-
-            {" "}
-          </div>
         </nav>
 
         <Route

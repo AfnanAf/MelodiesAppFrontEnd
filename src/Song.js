@@ -74,8 +74,9 @@ export default class Song extends Component {
     }
 
     render() {
-        const playlistsNum = this.props.playlists.length;
-        console.log("num "+playlistsNum)
+
+        const playlistsNum = this.props.isAuth ? this.props.playlists.length : null;
+        console.log("num " + playlistsNum)
 
         return (
             <div>
@@ -92,20 +93,21 @@ export default class Song extends Component {
                             ) :
                                 null}
 
-                            {playlistsNum > 0 ? (
+                            {this.props.isAuth ? (
+                                playlistsNum > 0 ? (
 
-                                <DropdownButton id="dropdown-basic-button" title="+">
-                                    {this.props.playlists.map((playlist, index) => (
-                                        <Dropdown.Item onClick={() => this.addSongToPlaylist(playlist.id, this.props.song)} key={index} href={`#/playlist-${index}`}>{playlist.name}</Dropdown.Item>
-                                    ))}
-                                </DropdownButton>
-                            )
-                                : (
                                     <DropdownButton id="dropdown-basic-button" title="+">
-                                        <Dropdown.Item onClick={() => this.redirectToAddPlaylist()}>you don't have any playlist, create one from here</Dropdown.Item>
+                                        {this.props.playlists.map((playlist, index) => (
+                                            <Dropdown.Item onClick={() => this.addSongToPlaylist(playlist.id, this.props.song)} key={index} href={`#/playlist-${index}`}>{playlist.name}</Dropdown.Item>
+                                        ))}
                                     </DropdownButton>
-                                )}
-
+                                )
+                                    : (
+                                        <DropdownButton id="dropdown-basic-button" title="+">
+                                            <Dropdown.Item onClick={() => this.redirectToAddPlaylist()}>you don't have any playlist, create one from here</Dropdown.Item>
+                                        </DropdownButton>
+                                    )
+                            ) : null}
                         </Card.Title>
 
                         <Card.Text>
