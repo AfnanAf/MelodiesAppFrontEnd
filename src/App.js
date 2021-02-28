@@ -17,8 +17,9 @@ import UsersList from './user/UsersList'
 import Header from "./Header/Header.js";
 import HeaderLinks from "./Header/HeaderLinks.js";
 import { makeStyles } from "@material-ui/core/styles";
-
+import SnackbarContent from './Snackbar/SnackbarContent'
 import styles from "./assets/jss/material-kit-react/views/componentsSections/navbarsStyle";
+import Check from "@material-ui/icons/Check";
 
 const useStyles = makeStyles(styles);
 
@@ -368,6 +369,7 @@ export default class App extends Component {
   }
 
   render() {
+   
     const redirect = (this.state.redirect != null) ?
       <Redirect to={this.state.redirect} /> :
       null;
@@ -379,20 +381,29 @@ export default class App extends Component {
     ) : null;
 
     const successMessage = this.state.successMessage ? (
-      <Alert variant="success">{this.state.successMessage}</Alert>
+      // <Alert variant="success">{this.state.successMessage}</Alert>
+
+      <SnackbarContent 
+      message={
+        <span><br/><br/><br/><br/><br/><br/>
+          <b>SUCCESS ALERT:</b> {this.state.successMessage}
+        </span>
+      }
+      close
+      color="success"
+      icon={Check}
+    />
     ) : null;
 
     return (
       <Router>
+        <div height='50'></div>
         <Header
           brand="Melodies"
-          color="info"
           leftLinks={<HeaderLinks isAuth={this.state.isAuth} onLogoutHandler={this.onLogoutHandler} userRole={userRole} />}
           fixed
-          color="transparent"
           changeColorOnScroll={{
             height: 400,
-            color: "white"
           }}
         // {...rest}
         />

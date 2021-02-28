@@ -144,8 +144,7 @@ Header.propTypes = {
       "danger",
       "transparent",
       "white",
-      "rose",
-      "dark"
+      
     ]).isRequired
   })
 };
