@@ -1,18 +1,21 @@
 import React, { Component } from 'react'
-import { Container, Form, Button } from 'react-bootstrap'
+import { Container, Form } from 'react-bootstrap'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { BsFillLockFill } from "react-icons/bs";
+import { Input } from "@material-ui/core";
+import Button from "../../src/components/CustomButtons/Button";
 
 export default class NewPassword extends Component {
-    state = {
-        currentPassword: this.props.userCurrentPassword,
-        newPassword:"",
-        passwordConfirm: "",
-        failedMessage: ""
-     
-      };
+  state = {
+    currentPassword: this.props.userCurrentPassword,
+    newPassword: "",
+    passwordConfirm: "",
+    failedMessage: ""
 
-      
-     newPasswordHandler = () => {
+  };
+
+
+  newPasswordHandler = () => {
     console.log(this.state);
 
     if (this.state.newPassword != this.state.passwordConfirm) {
@@ -20,22 +23,22 @@ export default class NewPassword extends Component {
         failedMessage: "Passwords doesn't match ",
       });
     } else {
-      this.props.changePasswordHandler(this.state.currentPassword,this.state.newPassword );
+      this.props.changePasswordHandler(this.state.currentPassword, this.state.newPassword);
     }
   };
 
   changeHandler = (e) => {
-   
+
     this.setState({
-      currentPassword:e.target.value
-     
+      currentPassword: e.target.value
+
     });
   };
 
   passwordHandler = (e) => {
-   
+
     this.setState({
-        newPassword: e.target.value
+      newPassword: e.target.value
     });
 
     if (e.target.value === this.state.passwordConfirm) {
@@ -48,7 +51,7 @@ export default class NewPassword extends Component {
   };
 
   confirmPassword = (e) => {
-    
+
     this.setState({
       passwordConfirm: e.target.value
     });
@@ -60,30 +63,60 @@ export default class NewPassword extends Component {
     }
   };
 
-    render() {
-        return (
-            <div>
-                <Container>
-                   
-                   <Form.Group>
-                       <Form.Label>Current Password</Form.Label>
-                       <Form.Control type="password" name="currentPassword" onChange={this.changeHandler}></Form.Control>
-                   </Form.Group>
+  render() {
+    return (
+      <div>
+        <Container>
+          <Input
+            style={{ width: 90 + '%', marginBottom: 0.7 + 'em', marginTop: 2 + 'em' }}
+            placeholder="Password"
+            id="pass"
+            name="currentPassword"
+            onChange={this.changeHandler}
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "password",
+              autoComplete: "off"
+            }}
+          />
+          <BsFillLockFill style={{ width: 1.5 + 'em', height: 1.5 + 'em' }} />
+          
+          <Input
+            style={{ width: 90 + '%', marginBottom: 0.7 + 'em', marginTop: 2 + 'em' }}
+            placeholder="Password"
+            id="pass"
+            name="password"
+            onChange={this.passwordHandler}
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "password",
+              autoComplete: "off"
+            }}
+          />
+          <BsFillLockFill style={{ width: 1.5 + 'em', height: 1.5 + 'em' }} />
+          <Input
+            style={{ width: 90 + '%', marginBottom: 0.7 + 'em', marginTop: 2 + 'em' }}
+            placeholder="Confirm Password"
+            id="pass"
+            name="passwordConfirm"
+            onChange={this.confirmPassword}
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "password",
+              autoComplete: "off"
+            }}
+          />
+          <BsFillLockFill style={{ width: 1.5 + 'em', height: 1.5 + 'em' }} />
 
-                   <Form.Group>
-                       <Form.Label>New Password</Form.Label>
-                       <Form.Control type="password" name="password" onChange={this.passwordHandler}></Form.Control>
-                   </Form.Group>
-
-                   <Form.Group>
-                       <Form.Label>New Password Confirmation</Form.Label>
-                       <Form.Control type="password" name="passwordConfirm" onChange={this.confirmPassword}></Form.Control>
-                   </Form.Group>
-
-
-                   <Button variant="primary" block onClick={this.newPasswordHandler}>Change Password</Button>
-               </Container>
-            </div>
-        )
-    }
+          <Button onClick={this.newPasswordHandler}>Change Password</Button>
+        </Container>
+      </div>
+    )
+  }
 }
