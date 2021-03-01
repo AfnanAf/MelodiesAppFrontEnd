@@ -35,24 +35,9 @@ export default function SectionLogin(props) {
             <Card>
               <form className={classes.form}>
                 <CardHeader color="primary" className={classes.cardHeader}>
-                  <h4 style={{ fontWeight: 400, paddingBottom: 1 + 'em' }}>Login</h4>
+                  <h4 style={{ fontWeight: 400, paddingBottom: 1 + 'em' }}>Sign In</h4>
                 </CardHeader>
                 <CardBody>
-                  {/* <CustomInput
-                    labelText="First Name..."
-                    id="first"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      type: "text",
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <People className={classes.inputIconsColor} />
-                        </InputAdornment>
-                      )
-                    }}
-                  /> */}
                   <Input
                     style={{ width: 90 + '%', marginBottom: 2 + 'em', marginTop: 2 + 'em' }}
                     placeholder="Email..."

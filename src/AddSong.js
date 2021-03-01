@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Alert } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
 import { Container, Form, Button } from "react-bootstrap";
+import SectionAddSong from "./SectionAddSong";
 
 export default class AddSong extends Component {
   constructor(props) {
@@ -66,45 +67,7 @@ export default class AddSong extends Component {
     return (
       <div>
         {failedMessage}
-        <Container>
-          <Form.Group>
-            <Form.Label>Song Name</Form.Label>
-            <Form.Control
-              name="name"
-              type="text"
-              onChange={this.handleChange}
-            ></Form.Control>
-            <Form.Group>
-              <Form.Label>Image</Form.Label>
-              <Form.Control
-                name="image"
-                type="text"
-                onChange={this.handleChange}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>Mp3 Url</Form.Label>
-              <Form.Control
-                name="mp3Url"
-                type="text"
-                onChange={this.handleChange}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Artist Name</Form.Label>
-              <Form.Control
-                name="artistName"
-                type="text"
-                onChange={this.handleChange}
-              ></Form.Control>
-            </Form.Group>
-
-            <Button variant="primary" block onClick={this.handleSubmit}>
-              Add Song
-            </Button>
-          </Form.Group>
-        </Container>
+        <SectionAddSong handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
       </div>
     );
   }

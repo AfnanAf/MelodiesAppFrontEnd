@@ -1,5 +1,6 @@
 import { container } from "../../../material-kit-react";
-import image from "../../../../img/sign.jpg";
+import { container2 } from "../../../material-kit-react";
+import image from "../../../../img/bg4.jpg";
 
 const loginStyle = {
   section: {
@@ -13,9 +14,10 @@ const loginStyle = {
     border: "0",
     display: "flex",
     alignItems: "center",
-    backgroundImage: "url(" + image + ")"
+    backgroundImage: "url(" + image + ")",
   },
   container,
+  container2,
   form: {
     margin: "0"
   },

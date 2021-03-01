@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing : antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin-left            : 40px;
+  /* margin-left            : 40px; */
 }
 
 code {

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Alert } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
 import { Container, Form, Button } from "react-bootstrap";
+import SectionAddPlaylist from "./SectionAddPlaylist";
 
 export default class AddPlaylist extends Component {
   constructor(props) {
@@ -45,28 +46,7 @@ export default class AddPlaylist extends Component {
     return (
       <div>
         {failedMessage}
-        <Container>
-          <Form.Group>
-            <Form.Label>Playlist Name</Form.Label>
-            <Form.Control
-              name="name"
-              type="text"
-              onChange={this.handleChange}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Image</Form.Label>
-            <Form.Control
-              name="image"
-              type="text"
-              onChange={this.handleChange}
-            ></Form.Control>
-          </Form.Group>
-
-          <Button variant="primary" block onClick={this.handleSubmit}>
-            Add Playlist
-          </Button>
-        </Container>
+        <SectionAddPlaylist handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
       </div>
     );
   }
