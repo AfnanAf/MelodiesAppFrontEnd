@@ -1,7 +1,14 @@
+import { Input } from "@material-ui/core";
 import React, { Component } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import { Alert } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
+import Button from "../../src/components/CustomButtons/Button";
+
+import { MdEmail } from "react-icons/md";
+import { RiUser3Fill } from "react-icons/ri";
+
+
 export default class EditProfile extends Component {
   state = {
     editedUser: {},
@@ -23,7 +30,7 @@ export default class EditProfile extends Component {
   };
 
   editHandler = () => {
-      this.changeHandler()
+    this.changeHandler()
     console.log(this.state);
 
     // if (!this.validateEmail(this.state.editedUser["emailAddress"])) {
@@ -31,10 +38,10 @@ export default class EditProfile extends Component {
     //     failedMessage: "invalid email address!",
     //   });
     // } else {
-      this.props.editUserInfo(this.state.editedUser, this.props.email);
-      this.setState({
-        failedMessage: "",
-      });
+    this.props.editUserInfo(this.state.editedUser, this.props.email);
+    this.setState({
+      failedMessage: "",
+    });
     // }
   };
   lastNameChange = (e) => {
@@ -55,7 +62,7 @@ export default class EditProfile extends Component {
   };
   changeHandler = () => {
     console.log(this.state);
-    
+
     let editedUserInfo = this.state.editedUser;
     editedUserInfo["firstName"] = this.state.firstName;
     editedUserInfo["lastName"] = this.state.lastName;
@@ -66,53 +73,78 @@ export default class EditProfile extends Component {
 
     console.log(editedUserInfo);
     this.setState({
-      editedUser:editedUserInfo,
+      editedUser: editedUserInfo,
     });
   };
 
   render() {
     const failedMessage = this.state.failedMessage ? (
-        <Alert variant="danger" transition={Fade}>
-          {this.state.failedMessage}
-        </Alert>
-      ) : null;
+      <Alert variant="danger" transition={Fade}>
+        {this.state.failedMessage}
+      </Alert>
+    ) : null;
     return (
       <div>
-          {failedMessage}
+        {failedMessage}
         <Container>
-          <Form.Group>
-            <Form.Label>First Name</Form.Label>
-            <Form.Control
-              type="text"
+          <span>
+            <Input
+              style={{ width: 40 + '%', marginBottom: 1.5 + 'em', marginTop: 2 + 'em' }}
+              placeholder="First Name..."
+              id="email"
               name="firstName"
-              onChange={this.firstNameChange}
               value={this.state.firstName}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control
+              onChange={this.firstNameChange}
+              formControlProps={{
+                fullWidth: true
+              }}
+              inputProps={{
+                type: "text",
+              }}
+            />
+            <RiUser3Fill style={{ width: 1.5 + 'em', height: 1.5 + 'em' }} />
+            <Input
+              style={{ width: 40 + '%', marginBottom: 1.5 + 'em', marginTop: 2 + 'em', marginLeft: 5 + 'px' }}
+              placeholder="Last Name..."
+              id="email"
               name="lastName"
-              onChange={this.lastNameChange}
               value={this.state.lastName}
-            ></Form.Control>
-          </Form.Group>
+              onChange={this.lastNameChange}
+              formControlProps={{
+                fullWidth: true
+              }}
+              inputProps={{
+                type: "text",
+                autoComplete: "off"
+              }}
+            />
+            <RiUser3Fill style={{ width: 1.5 + 'em', height: 1.5 + 'em' }} />
 
-          <Form.Group>
-            <Form.Label>Email Address</Form.Label>
-            <Form.Control
-              type="email"
-              name="emailAddress"
-              contentEditable
-              value={this.state.email}
-              onChange={this.emailChange}
-            ></Form.Control>
-          </Form.Group>
+          </span>
+          <Input
+            style={{ width: 40 + '%', marginBottom: 1.5 + 'em', marginTop: 2 + 'em' }}
+            placeholder="Email..."
+            id="email"
+            name="emailAddress"
+            value={this.state.email}
+            onChange={this.emailChange}
+            formControlProps={{
+              fullWidth: true
+            }}
+            inputProps={{
+              type: "text",
+            }}
+          />
+          <MdEmail style={{ width: 1.5 + 'em', height: 1.5 + 'em' }} />
 
-          <Button variant="primary" block onClick={this.editHandler}>
+          <div>
+            <Button onClick={this.editHandler}>
+              Save
+            </Button>
+          </div>
+          {/* <Button variant="primary" block onClick={this.editHandler}>
             Save
-          </Button>
+          </Button> */}
         </Container>
       </div>
     );
