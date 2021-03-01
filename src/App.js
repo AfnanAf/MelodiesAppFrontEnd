@@ -20,9 +20,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import SnackbarContent from './Snackbar/SnackbarContent'
 import styles from "./assets/jss/material-kit-react/views/componentsSections/navbarsStyle";
 import Check from "@material-ui/icons/Check";
+import { FaCheck } from "react-icons/fa";
+import SectionNotifications from './Snackbar/SectionNotifications'
 
 const useStyles = makeStyles(styles);
-
 
 export default class App extends Component {
 
@@ -100,7 +101,7 @@ export default class App extends Component {
             userEmail: user.sub,
             isAuth: true,
             user: user,
-            successMessage: "Successfully logged in!!!",
+            successMessage: "Successfully logged in",
             failedMessage: null,
             redirect: "/home"
           })
@@ -377,28 +378,18 @@ export default class App extends Component {
     const playLists = this.state.userProfile.playLists;
     const userRole = this.state.userProfile.userRole;
     const failedMessage = this.state.failedMessage ? (
-      <Alert variant="danger" transition={Fade} >{this.state.failedMessage}</Alert>
+      <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
     ) : null;
 
     const successMessage = this.state.successMessage ? (
       // <Alert variant="success">{this.state.successMessage}</Alert>
 
-      <SnackbarContent 
-      message={
-        <span><br/><br/><br/><br/><br/><br/>
-          <b>SUCCESS ALERT:</b> {this.state.successMessage}
-        </span>
-      }
-      close
-      color="success"
-      icon={Check}
-    />
+      <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
     ) : null;
 
     return (
       <Router>
-        <div height='50'></div>
-        <Header
+        <Header style={{position:'sticky' , display:'block'}}
           brand="Melodies"
           leftLinks={<HeaderLinks isAuth={this.state.isAuth} onLogoutHandler={this.onLogoutHandler} userRole={userRole} />}
           fixed
