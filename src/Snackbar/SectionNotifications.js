@@ -15,7 +15,7 @@ const useStyles = makeStyles(styles);
 export default function SectionNotifications(props) {
   const classes = useStyles();
   return (
-    <div className={classes.section} id="notifications" style={{marginTop:5+"em"}}>
+    <div className={classes.section} id="notifications" style={{marginTop:2+"em"}}>
       
       {props.type == 'success'? (  <SnackbarContent
         message={

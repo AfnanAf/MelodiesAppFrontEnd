@@ -7,6 +7,7 @@ import NewPassword from "./NewPassword";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Fade from "react-bootstrap/Fade";
 import { Container, Form, Button } from 'react-bootstrap'
+import SectionNotifications from '../Snackbar/SectionNotifications'
 
 import EditProfile from "./EditProfile";
 export default class Profile extends Component {
@@ -15,6 +16,8 @@ export default class Profile extends Component {
         playlists: this.props.profile.playlists,
         isPasswordChange: false,
         isProfileEdit: false,
+        successMessage:this.props.successMessage,
+        failedMessage:this.props.failedMessage
     };
 
     // shouldComponentUpdate(nextProps, nextState) {
@@ -111,17 +114,28 @@ export default class Profile extends Component {
         });
     };
     render() {
-        const failedMessage = this.state.failedMessage ? (
-            <Alert variant="danger" transition={Fade}>
-                {this.state.failedMessage}
-            </Alert>
-        ) : null;
+        // const failedMessage = this.state.failedMessage ? (
+        //     <Alert variant="danger" transition={Fade}>
+        //         {this.state.failedMessage}
+        //     </Alert>
+        // ) : null;
 
-        const successMessage = this.state.successMessage ? (
-            <Alert variant="success" transition={Fade}>
-                {this.state.successMessage}
-            </Alert>
-        ) : null;
+        // const successMessage = this.state.successMessage ? (
+        //     <Alert variant="success" transition={Fade}>
+        //         {this.state.successMessage}
+        //     </Alert>
+        // ) : null;
+
+        const failedMessage = this.state.failedMessage ? (
+           
+            <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
+          ) : null;
+      
+          const successMessage = this.state.successMessage ? (
+         
+      
+            <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
+          ) : null;
 
         return (
             <div>

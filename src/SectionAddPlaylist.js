@@ -15,6 +15,7 @@ import CardBody from "./components/Card/CardBody.js";
 import CardFooter from "./components/Card/CardFooter.js";
 import Button from "./components/CustomButtons/Button.js";
 import CustomInput from "./components/CustomInput/CustomInput.js";
+import SectionNotifications from './Snackbar/SectionNotifications'
 
 import styles from "./assets/jss/material-kit-react/views/componentsSections/loginStyle";
 
@@ -29,6 +30,12 @@ export default function SectionAddPlaylist(props) {
     const classes = useStyles();
     return (
         <div className={classes.section}>
+            {props.failedMessage ? (
+    
+      <SectionNotifications type='failure' message={props.failedMessage}></SectionNotifications>
+
+    ) : null}
+
             <div className={classes.container2} >
                 <GridContainer justify="center">
                     <GridItem xs={12} sm={12} md={4}>

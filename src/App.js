@@ -377,14 +377,16 @@ export default class App extends Component {
 
     const playLists = this.state.userProfile.playLists;
     const userRole = this.state.userProfile.userRole;
+
     const failedMessage = this.state.failedMessage ? (
-      <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
+      <div style={{marginTop:3+'em'}}>
+      <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications></div>
     ) : null;
 
     const successMessage = this.state.successMessage ? (
-      // <Alert variant="success">{this.state.successMessage}</Alert>
+      <div style={{marginTop:3+'em'}}>
 
-      <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
+      <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications></div>
     ) : null;
 
     return (
@@ -396,14 +398,13 @@ export default class App extends Component {
           changeColorOnScroll={{
             height: 400,
           }}
-        // {...rest}
         />
 
         {redirect}
-        {this.state.failedMessage}
-        <nav>
+        {/* {this.state.failedMessage} */}
+        
           {failedMessage} {successMessage}
-        </nav>
+        
 
         <Route
           path="/home"
@@ -418,17 +419,17 @@ export default class App extends Component {
         <Route
           path="/PlaylistList"
           component={
-            () => this.state.isAuth ? <PlaylistList deletePlaylist={this.deletePlaylist} editPlaylist={this.editPlaylist} playlists={playLists} userId={this.state.userId} email={this.state.userEmail} /> : null}
+            () => this.state.isAuth ? <PlaylistList successMessage={this.state.successMessage} failedMessage={this.state.failedMessage} deletePlaylist={this.deletePlaylist} editPlaylist={this.editPlaylist} playlists={playLists} userId={this.state.userId} email={this.state.userEmail} /> : null}
         ></Route>
 
         <Route
           path="/AddPlaylist"
-          component={() => <AddPlaylist userId={this.state.userId} addPlaylist={this.addPlaylist} />}
+          component={() => <AddPlaylist userId={this.state.userId} addPlaylist={this.addPlaylist} successMessage={this.state.successMessage} failedMessage={this.state.failedMessage}/>}
         ></Route>
 
         <Route
           path="/AddSong"
-          component={() => <AddSong userId={this.state.userId} addSong={this.addSong} />}
+          component={() => <AddSong userId={this.state.userId} addSong={this.addSong} successMessage={this.state.successMessage} failedMessage={this.state.failedMessage}/>}
         ></Route>
 
         <Route
@@ -443,7 +444,7 @@ export default class App extends Component {
 
         <Route
           path="/profile"
-          component={() => this.state.isAuth ? <Profile playlists={playLists} email={this.state.userEmail} getProfile={this.getProfile} favSongs={this.state.favSongs} loadFavSongs={this.loadFavSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} editSong={this.editSong} addSong={this.addSong} /> : null}
+          component={() => this.state.isAuth ? <Profile successMessage={this.state.successMessage} failedMessage={this.state.failedMessage} playlists={playLists} email={this.state.userEmail} getProfile={this.getProfile} favSongs={this.state.favSongs} loadFavSongs={this.loadFavSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} editSong={this.editSong} addSong={this.addSong} /> : null}
         ></Route>
 
         <Route

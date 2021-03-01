@@ -4,6 +4,7 @@ import {Link } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import Fade from 'react-bootstrap/Fade';
 import axios from "axios";
+import SectionNotifications from '../Snackbar/SectionNotifications'
 
 export default class UsersList extends Component {
 
@@ -55,12 +56,18 @@ this.getAllUsers()
         
     }
     render() {
-        const failedMessage = this.state.failedMessage ? (
-            <Alert variant="danger" transition={Fade} >{this.state.failedMessage}</Alert>
+      
+        
+
+          const failedMessage = this.state.failedMessage ? (
+           
+            <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
           ) : null;
       
           const successMessage = this.state.successMessage ? (
-            <Alert variant="success">{this.state.successMessage}</Alert>
+         
+      
+            <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
           ) : null;
         return (
           <div>          {failedMessage} {successMessage}

@@ -3,13 +3,15 @@ import { Alert } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
 import { Container, Form, Button } from "react-bootstrap";
 import SectionAddSong from "./SectionAddSong";
+import SectionNotifications from './Snackbar/SectionNotifications'
 
 export default class AddSong extends Component {
   constructor(props) {
     super(props);
     this.state = {
       newSong: {},
-      failedMessage: "",
+      failedMessage: this.props.failedMessage,
+      successMessage:this.props.successMessage
     };
   }
   validateURL(url) {
@@ -60,14 +62,20 @@ export default class AddSong extends Component {
   };
   render() {
     const failedMessage = this.state.failedMessage ? (
-      <Alert variant="danger" transition={Fade}>
-        {this.state.failedMessage}
-      </Alert>
+           
+      <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
     ) : null;
+
+    const successMessage = this.state.successMessage ? (
+   
+
+      <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
+    ) : null;
+   
     return (
       <div>
-        {failedMessage}
-        <SectionAddSong handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+        {failedMessage}{successMessage}
+        <SectionAddSong handleChange={this.handleChange} handleSubmit={this.handleSubmit} failedMessage={this.state.failedMessage}/>
       </div>
     );
   }

@@ -5,17 +5,32 @@ import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Playlist from "./Playlist";
 import SongsPlaylist from "./SongsPlaylist";
+import SectionNotifications from './Snackbar/SectionNotifications'
 
 export default class PlaylistList extends Component {
 
   state = {
     playlists: this.props.playlists,
     editedPlaylist: {},
+    failedMessage: this.props.failedMessage,
+    successMessage: this.props.successMessage,
   }
 
   render() {
+    const failedMessage = this.state.failedMessage ? (
+           
+      <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
+    ) : null;
+
+    const successMessage = this.state.successMessage ? (
+   
+
+      <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
+    ) : null;
     return (
       <Router>
+        {successMessage}
+        {failedMessage}
         <Table striped bordered hover>
           <thead>
             <tr>

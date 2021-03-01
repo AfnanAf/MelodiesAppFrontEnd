@@ -15,6 +15,7 @@ import CardBody from "./components/Card/CardBody.js";
 import CardFooter from "./components/Card/CardFooter.js";
 import Button from "./components/CustomButtons/Button.js";
 import CustomInput from "./components/CustomInput/CustomInput.js";
+import SectionNotifications from './Snackbar/SectionNotifications'
 
 import styles from "./assets/jss/material-kit-react/views/componentsSections/loginStyle";
 
@@ -30,9 +31,18 @@ const useStyles = makeStyles(styles);
 export default function SectionAddSong(props) {
     const classes = useStyles();
     return (
+        <div>
+        {props.failedMessage ? (
+    
+            <SectionNotifications type='failure' message={props.failedMessage}></SectionNotifications>
+        
+          ) : null}
         <div className={classes.section}>
+           
             <div className={classes.container2} >
+         
                 <GridContainer justify="center">
+           
                     <GridItem xs={12} sm={12} md={4}>
                         <Card justify="center">
                             <form className={classes.form}>
@@ -136,6 +146,6 @@ export default function SectionAddSong(props) {
                     </GridItem>
                 </GridContainer>
             </div>
-        </div>
+        </div></div>
     );
 }
