@@ -394,10 +394,13 @@ export default class App extends Component {
         <Header style={{position:'sticky' , display:'block'}}
           brand="Melodies"
           leftLinks={<HeaderLinks isAuth={this.state.isAuth} onLogoutHandler={this.onLogoutHandler} userRole={userRole} />}
+          color="transparent"
           fixed
           changeColorOnScroll={{
             height: 400,
+            color: "white"
           }}
+          
         />
 
         {redirect}

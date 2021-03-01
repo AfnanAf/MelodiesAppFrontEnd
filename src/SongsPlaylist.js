@@ -51,7 +51,7 @@ export default class SongsPlaylist extends Component {
     const numOfSongs = this.state.playlistSongs.length;
 
     return (
-      <td>
+      <div>
         {numOfSongs > 0
           ? this.state.playlistSongs.map((song, index) => (
             <Card className="card">
@@ -71,7 +71,7 @@ export default class SongsPlaylist extends Component {
             </Card>
           ))
           : null}
-      </td>
+      </div>
     );
   }
 }

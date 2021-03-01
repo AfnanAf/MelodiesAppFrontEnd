@@ -51,7 +51,7 @@ export default class SongsList extends Component {
             <div>
                 <Parallax style={{height: 30+'em'}} image={require("./assets/img/bg3.jpg")}>
                     <div >
-                        <GridContainer>
+                        <GridContainer style={{paddingLeft:3+'em'}}>
                             <GridItem style={{paddingTop: 9+'em'}}>
                                 <div >
                                     <h1 >Music For Everyone.</h1>
@@ -64,7 +64,7 @@ export default class SongsList extends Component {
                         </GridContainer>
                     </div>
                 </Parallax>
-                <CardDeck>
+                <CardDeck style={{paddingLeft:2+'em'}}>
 
                     {this.state.songs.map((song, index) =>
                         <div key={index}>

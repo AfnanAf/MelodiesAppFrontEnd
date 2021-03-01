@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Playlist from "./Playlist";
 import SongsPlaylist from "./SongsPlaylist";
 import SectionNotifications from './Snackbar/SectionNotifications'
+import { Alert, CardDeck } from "react-bootstrap";
+import Button from "./components/CustomButtons/Button";
 
 export default class PlaylistList extends Component {
 
@@ -31,22 +33,15 @@ export default class PlaylistList extends Component {
       <Router>
         {successMessage}
         {failedMessage}
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Playlist Name</th>
-              <th>Playlist image</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {this.state.playlists.map((playlist, index) => (
+       
+        <CardDeck>
+        {this.state.playlists.map((playlist, index) => (
               <Playlist editPlaylist={this.props.editPlaylist} deletePlaylist={this.props.deletePlaylist} playlist={playlist} key={index} userId={this.props.userId} />
             )
             )}
-          </tbody>
-        </Table>
+      </CardDeck>
+        
+       
       </Router>
     );
   }

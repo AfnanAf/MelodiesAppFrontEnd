@@ -3,6 +3,10 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SongsPlaylist from "./SongsPlaylist";
+import { Card } from 'react-bootstrap'
+import {MdDelete} from 'react-icons/md'
+import Button from "./components/CustomButtons/Button";
+import { TramRounded } from "@material-ui/icons";
 
 export default class Playlist extends Component {
     state = {
@@ -11,7 +15,8 @@ export default class Playlist extends Component {
         isEdit: true,
         editedPlaylist: {},
         playlistName: this.props.playlist.name,
-        image: this.props.playlist.image
+        image: this.props.playlist.image,
+        isDetail:true
     }
 
     editPlaylistForm() {
@@ -20,22 +25,6 @@ export default class Playlist extends Component {
         })
     }
 
-    // editPlaylist(playlist) {
-    //     axios.put("/playlist/edit", playlist, {
-    //       headers: {
-    //         "Authorization": "Bearer " + localStorage.getItem("token")
-    //       }
-    //     })
-    //     .then(res=>{
-    //       console.log(res.data)
-    //       this.setState({
-    //         editedPlaylist: res.data
-    //       })
-    //     })
-    //     .catch(err=>{
-    //       console.log(err)
-    //     })
-    //   }
     
     changeHandler = () => {
         console.log(this.state);
@@ -72,37 +61,59 @@ export default class Playlist extends Component {
             playlistName: e.target.value,
         });
     }
+    goToDetail=()=>{
+        this.setState({
+            isDetail:!this.state.isDetail
+        })
+    }
 
     render() {
         return (
-            <tr key={this.state.key}>
-                <td>{this.state.key}</td>
+<Router>
+{this.state.isDetail ?
+    (
+            <Card className="card">
+            {/* {redirect} */}
 
-                {this.state.isEdit ? (<td>
-                    <Link to="/SongsPlaylist">
-                        {" "}{this.state.playlist.name}
-                    </Link>
-                </td>)
-                    : (<td>
+            <Card.Img variant="top" src={this.props.playlist.image} />
+            {this.state.isEdit ?
+                (<Card.Body>
+
+                    <Card.Title className="cardtitle"><Link to="/PlaylistSongsList" onClick={()=>this.goToDetail()}>{this.props.playlist.name}</Link>
+                      
+                        
+                     
+                    </Card.Title>
+
+                </Card.Body>
+
+                )
+                : (<Card.Body>
+
+                    <Card.Title className="cardtitle">
                         <input value={this.state.playlistName} name="name" onChange={this.playlistNameChange} />
-                        <button onClick={this.editHandler}>Save</button>
-                    </td>)}
+                    </Card.Title>
+                  
+                    
+                    <Button  onClick={this.editHandler}>Save</Button>
+                </Card.Body>
 
-                <Route
-                    path="/SongsPlaylist"
-                    component={() => (
-                        <SongsPlaylist path="/SongsPlaylist"
-                            playlistId={this.state.playlist.id}
-                        ></SongsPlaylist>
-                    )}
-                ></Route>
-                <td>
-                    <Link onClick={() => this.props.deletePlaylist(this.state.playlist.id)} >Delete </Link>
-                </td>
-                <td>
-                    <Link onClick={() => this.editPlaylistForm()} >Edit </Link>
-                </td>
-            </tr>
+                )
+            }
+
+            <Card.Footer className="cardtitle">
+                <small className="text-muted" onClick={() => this.editPlaylistForm()}>Edit Playlist</small>
+                
+                <span onClick={() => this.props.deletePlaylist(this.props.playlist.id)}> <MdDelete /> </span>
+            </Card.Footer>
+        </Card>):(
+        <div>
+<h1 onClick={this.goToDetail()}>{this.state.playlist.name}</h1>
+    <Route path="/PlaylistSongsList" component={()=><SongsPlaylist playlistId={this.state.playlist.id}/> }></Route> </div>)}
+   
+</Router>
+
+          
         )
     }
 }
