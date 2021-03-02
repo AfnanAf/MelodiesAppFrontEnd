@@ -22,8 +22,8 @@ import styles from "./assets/jss/material-kit-react/views/componentsSections/nav
 import Check from "@material-ui/icons/Check";
 import { FaCheck } from "react-icons/fa";
 import SectionNotifications from './Snackbar/SectionNotifications'
+import Footer from './components/Footer/Footer'
 
-const useStyles = makeStyles(styles);
 
 export default class App extends Component {
 
@@ -370,7 +370,7 @@ export default class App extends Component {
   }
 
   render() {
-   
+
     const redirect = (this.state.redirect != null) ?
       <Redirect to={this.state.redirect} /> :
       null;
@@ -379,19 +379,19 @@ export default class App extends Component {
     const userRole = this.state.userProfile.userRole;
 
     const failedMessage = this.state.failedMessage ? (
-      <div style={{marginTop:3+'em'}}>
-      <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications></div>
+      <div style={{ marginTop: 3 + 'em' }}>
+        <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications></div>
     ) : null;
 
     const successMessage = this.state.successMessage ? (
-      <div style={{marginTop:3+'em'}}>
+      <div style={{ marginTop: 3 + 'em' }}>
 
-      <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications></div>
+        <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications></div>
     ) : null;
 
     return (
       <Router>
-        <Header style={{position:'sticky' , display:'block'}}
+        <Header style={{ position: 'sticky', display: 'block' }}
           brand="Melodies"
           leftLinks={<HeaderLinks isAuth={this.state.isAuth} onLogoutHandler={this.onLogoutHandler} userRole={userRole} />}
           color="transparent"
@@ -400,14 +400,14 @@ export default class App extends Component {
             height: 400,
             color: "white"
           }}
-          
+
         />
 
         {redirect}
         {/* {this.state.failedMessage} */}
-        
-          {failedMessage} {successMessage}
-        
+
+        {failedMessage} {successMessage}
+
 
         <Route
           path="/home"
@@ -427,12 +427,12 @@ export default class App extends Component {
 
         <Route
           path="/AddPlaylist"
-          component={() => <AddPlaylist userId={this.state.userId} addPlaylist={this.addPlaylist} successMessage={this.state.successMessage} failedMessage={this.state.failedMessage}/>}
+          component={() => <AddPlaylist userId={this.state.userId} addPlaylist={this.addPlaylist} successMessage={this.state.successMessage} failedMessage={this.state.failedMessage} />}
         ></Route>
 
         <Route
           path="/AddSong"
-          component={() => <AddSong userId={this.state.userId} addSong={this.addSong} successMessage={this.state.successMessage} failedMessage={this.state.failedMessage}/>}
+          component={() => <AddSong userId={this.state.userId} addSong={this.addSong} successMessage={this.state.successMessage} failedMessage={this.state.failedMessage} />}
         ></Route>
 
         <Route
@@ -456,6 +456,8 @@ export default class App extends Component {
         // component={() => this.state.isAuth && userRole == 'ROLE_ADMIN' ? <UsersList  loadUsers={this.getUsers()} /> : null}
 
         ></Route>
+        <Footer />
+
       </Router>
     )
   }
