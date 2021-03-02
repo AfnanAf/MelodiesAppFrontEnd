@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card } from "react-bootstrap";
+import { Card, CardDeck } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import ReactAudioPlayer from "react-audio-player";
 import axios from "axios";
@@ -51,10 +51,10 @@ export default class SongsPlaylist extends Component {
     const numOfSongs = this.state.playlistSongs.length;
 
     return (
-      <div>
+      <CardDeck>
         {numOfSongs > 0
           ? this.state.playlistSongs.map((song, index) => (
-            <Card className="card">
+            <Card className="card" key={index}>
               {/* <Card.Img variant="top" src={song.image} /> */}
 
               <Card.Body>
@@ -71,7 +71,7 @@ export default class SongsPlaylist extends Component {
             </Card>
           ))
           : null}
-      </div>
+      </CardDeck>
     );
   }
 }

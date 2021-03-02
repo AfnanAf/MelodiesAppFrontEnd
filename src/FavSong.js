@@ -173,7 +173,7 @@ export default class FavSong extends Component {
                         </Dropdown> */}
                             {playlistsNum > 0 ? (
 
-                                <DropdownButton id="dropdown-basic-button" title="+">
+                                <DropdownButton variant="secondary" title="+">
                                     {this.props.playlists.map((playlist, index) => (
                                         <Dropdown.Item onClick={() => this.addSongToPlaylist(playlist.id)} key={index} href={`#/playlist-${index}`}>{playlist.name}</Dropdown.Item>
                                     ))}

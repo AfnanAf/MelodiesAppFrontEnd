@@ -62,6 +62,7 @@ export default function SectionRegister(props) {
                             isDetail={props.isDetail}
                             clickedPlaylist={props.clickedPlaylist}
                             goToDetail={props.goToDetail}
+                            goBack={props.goBack}
 
                           />
                         </div>
@@ -76,6 +77,7 @@ export default function SectionRegister(props) {
                       userId={props.userId}
                       isDetail={props.isDetail}
                       goToDetail={props.goToDetail}
+                      goBack={props.goBack}
 
                     />
                     )

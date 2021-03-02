@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SongsPlaylist from "./SongsPlaylist";
-import { Card } from 'react-bootstrap'
+import { Card, CardDeck } from 'react-bootstrap'
 
 import {MdDelete} from 'react-icons/md'
 import Button from "./components/CustomButtons/Button";
@@ -58,7 +58,6 @@ export default class Playlist extends Component {
             playlistName: e.target.value,
         });
     }
-
     render() {
 return (
         //   <div>  {allSongs} {allPlaylists} {editForm} {cardTitle} </div>
@@ -113,7 +112,7 @@ return (
                 (<Card.Body>
  
                     <Card.Title className="cardtitle">
-                        <span><Link style={{color:"#9D319D",}}to="/PlaylistSongsList" onClick={()=>this.props.goToDetail(this.state.playlist)}>{this.state.playlist.name}</Link></span>
+                        <span><Link style={{color:"#9D319D",}}to="/PlaylistSongsList" onClick={()=>this.props.goBack()}>{this.state.playlist.name}</Link></span>
                       
                         
                      
@@ -143,7 +142,6 @@ return (
         </Card>
         <Route path="/PlaylistSongsList" component={()=><SongsPlaylist playlistId={this.state.playlist.id }/> }>
     </Route> 
-
         </div> 
         )}
    

@@ -96,7 +96,7 @@ export default class Song extends Component {
                             {this.props.isAuth ? (
                                 playlistsNum > 0 ? (
 
-                                    <DropdownButton style={{color:"#5E2984"}} variant="secondary" title="+">
+                                    <DropdownButton variant="secondary" title="+">
                                         {this.props.playlists.map((playlist, index) => (
                                             <Dropdown.Item onClick={() => this.addSongToPlaylist(playlist.id, this.props.song)} key={index} href={`#/playlist-${index}`}>{playlist.name}</Dropdown.Item>
                                         ))}
