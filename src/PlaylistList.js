@@ -16,6 +16,15 @@ export default class PlaylistList extends Component {
     editedPlaylist: {},
     failedMessage: this.props.failedMessage,
     successMessage: this.props.successMessage,
+    isDetail: false,
+    clickedPlaylist: {}
+  }
+
+  goToDetail = (clickedPlaylist) => {
+    this.setState({
+      isDetail: !this.props.isDetail,
+      clickedPlaylist: clickedPlaylist
+    })
   }
 
   render() {
@@ -32,12 +41,13 @@ export default class PlaylistList extends Component {
     return (
 
       <Router >
-        
+
         {successMessage}
         {failedMessage}
 
-<SectionPlaylistList editedPlaylist={this.props.editedPlaylist} deletePlaylist={this.props.deletePlaylist}
-userId={this.props.userId} playlists={this.state.playlists} editPlaylist={this.props.editPlaylist}/>
+        <SectionPlaylistList editedPlaylist={this.props.editedPlaylist} deletePlaylist={this.props.deletePlaylist}
+          userId={this.props.userId} playlists={this.state.playlists} editPlaylist={this.props.editPlaylist} isDetail={this.state.isDetail}
+          clickedPlaylist={this.state.clickedPlaylist} goToDetail={this.goToDetail}/>
 
       </Router>
     );
