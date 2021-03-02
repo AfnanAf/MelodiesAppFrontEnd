@@ -5,12 +5,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import GridContainer from "./components/Grid/GridContainer.js";
 import GridItem from "./components/Grid/GridItem.js";
 import Parallax2 from "./components/Parallax/Parallax2.js";
-import { Alert, CardDeck } from "react-bootstrap";
+import { CardDeck } from "react-bootstrap";
 import Playlist from "./Playlist";
 
 import classNames from "classnames";
 
-// import styles from "../assets/jss/material-kit-react/views/componentsSections/loginStyle";
 import styles from "./assets/jss/material-kit-react/views/profilePage";
 
 const useStyles = makeStyles(styles);
@@ -29,7 +28,6 @@ export default function SectionRegister(props) {
         }}
         small
         filter
-        image={require("./assets/img/profile-bg.jpg")}
       />
 
       <div
@@ -49,8 +47,8 @@ export default function SectionRegister(props) {
             <GridContainer justify="center">
               <GridItem  >
                 <div className={classes.profile} style={{ height: 40 + "em" }}>
-                    <CardDeck >
-                    {!props.isDetail? (
+                  <CardDeck >
+                    {!props.isDetail ? (
                       props.playlists.map((playlist, index) => (
                         <div key={index} >
                           <Playlist
@@ -68,21 +66,21 @@ export default function SectionRegister(props) {
                         </div>
                       ))
                     ) :
-                    (
-                      <Playlist
-                      editPlaylist={props.editPlaylist}
-                      deletePlaylist={props.deletePlaylist}
-                      playlist={props.clickedPlaylist}
-                      
-                      userId={props.userId}
-                      isDetail={props.isDetail}
-                      goToDetail={props.goToDetail}
-                      goBack={props.goBack}
+                      (
+                        <Playlist
+                          editPlaylist={props.editPlaylist}
+                          deletePlaylist={props.deletePlaylist}
+                          playlist={props.clickedPlaylist}
 
-                    />
-                    )
-                      }
-                    </CardDeck>
+                          userId={props.userId}
+                          isDetail={props.isDetail}
+                          goToDetail={props.goToDetail}
+                          goBack={props.goBack}
+
+                        />
+                      )
+                    }
+                  </CardDeck>
                 </div>
               </GridItem>
             </GridContainer>

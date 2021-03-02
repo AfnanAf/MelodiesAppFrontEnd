@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Form } from 'react-bootstrap'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { Container } from 'react-bootstrap'
 import { BsFillLockFill } from "react-icons/bs";
 import { Input } from "@material-ui/core";
 import Button from "../../src/components/CustomButtons/Button";
@@ -11,9 +10,7 @@ export default class NewPassword extends Component {
     newPassword: "",
     passwordConfirm: "",
     failedMessage: ""
-
   };
-
 
   newPasswordHandler = () => {
     console.log(this.state);
@@ -25,18 +22,15 @@ export default class NewPassword extends Component {
     } else {
       this.props.changePasswordHandler(this.state.currentPassword, this.state.newPassword);
     }
-  };
+  }
 
   changeHandler = (e) => {
-
     this.setState({
       currentPassword: e.target.value
-
     });
   };
 
   passwordHandler = (e) => {
-
     this.setState({
       newPassword: e.target.value
     });
@@ -51,7 +45,6 @@ export default class NewPassword extends Component {
   };
 
   confirmPassword = (e) => {
-
     this.setState({
       passwordConfirm: e.target.value
     });
@@ -82,7 +75,7 @@ export default class NewPassword extends Component {
             }}
           />
           <BsFillLockFill style={{ width: 1.5 + 'em', height: 1.5 + 'em' }} />
-          
+
           <Input
             style={{ width: 90 + '%', marginBottom: 0.7 + 'em', marginTop: 2 + 'em' }}
             placeholder="Password"

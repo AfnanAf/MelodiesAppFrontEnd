@@ -41,33 +41,32 @@ export default class SongsList extends Component {
             searchQuery: searchValue
         })
         this.loadSongs();
-        // this.forceUpdate();
         console.log("q :" + this.state.searchQuery)
     }
 
     render() {
-        
+
         return (
-            <div style={{color:"#9D319D",}}>
-                <Parallax style={{height: 30+'em', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center bottom'}} image={require("./assets/img/bg3.jpg")}>
-                   
+            <div style={{ color: "#9D319D", }}>
+                <Parallax style={{ height: 30 + 'em', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center bottom' }} image={require("./assets/img/bg3.jpg")}>
+
                     <div >
-                        <GridContainer style={{paddingLeft:3+'em'}}>
-                            <GridItem style={{paddingTop: 4+'em'}}>
+                        <GridContainer style={{ paddingLeft: 3 + 'em' }}>
+                            <GridItem style={{ paddingTop: 4 + 'em' }}>
                                 <div >
-                                    <h1><mark style={{backgroundColor:"rgb(255,255,255,0.6)",color:"#5E2984"}}>Music For Everyone.</mark></h1>
-                                    <h3 ><mark style={{backgroundColor:"rgb(255,255,255,0.6)",color:"#5E2984"}}>
+                                    <h1><mark style={{ backgroundColor: "rgb(255,255,255,0.6)", color: "#5E2984" }}>Music For Everyone.</mark></h1>
+                                    <h3 ><mark style={{ backgroundColor: "rgb(255,255,255,0.6)", color: "#5E2984" }}>
                                         Life Is One Grand Sweet Song So Start Searching Your Music.</mark></h3>
-                                        <mark style={{backgroundColor:"rgb(255,255,255,0.6)",color:"#5E2984"}}> <Input placeholder="Search..." style={{ width: 50 + '%' }} type="text" onChange={(e) => this.handleSearch(e)} />
+                                    <mark style={{ backgroundColor: "rgb(255,255,255,0.6)", color: "#5E2984" }}> <Input placeholder="Search..." style={{ width: 50 + '%' }} type="text" onChange={(e) => this.handleSearch(e)} />
                                         <FaSearch />
-                                   </mark>
-                                   
+                                    </mark>
+
                                 </div>
                             </GridItem>
                         </GridContainer>
                     </div>
                 </Parallax>
-                <CardDeck style={{paddingLeft:2+'em'}}>
+                <CardDeck style={{ paddingLeft: 2 + 'em' }}>
 
                     {this.state.songs.map((song, index) =>
                         <div key={index}>

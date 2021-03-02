@@ -1,12 +1,11 @@
-import React, { Component, Profiler } from 'react'
+import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import ReactAudioPlayer from 'react-audio-player';
-import axios from 'axios';
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import { Button } from 'react-bootstrap';
-import { Redirect, Router } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 export default class FavSong extends Component {
     state = {
@@ -28,13 +27,6 @@ export default class FavSong extends Component {
             isFav: !this.state.isFav,
         })
         this.props.handleunFav(songId)
-    }
-
-    addToPlaylist = (playlist) => {
-
-        //TODO: seState for isAdded
-
-        this.props.addPlaylist(playlist);
     }
 
     editSongForm() {
@@ -103,24 +95,6 @@ export default class FavSong extends Component {
         return !!pattern.test(url);
     }
 
-    // handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (!this.validateURL(this.state.editedSong.mp3Url)) {
-    //         this.setState({
-    //             failedMessage: "invalid mp3 url !",
-    //         });
-    //     } else if (
-    //         this.state.editedSong.name == null &&
-    //         this.state.editedSong.artistName == null
-    //     ) {
-    //         this.setState({
-    //             failedMessage: "the Song must have a name and artist name !",
-    //         });
-    //     } else {
-    //         this.props.editSong(this.state.editedSong);
-    //     }
-    // }
-
     addSongToPlaylist = (playlistId) => {
         console.log(playlistId)
         const newSong = this.state.newSong;
@@ -137,40 +111,27 @@ export default class FavSong extends Component {
             redirect: "/AddPlaylist"
         })
     }
+
     render() {
         const playlistsNum = this.props.playlists.length;
-        console.log("num "+playlistsNum)
 
         const redirect = (this.state.redirect != null) ?
             <Redirect to={this.state.redirect} /> :
             null;
 
         return (
-
             <Card className="card">
+
                 {redirect}
 
                 <Card.Img variant="top" src={this.props.song.image} />
                 {this.state.isEdit ?
                     (<Card.Body>
-
                         <Card.Title className="cardtitle"><span>{this.props.song.name}</span>
                             {this.props.isAuth ? (this.state.isFav ? <span onClick={() => this.unfavorite(this.props.song.id)}> <MdFavorite /> </span>
                                 : <span><MdFavoriteBorder /> </span>
                             ) : null}
 
-                            {/* <Dropdown>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                {this.props.playlists[1].name}
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                {this.props.playlists.map((playlist, index) => {
-                                    <Dropdown.Item href={`#/action-${index}`}>{playlist.name}</Dropdown.Item>
-                                })}
-                            </Dropdown.Menu>
-
-                        </Dropdown> */}
                             {playlistsNum > 0 ? (
 
                                 <DropdownButton variant="secondary" title="+">
@@ -193,7 +154,6 @@ export default class FavSong extends Component {
                             src={this.props.song.mp3Url}
                             controls />
                     </Card.Body>
-
                     )
                     : (<Card.Body>
 

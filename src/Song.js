@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Card } from 'react-bootstrap'
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
-import axios from 'axios';
 import ReactAudioPlayer from 'react-audio-player';
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
@@ -11,37 +10,6 @@ export default class Song extends Component {
         isFav: false,
         newSong: {}
     }
-
-
-    // handleFavorite = (song) => {
-    //     console.log("fav clicked !!!!!");
-
-    //     this.setState({
-    //         isFav: !this.state.isFav,
-    //     })
-
-    //     const song1 = {}
-    //     song1["name"] = song.title
-    //     song1["image"] = song.album.cover_big
-    //     song1["mp3Url"] = song.preview
-    //     song1["artistName"] = song.artist.name
-    //     song1["user"] = this.props.userId
-    //     console.log(this.props.userId);
-    //     console.log(song1)
-
-    //     axios.post("/song/add", song1, {
-    //         headers: {
-    //             "Authorization": "Bearer " + localStorage.getItem("token")
-    //         }
-    //     })
-    //         .then(res => {
-    //             console.log("Added!!")
-    //             console.log(res);
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
-    // }
 
     favorite = (song) => {
         this.setState({
@@ -74,7 +42,6 @@ export default class Song extends Component {
     }
 
     render() {
-
         const playlistsNum = this.props.isAuth ? this.props.playlists.length : null;
         console.log("num " + playlistsNum)
 
@@ -91,7 +58,7 @@ export default class Song extends Component {
                                     :
                                     <span onClick={() => this.favorite(this.props.song)}><MdFavoriteBorder /> </span>
                             ) :
-                                null}
+                            null}
 
                             {this.props.isAuth ? (
                                 playlistsNum > 0 ? (

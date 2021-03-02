@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import People from "@material-ui/icons/People";
 import Email from "@material-ui/icons/Email";
 // core components
 import GridContainer from "../components/Grid/GridContainer.js";
@@ -14,7 +13,6 @@ import CardHeader from "../components/Card/CardHeader.js";
 import CardBody from "../components/Card/CardBody.js";
 import CardFooter from "../components/Card/CardFooter.js";
 import Button from "../components/CustomButtons/Button.js";
-import CustomInput from "../components/CustomInput/CustomInput.js";
 
 // import styles from "../assets/jss/material-kit-react/views/componentsSections/loginStyle";
 import styles from "../assets/jss/material-kit-react/views/profilePage";
@@ -33,10 +31,10 @@ const useStyles = makeStyles(styles);
 export default function SectionLogin(props) {
   const classes = useStyles();
   return (
-    <div style={{backgroundColor: '#FAFAE2'}}>
+    <div style={{ backgroundColor: '#FAFAE2' }}>
       <Parallax2 style={{ height: 10 + 'em', }} small filter image={require("../assets/img/profile-bg.jpg")} />
 
-      <div style={{ paddingTop: 3 + 'em', height: 40+'em', backgroundImage: 'url("https://cdn.pixabay.com/photo/2016/11/22/19/15/dark-1850120_1280.jpg")' , backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center bottom'}} className={classNames(classes.main, classes.mainRaised)}>
+      <div style={{ paddingTop: 3 + 'em', height: 40 + 'em', backgroundImage: 'url("https://cdn.pixabay.com/photo/2016/11/22/19/15/dark-1850120_1280.jpg")', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center bottom' }} className={classNames(classes.main, classes.mainRaised)}>
 
         <div className={classes.section}>
           <div className={classes.container}>
@@ -46,7 +44,7 @@ export default function SectionLogin(props) {
 
                   <Card>
                     <form className={classes.form}>
-                      <CardHeader style={{backgroundColor:"#9D319D", color:"white"}}  className={classes.cardHeader}>
+                      <CardHeader style={{ backgroundColor: "#9D319D", color: "white" }} className={classes.cardHeader}>
                         <h4 style={{ fontWeight: 400, paddingBottom: 1 + 'em' }}>Sign In</h4>
                       </CardHeader>
                       <CardBody>
@@ -92,18 +90,18 @@ export default function SectionLogin(props) {
                         <BsFillLockFill style={{ width: 1.5 + 'em', height: 1.5 + 'em' }} />
                       </CardBody>
                       <CardFooter style={{ marginTop: 2 + 'em' }} className={classes.cardFooter}>
-                        <Button style={{margin: 'auto auto'}} simple color="primary" size="lg" onClick={props.loginHandler}>
+                        <Button style={{ margin: 'auto auto' }} simple color="primary" size="lg" onClick={props.loginHandler}>
                           Sign In
-                  </Button>
+                        </Button>
                       </CardFooter>
                     </form>
                   </Card>
-                  </div>
-          </GridItem>
-        </GridContainer>
-        </div>
+                </div>
+              </GridItem>
+            </GridContainer>
           </div>
         </div>
       </div>
+    </div>
   );
 }

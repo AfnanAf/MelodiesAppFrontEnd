@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { Alert } from "react-bootstrap";
-import Fade from "react-bootstrap/Fade";
-import { Container, Form, Button } from "react-bootstrap";
 import SectionAddPlaylist from "./SectionAddPlaylist";
- import SectionNotifications from './Snackbar/SectionNotifications'
+import SectionNotifications from './Snackbar/SectionNotifications'
 
 export default class AddPlaylist extends Component {
   constructor(props) {
@@ -11,7 +8,7 @@ export default class AddPlaylist extends Component {
     this.state = {
       newPlaylist: {},
       failedMessage: this.props.failedMessage,
-      successMessage:this.props.successMessage
+      successMessage: this.props.successMessage
     };
   }
 
@@ -41,19 +38,17 @@ export default class AddPlaylist extends Component {
   };
   render() {
     const failedMessage = this.state.failedMessage ? (
-           
       <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
     ) : null;
 
     const successMessage = this.state.successMessage ? (
-   
-
       <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
     ) : null;
+    
     return (
       <div>
         {failedMessage}{successMessage}
-        <SectionAddPlaylist handleChange={this.handleChange} handleSubmit={this.handleSubmit} failedMessage={this.state.failedMessage}/>
+        <SectionAddPlaylist handleChange={this.handleChange} handleSubmit={this.handleSubmit} failedMessage={this.state.failedMessage} />
       </div>
     );
   }

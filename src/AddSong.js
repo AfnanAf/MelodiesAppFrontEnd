@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import { Alert } from "react-bootstrap";
-import Fade from "react-bootstrap/Fade";
-import { Container, Form, Button } from "react-bootstrap";
 import SectionAddSong from "./SectionAddSong";
-import SectionNotifications from './Snackbar/SectionNotifications'
 
 export default class AddSong extends Component {
   constructor(props) {
@@ -11,21 +7,23 @@ export default class AddSong extends Component {
     this.state = {
       newSong: {},
       failedMessage: this.props.failedMessage,
-      successMessage:this.props.successMessage
+      successMessage: this.props.successMessage
     };
   }
+
   validateURL(url) {
     var pattern = new RegExp(
       "^(https?:\\/\\/)?" + // protocol
-        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-        "(\\#[-a-z\\d_]*)?$",
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+      "(\\#[-a-z\\d_]*)?$",
       "i"
     ); // fragment locator
     return !!pattern.test(url);
   }
+
   handleChange = (e) => {
     const key = e.target.name;
     console.log("key " + key);
@@ -41,7 +39,7 @@ export default class AddSong extends Component {
       newSong: updatedSong,
     });
     console.log(this.state.newSong);
-  };
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -59,23 +57,24 @@ export default class AddSong extends Component {
     } else {
       this.props.addSong(this.state.newSong);
     }
-  };
+  }
+
   render() {
     // const failedMessage = this.state.failedMessage ? (
-           
+
     //   <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
     // ) : null;
 
     // const successMessage = this.state.successMessage ? (
-   
+
 
     //   <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
     // ) : null;
-   
+
     return (
       <div>
         {/* {failedMessage}{successMessage} */}
-        <SectionAddSong handleChange={this.handleChange} handleSubmit={this.handleSubmit} failedMessage={this.state.failedMessage} successMessage={this.state.successMessage}/>
+        <SectionAddSong handleChange={this.handleChange} handleSubmit={this.handleSubmit} failedMessage={this.state.failedMessage} successMessage={this.state.successMessage} />
       </div>
     );
   }

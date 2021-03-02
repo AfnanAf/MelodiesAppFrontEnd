@@ -1,11 +1,8 @@
-import axios from "axios";
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SongsPlaylist from "./SongsPlaylist";
-import { Card, CardDeck } from 'react-bootstrap'
-
-import {MdDelete} from 'react-icons/md'
+import { Card } from 'react-bootstrap'
+import { MdDelete } from 'react-icons/md'
 import Button from "./components/CustomButtons/Button";
 
 export default class Playlist extends Component {
@@ -23,7 +20,7 @@ export default class Playlist extends Component {
             isEdit: !this.state.isEdit
         })
     }
-    
+
     changeHandler = () => {
         console.log(this.state);
 
@@ -49,7 +46,6 @@ export default class Playlist extends Component {
         this.setState({
             failedMessage: "",
             isEdit: false
-           
         });
     }
 
@@ -58,96 +54,71 @@ export default class Playlist extends Component {
             playlistName: e.target.value,
         });
     }
+
     render() {
-return (
-        //   <div>  {allSongs} {allPlaylists} {editForm} {cardTitle} </div>
- <Router>
+        return (
+            <Router>
+                {!this.props.isDetail ? (
+                    <div>
+                        <Card className="card">
+                            <Card.Img variant="top" src={this.state.playlist.image} />
+                            {this.state.isEdit ?
+                                (<Card.Body>
+                                    <Card.Title className="cardtitle">
+                                        <span><Link style={{ color: "#9D319D", }} to="/PlaylistSongsList" onClick={() => this.props.goToDetail(this.state.playlist)}>{this.state.playlist.name}</Link></span>
+                                    </Card.Title>
+                                </Card.Body>
+                                )
+                                : (
+                                    <Card.Body>
+                                        <Card.Title className="cardtitle">
+                                            <input value={this.state.playlistName} name="name" onChange={this.playlistNameChange} />
+                                        </Card.Title>
+                                        <Button onClick={this.editHandler}>Save</Button>
+                                    </Card.Body>
+                                )
+                            }
+                            <Card.Footer className="cardtitle">
+                                <small className="text-muted" onClick={() => this.editPlaylistForm()}>Edit Playlist</small>
+                                <span onClick={() => this.props.deletePlaylist(this.state.playlist.id)}> <MdDelete /> </span>
+                            </Card.Footer>
+                        </Card>
+                    </div>
+                ):
+                (
+                    <div>
+                         <Card className="card">
+                             <Card.Img variant="top" src={this.state.playlist.image} />
+                             {this.state.isEdit ? (
+                                 <Card.Body>
+                                     <Card.Title className="cardtitle">
+                                         <span><Link style={{ color: "#9D319D", }} to="/PlaylistSongsList" onClick={() => this.props.goBack()}>{this.state.playlist.name}</Link></span>
+                                     </Card.Title>
+                                 </Card.Body>
+                                  ): 
+                                  (
+                                 <Card.Body>
+                                      <Card.Title className="cardtitle">
+                                          <input value={this.state.playlistName} name="name" onChange={this.playlistNameChange} />
+                                      </Card.Title>
 
-        {!this.props.isDetail?(<div>
-            <Card className="card">
-            {/* {redirect} */}
 
-            <Card.Img variant="top" src={this.state.playlist.image} />
-            {this.state.isEdit ?
-                (<Card.Body>
- 
-                    <Card.Title className="cardtitle">
-                        <span><Link style={{color:"#9D319D",}}to="/PlaylistSongsList" onClick={()=>this.props.goToDetail(this.state.playlist)}>{this.state.playlist.name}</Link></span>
-                      
-                        
-                     
-                    </Card.Title>
+                                    <Button onClick={this.editHandler}>Save</Button>
+                                 </Card.Body>
+                                  )
+                                }
+                                
+                            <Card.Footer className="cardtitle">
+                                <small className="text-muted" onClick={() => this.editPlaylistForm()}>Edit Playlist</small>
+                                <span onClick={() => this.props.deletePlaylist(this.state.playlist.id)}> <MdDelete /> </span>
+                            </Card.Footer>
 
-                </Card.Body>
-
-                )
-                : (<Card.Body>
-
-                    <Card.Title className="cardtitle">
-                        <input value={this.state.playlistName} name="name" onChange={this.playlistNameChange} />
-                    </Card.Title>
-                  
-                    
-                    <Button  onClick={this.editHandler}>Save</Button>
-                </Card.Body>
-
-                )
-            }
-
-            <Card.Footer className="cardtitle">
-                <small className="text-muted" onClick={() => this.editPlaylistForm()}>Edit Playlist</small>
-                
-                <span onClick={() => this.props.deletePlaylist(this.state.playlist.id)}> <MdDelete /> </span>
-            </Card.Footer>
-        </Card>
-        </div> 
-        ):
-        (
-            <div>
-            <Card className="card">
-            {/* {redirect} */}
-
-            <Card.Img variant="top" src={this.state.playlist.image} />
-            {this.state.isEdit ?
-                (<Card.Body>
- 
-                    <Card.Title className="cardtitle">
-                        <span><Link style={{color:"#9D319D",}}to="/PlaylistSongsList" onClick={()=>this.props.goBack()}>{this.state.playlist.name}</Link></span>
-                      
-                        
-                     
-                    </Card.Title>
-
-                </Card.Body>
-
-                )
-                : (<Card.Body>
-
-                    <Card.Title className="cardtitle">
-                        <input value={this.state.playlistName} name="name" onChange={this.playlistNameChange} />
-                    </Card.Title>
-                  
-                    
-                    <Button  onClick={this.editHandler}>Save</Button>
-                </Card.Body>
-
-                )
-            }
-
-            <Card.Footer className="cardtitle">
-                <small className="text-muted" onClick={() => this.editPlaylistForm()}>Edit Playlist</small>
-                
-                <span onClick={() => this.props.deletePlaylist(this.state.playlist.id)}> <MdDelete /> </span>
-            </Card.Footer>
-        </Card>
-        <Route path="/PlaylistSongsList" component={()=><SongsPlaylist playlistId={this.state.playlist.id }/> }>
-    </Route> 
-        </div> 
-        )}
-   
-</Router> 
-
-          
+                        </Card>
+                        <Route path="/PlaylistSongsList" component={() => <SongsPlaylist playlistId={this.state.playlist.id} />}>
+                        </Route>
+                    </div>
+                )}
+            </Router>
         )
-  }
+    }
 }

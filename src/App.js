@@ -9,22 +9,14 @@ import SongsList from './SongsList'
 import Login from './user/Login'
 import Profile from './user/Profile'
 import Register from './user/Register'
-import { Alert } from "react-bootstrap";
-import Fade from 'react-bootstrap/Fade'
 import { Redirect } from "react-router-dom";
 import Home from './Home'
 import UsersList from './user/UsersList'
 import Header from "./Header/Header.js";
 import HeaderLinks from "./Header/HeaderLinks.js";
-import { makeStyles } from "@material-ui/core/styles";
-import SnackbarContent from './Snackbar/SnackbarContent'
-import styles from "./assets/jss/material-kit-react/views/componentsSections/navbarsStyle";
-import Check from "@material-ui/icons/Check";
-import { FaCheck } from "react-icons/fa";
 import SectionNotifications from './Snackbar/SectionNotifications'
 import Footer from './components/Footer/Footer'
-
-import  MelodiesLogo from "../src/assets/img/MelodiesLogo.png";
+import MelodiesLogo from "../src/assets/img/MelodiesLogo.png";
 
 export default class App extends Component {
 
@@ -61,12 +53,10 @@ export default class App extends Component {
           userId: { userId: res.data.userId }
         })
         console.log("profile " + this.state.userProfile.playLists)
-
       })
       .catch(err => {
         console.log(err);
       })
-
     this.loadFavSongs()
   }
 
@@ -80,12 +70,11 @@ export default class App extends Component {
           failedMessage: null,
           redirect: "/login"
         })
-
       })
       .catch((error) => {
         console.log(error);
       });
-  };
+  }
 
   loginHandler = (user) => {
     axios
@@ -123,8 +112,7 @@ export default class App extends Component {
           failedMessage: "Error Occured. Please try again later!!!",
         })
       });
-
-  };
+  }
 
   addPlaylist = (playlist) => {
     axios.post("/playlist/add", playlist, {
@@ -207,7 +195,6 @@ export default class App extends Component {
     console.log("unfav clicked !!!!!");
 
     if (songId != null) {
-
       axios.delete("/song/delete?id=" + songId, {
         headers: {
           "Authorization": "Bearer " + localStorage.getItem("token")
@@ -386,7 +373,6 @@ export default class App extends Component {
 
     const successMessage = this.state.successMessage ? (
       <div style={{ marginTop: 3 + 'em' }}>
-
         <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications></div>
     ) : null;
 
@@ -401,14 +387,10 @@ export default class App extends Component {
             height: 400,
             color: "white"
           }}
-
         />
 
         {redirect}
-        {/* {this.state.failedMessage} */}
-
         {failedMessage} {successMessage}
-
 
         <Route
           path="/home"
@@ -423,7 +405,7 @@ export default class App extends Component {
         <Route
           path="/PlaylistList"
           component={
-            () => this.state.isAuth ? <PlaylistList  deletePlaylist={this.deletePlaylist} editPlaylist={this.editPlaylist} playlists={playLists} userId={this.state.userId} email={this.state.userEmail} /> : null}
+            () => this.state.isAuth ? <PlaylistList deletePlaylist={this.deletePlaylist} editPlaylist={this.editPlaylist} playlists={playLists} userId={this.state.userId} email={this.state.userEmail} /> : null}
         ></Route>
 
         <Route
@@ -433,7 +415,7 @@ export default class App extends Component {
 
         <Route
           path="/AddSong"
-          component={() => <AddSong userId={this.state.userId} addSong={this.addSong}  />}
+          component={() => <AddSong userId={this.state.userId} addSong={this.addSong} />}
         ></Route>
 
         <Route
@@ -454,7 +436,6 @@ export default class App extends Component {
         <Route
           path="/Users"
           component={() => this.state.isAuth && userRole == 'ROLE_ADMIN' ? <UsersList /> : null}
-        // component={() => this.state.isAuth && userRole == 'ROLE_ADMIN' ? <UsersList  loadUsers={this.getUsers()} /> : null}
 
         ></Route>
         <Footer />

@@ -14,7 +14,6 @@ import CardHeader from "./components/Card/CardHeader.js";
 import CardBody from "./components/Card/CardBody.js";
 import CardFooter from "./components/Card/CardFooter.js";
 import Button from "./components/CustomButtons/Button.js";
-import CustomInput from "./components/CustomInput/CustomInput.js";
 import SectionNotifications from './Snackbar/SectionNotifications'
 
 import styles from "./assets/jss/material-kit-react/views/componentsSections/loginStyle";
@@ -31,17 +30,15 @@ export default function SectionAddPlaylist(props) {
     return (
         <div className={classes.section}>
             {props.failedMessage ? (
-    
-      <SectionNotifications type='failure' message={props.failedMessage}></SectionNotifications>
-
-    ) : null}
+                <SectionNotifications type='failure' message={props.failedMessage}></SectionNotifications>
+            ) : null}
 
             <div className={classes.container2} >
                 <GridContainer justify="center">
                     <GridItem xs={12} sm={12} md={4}>
                         <Card justify="center">
                             <form className={classes.form}>
-                                <CardHeader style={{backgroundColor:"#9D319D", color:"white"}} className={classes.cardHeader}>
+                                <CardHeader style={{ backgroundColor: "#9D319D", color: "white" }} className={classes.cardHeader}>
                                     <h4 style={{ fontWeight: 400, paddingBottom: 1 + 'em' }}>Create Your Own Playlist</h4>
                                 </CardHeader>
                                 <CardBody>
@@ -56,11 +53,6 @@ export default function SectionAddPlaylist(props) {
                                         }}
                                         inputProps={{
                                             type: "text",
-                                            endAdornment: (
-                                                <InputAdornment position="end">
-                                                    <Email className={classes.inputIconsColor} />
-                                                </InputAdornment>
-                                            )
                                         }}
                                     />
                                     <RiPlayListFill style={{ width: 1.5 + 'em', height: 1.5 + 'em' }} />
@@ -75,12 +67,6 @@ export default function SectionAddPlaylist(props) {
                                         }}
                                         inputProps={{
                                             type: "text",
-                                            endAdornment: (
-                                                <InputAdornment position="end">
-                                                    <Icon className={classes.inputIconsColor}>
-                                                    </Icon>
-                                                </InputAdornment>
-                                            ),
                                             autoComplete: "off"
                                         }}
                                     />
@@ -91,7 +77,7 @@ export default function SectionAddPlaylist(props) {
                                 <CardFooter style={{ marginTop: 2 + 'em' }} className={classes.cardFooter}>
                                     <Button simple color="primary" size="lg" onClick={props.handleSubmit}>
                                         Add Playlist
-                  </Button>
+                                    </Button>
                                 </CardFooter>
                             </form>
                         </Card>

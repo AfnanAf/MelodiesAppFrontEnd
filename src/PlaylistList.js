@@ -1,13 +1,6 @@
-import axios from "axios";
 import React, { Component } from "react";
-import Table from "react-bootstrap/Table";
-import { Redirect } from "react-router-dom";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Playlist from "./Playlist";
-import SongsPlaylist from "./SongsPlaylist";
+import { BrowserRouter as Router } from "react-router-dom";
 import SectionNotifications from './Snackbar/SectionNotifications'
-import { Alert, CardDeck } from "react-bootstrap";
-import Button from "./components/CustomButtons/Button";
 import SectionPlaylistList from './SectionPlaylistList';
 export default class PlaylistList extends Component {
 
@@ -26,6 +19,7 @@ export default class PlaylistList extends Component {
       clickedPlaylist: clickedPlaylist
     })
   }
+
   goBack=()=>{
     this.setState({
       isDetail: false,
@@ -35,17 +29,14 @@ export default class PlaylistList extends Component {
 
   render() {
     const failedMessage = this.state.failedMessage ? (
-
       <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
     ) : null;
 
     const successMessage = this.state.successMessage ? (
-
-
       <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
     ) : null;
-    return (
 
+    return (
       <Router >
 
         {successMessage}

@@ -1,6 +1,6 @@
 import { Input } from "@material-ui/core";
 import React, { Component } from "react";
-import { Container, Form } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { Alert } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
 import Button from "../../src/components/CustomButtons/Button";
@@ -17,6 +17,7 @@ export default class EditProfile extends Component {
     firstName: this.props.profile.firstName,
     email: this.props.profile.emailAddress,
   };
+
   validateEmail = (email) => {
     if (
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
@@ -27,23 +28,18 @@ export default class EditProfile extends Component {
     } else {
       return false;
     }
-  };
+  }
 
   editHandler = () => {
     this.changeHandler()
     console.log(this.state);
 
-    // if (!this.validateEmail(this.state.editedUser["emailAddress"])) {
-    //   this.setState({
-    //     failedMessage: "invalid email address!",
-    //   });
-    // } else {
     this.props.editUserInfo(this.state.editedUser, this.props.email);
     this.setState({
       failedMessage: "",
     });
-    // }
-  };
+  }
+
   lastNameChange = (e) => {
     this.setState({
       lastName: e.target.value,
@@ -55,14 +51,15 @@ export default class EditProfile extends Component {
       firstName: e.target.value,
     });
   };
+
   emailChange = (e) => {
     this.setState({
       email: e.target.value,
     });
   };
+
   changeHandler = () => {
     console.log(this.state);
-
     let editedUserInfo = this.state.editedUser;
     editedUserInfo["firstName"] = this.state.firstName;
     editedUserInfo["lastName"] = this.state.lastName;
@@ -83,6 +80,7 @@ export default class EditProfile extends Component {
         {this.state.failedMessage}
       </Alert>
     ) : null;
+
     return (
       <div>
         {failedMessage}
@@ -142,9 +140,6 @@ export default class EditProfile extends Component {
               Save
             </Button>
           </div>
-          {/* <Button variant="primary" block onClick={this.editHandler}>
-            Save
-          </Button> */}
         </Container>
       </div>
     );
