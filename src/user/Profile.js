@@ -185,7 +185,7 @@ export default class Profile extends Component {
                 // </CardDeck> */}
                 <ProfilePage songs={this.state.songs} changePasswordForm={this.changePasswordForm} profile={this.props.profile} email={this.props.email} isPasswordChange={this.state.isPasswordChange}
                     editUserInfo={this.editUserInfo} isProfileEdit={this.state.isProfileEdit} editProfile={this.editProfile} changePasswordHandler={this.changePasswordHandler} 
-                                    handleUnFav={this.props.handleunFav}
+                    handleunFav={this.props.handleunFav}
                                     addPlaylist={this.addPlaylist}
                                     isAuth={this.props.isAuth}
                                     playlists={this.props.playlists}

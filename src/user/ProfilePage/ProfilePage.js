@@ -157,7 +157,7 @@ export default function ProfilePage(props) {
                             <div key={index}>
                               <FavSong
                                 song={song}
-                                handleUnFav={props.handleunFav}
+                                handleunFav={props.handleunFav}
                                 addPlaylist={props.addPlaylist}
                                 isAuth={props.isAuth}
                                 playlists={props.playlists}
