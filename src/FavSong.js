@@ -27,7 +27,7 @@ export default class FavSong extends Component {
         this.setState({
             isFav: !this.state.isFav,
         })
-        this.props.handleUnFav(songId)
+        this.props.handleunFav(songId)
     }
 
     addToPlaylist = (playlist) => {

@@ -61,21 +61,21 @@ export default class AddSong extends Component {
     }
   };
   render() {
-    const failedMessage = this.state.failedMessage ? (
+    // const failedMessage = this.state.failedMessage ? (
            
-      <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
-    ) : null;
+    //   <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
+    // ) : null;
 
-    const successMessage = this.state.successMessage ? (
+    // const successMessage = this.state.successMessage ? (
    
 
-      <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
-    ) : null;
+    //   <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
+    // ) : null;
    
     return (
       <div>
-        {failedMessage}{successMessage}
-        <SectionAddSong handleChange={this.handleChange} handleSubmit={this.handleSubmit} failedMessage={this.state.failedMessage}/>
+        {/* {failedMessage}{successMessage} */}
+        <SectionAddSong handleChange={this.handleChange} handleSubmit={this.handleSubmit} failedMessage={this.state.failedMessage} successMessage={this.state.successMessage}/>
       </div>
     );
   }

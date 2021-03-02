@@ -35,8 +35,10 @@ export default function SectionAddSong(props) {
         {props.failedMessage ? (
     
             <SectionNotifications type='failure' message={props.failedMessage}></SectionNotifications>
-        
+         
           ) : null}
+          {props.successMessage ? (   <SectionNotifications type='success' message={props.successMessage}></SectionNotifications>
+):null}
         <div className={classes.section}>
            
             <div className={classes.container2}>

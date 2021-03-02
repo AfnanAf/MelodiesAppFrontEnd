@@ -423,17 +423,17 @@ export default class App extends Component {
         <Route
           path="/PlaylistList"
           component={
-            () => this.state.isAuth ? <PlaylistList successMessage={this.state.successMessage} failedMessage={this.state.failedMessage} deletePlaylist={this.deletePlaylist} editPlaylist={this.editPlaylist} playlists={playLists} userId={this.state.userId} email={this.state.userEmail} /> : null}
+            () => this.state.isAuth ? <PlaylistList  deletePlaylist={this.deletePlaylist} editPlaylist={this.editPlaylist} playlists={playLists} userId={this.state.userId} email={this.state.userEmail} /> : null}
         ></Route>
 
         <Route
           path="/AddPlaylist"
-          component={() => <AddPlaylist userId={this.state.userId} addPlaylist={this.addPlaylist} successMessage={this.state.successMessage} failedMessage={this.state.failedMessage} />}
+          component={() => <AddPlaylist userId={this.state.userId} addPlaylist={this.addPlaylist} />}
         ></Route>
 
         <Route
           path="/AddSong"
-          component={() => <AddSong userId={this.state.userId} addSong={this.addSong} successMessage={this.state.successMessage} failedMessage={this.state.failedMessage} />}
+          component={() => <AddSong userId={this.state.userId} addSong={this.addSong}  />}
         ></Route>
 
         <Route
@@ -448,7 +448,7 @@ export default class App extends Component {
 
         <Route
           path="/profile"
-          component={() => this.state.isAuth ? <Profile successMessage={this.state.successMessage} failedMessage={this.state.failedMessage} playlists={playLists} email={this.state.userEmail} getProfile={this.getProfile} favSongs={this.state.favSongs} loadFavSongs={this.loadFavSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} editSong={this.editSong} addSong={this.addSong} /> : null}
+          component={() => this.state.isAuth ? <Profile playlists={playLists} email={this.state.userEmail} getProfile={this.getProfile} favSongs={this.state.favSongs} loadFavSongs={this.loadFavSongs} profile={this.state.userProfile} handleunFav={this.handleUnFavorite} addPlaylist={this.addPlaylist} isAuth={this.state.isAuth} userId={this.state.userId} editSong={this.editSong} addSong={this.addSong} /> : null}
         ></Route>
 
         <Route
