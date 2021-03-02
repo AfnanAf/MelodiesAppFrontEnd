@@ -53,7 +53,8 @@ export default class Playlist extends Component {
         this.props.editPlaylist(this.state.editedPlaylist);
         this.setState({
             failedMessage: "",
-            isEdit: true
+            isEdit: false
+           
         });
     }
 
@@ -69,20 +70,61 @@ export default class Playlist extends Component {
     }
 
     render() {
+//         let allSongs=[]
+//         let allPlaylists=[]
+//         let editForm=[]
+//         let cardTitle=[]
+//         let showEditForm = <Card.Body>
+//         <Card.Title className="cardtitle">
+//             <span><Link style={{color:"#9D319D",}} onClick={this.setState({isDetail:!this.state.isDetail})}>{this.state.playlist.name}</Link></span>
+          
+//         </Card.Title>
+
+//     </Card.Body>;
+//     let showCardTitle=<Card.Body>
+
+//     <Card.Title className="cardtitle">
+//         <input value={this.state.playlistName} name="name" onChange={this.playlistNameChange} />
+//     </Card.Title>
+  
+    
+//     <Button  onClick={this.editHandler}>Save</Button>
+// </Card.Body>;
+// let showSongs = <div>
+//     {/* <h1 onClick={this.goToDetail()}>{this.state.playlist.name}</h1>  */}
+//    <SongsPlaylist playlistId={this.state.playlist.id}/> </div>;
+
+//  let showPlaylists =   <div> <Card className="card">
+//  {/* {redirect} */}
+//  <Card.Img variant="top" src={this.state.playlist.image} />
+ 
+
+//  <Card.Footer className="cardtitle">
+//      <small className="text-muted" onClick={() => this.editPlaylistForm()}>Edit Playlist</small>
+     
+//      <span onClick={() => this.props.deletePlaylist(this.state.playlist.id)}> <MdDelete /> </span>
+//  </Card.Footer>
+// </Card>
+// </div>;  
+
+// this.state.isDetail ==true ? allSongs= showSongs : allPlaylists= showPlaylists;
+
+// this.state.isEdit ? editForm =showEditForm: cardTitle=showPlaylists;
         return (
-<Router>
+        //   <div>  {allSongs} {allPlaylists} {editForm} {cardTitle} </div>
+ <Router>
 {this.state.isDetail ?
     (
         <div>
             <Card className="card">
             {/* {redirect} */}
 
-            <Card.Img variant="top" src={this.props.playlist.image} />
+            <Card.Img variant="top" src={this.state.playlist.image} />
             {this.state.isEdit ?
                 (<Card.Body>
  
                     <Card.Title className="cardtitle">
-                        <span><Link style={{color:"#9D319D",}}to="/PlaylistSongsList" onClick={()=>this.goToDetail()}>{this.props.playlist.name}</Link></span>
+                        <span><Link style={{color:"#9D319D",}}to="/PlaylistSongsList" onClick={()=>this.goToDetail()}>{this.state.playlist.name}</Link></span>
                       
                         
                      
@@ -107,17 +149,17 @@ export default class Playlist extends Component {
             <Card.Footer className="cardtitle">
                 <small className="text-muted" onClick={() => this.editPlaylistForm()}>Edit Playlist</small>
                 
-                <span onClick={() => this.props.deletePlaylist(this.props.playlist.id)}> <MdDelete /> </span>
+                <span onClick={() => this.props.deletePlaylist(this.state.playlist.id)}> <MdDelete /> </span>
             </Card.Footer>
         </Card>
         </div> ):(
         <div>
-<h1 onClick={this.goToDetail()}>{this.state.playlist.name}</h1>
+{/* <h1 onClick={this.goToDetail()}>{this.state.playlist.name}</h1> */}
     <Route path="/PlaylistSongsList" component={()=><SongsPlaylist playlistId={this.state.playlist.id}/> }></Route> </div>)}
    
-</Router>
+</Router> 
 
           
         )
-    }
+  }
 }

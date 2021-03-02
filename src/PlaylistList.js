@@ -37,7 +37,7 @@ export default class PlaylistList extends Component {
         {failedMessage}
 
 <SectionPlaylistList editedPlaylist={this.props.editedPlaylist} deletePlaylist={this.props.deletePlaylist}
-userId={this.props.userId} playlists={this.state.playlists} />
+userId={this.props.userId} playlists={this.state.playlists} editPlaylist={this.props.editPlaylist}/>
 
       </Router>
     );

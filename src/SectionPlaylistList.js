@@ -85,6 +85,7 @@ export default function SectionRegister(props) {
                             playlist={playlist}
                             key={index}
                             userId={props.userId}
+                           
                           />
                         </div>
                       ))}
