@@ -15,7 +15,7 @@ import CardBody from "../components/Card/CardBody.js";
 import CardFooter from "../components/Card/CardFooter.js";
 import Button from "../components/CustomButtons/Button.js";
 import CustomInput from "../components/CustomInput/CustomInput.js";
-import Parallax from "../components/Parallax/Parallax.js";
+import Parallax2 from "../components/Parallax/Parallax2.js";
 
 import classNames from "classnames";
 
@@ -44,10 +44,10 @@ export default function SectionRegister(props) {
     );
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
       return (
-        <div>
-        <Parallax style={{height: 10+'em', }} small filter image={require("../assets/img/profile-bg.jpg")} />
+        <div style={{backgroundColor: '#FAFAE2'}}>
+        <Parallax2 style={{height: 10+'em', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center bottom'}} small filter image={require("../assets/img/profile-bg.jpg")} />
 
-        <div style={{paddingTop: 3+'em', backgroundColor: '#058f6a'}} className={classNames(classes.main, classes.mainRaised)}>
+        <div style={{paddingTop: 3+'em',backgroundColor: '#FAFAE2', backgroundImage: 'url("https://cdn.pixabay.com/photo/2016/11/22/19/15/dark-1850120_1280.jpg")' , backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center bottom'}} className={classNames(classes.main, classes.mainRaised)}>
 
             <div className={classes.section}>
                 <div className={classes.container}>

@@ -13,7 +13,7 @@ import Button from "../../components/CustomButtons/Button.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
 import GridItem from "../../components/Grid/GridItem.js";
 import NavPills from "../../components/NavPills/NavPills.js";
-import Parallax from "../../components/Parallax/Parallax.js";
+import Parallax3 from "../../components/Parallax/Parallax3.js";
 
 import profile from "../../assets/img/faces/christian.jpg";
 
@@ -63,7 +63,7 @@ export default function ProfilePage(props) {
         }}
         {...rest}
       /> */}
-      <Parallax small filter image={require("../../assets/img/profile-bg.jpg")} />
+      <Parallax3 small filter image={require("../../assets/img/profile-bg.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
           <div className={classes.container}>

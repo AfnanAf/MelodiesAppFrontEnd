@@ -24,6 +24,7 @@ import { FaCheck } from "react-icons/fa";
 import SectionNotifications from './Snackbar/SectionNotifications'
 import Footer from './components/Footer/Footer'
 
+import  MelodiesLogo from "../src/assets/img/MelodiesLogo.png";
 
 export default class App extends Component {
 
@@ -392,7 +393,7 @@ export default class App extends Component {
     return (
       <Router>
         <Header style={{ position: 'sticky', display: 'block' }}
-          brand="Melodies"
+          brand={<img width="60em" height="inherit" src={MelodiesLogo} />}
           leftLinks={<HeaderLinks isAuth={this.state.isAuth} onLogoutHandler={this.onLogoutHandler} userRole={userRole} />}
           color="transparent"
           fixed

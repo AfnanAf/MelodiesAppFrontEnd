@@ -49,7 +49,7 @@ export default class SongsList extends Component {
         
         return (
             <div>
-                <Parallax style={{height: 30+'em'}} image={require("./assets/img/bg3.jpg")}>
+                <Parallax style={{height: 30+'em', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center bottom'}} image={require("./assets/img/bg3.jpg")}>
                     <div >
                         <GridContainer style={{paddingLeft:3+'em'}}>
                             <GridItem style={{paddingTop: 9+'em'}}>

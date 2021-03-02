@@ -1,6 +1,6 @@
 import { container } from "../../../material-kit-react";
 import { container2 } from "../../../material-kit-react";
-import image from "../../../../img/bg4.jpg";
+// import image from "https://cdn.pixabay.com/photo/2016/11/22/19/15/dark-1850120_1280.jpg";
 
 const loginStyle = {
   section: {
@@ -14,7 +14,7 @@ const loginStyle = {
     border: "0",
     display: "flex",
     alignItems: "center",
-    backgroundImage: "url(" + image + ")",
+    backgroundImage: "url(https://cdn.pixabay.com/photo/2016/11/22/19/15/dark-1850120_1280.jpg)",
   },
   container,
   container2,

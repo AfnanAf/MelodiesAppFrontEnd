@@ -19,7 +19,7 @@ import CustomInput from "../components/CustomInput/CustomInput.js";
 // import styles from "../assets/jss/material-kit-react/views/componentsSections/loginStyle";
 import styles from "../assets/jss/material-kit-react/views/profilePage";
 
-import Parallax from "../components/Parallax/Parallax.js";
+import Parallax2 from "../components/Parallax/Parallax2.js";
 
 import classNames from "classnames";
 
@@ -33,10 +33,10 @@ const useStyles = makeStyles(styles);
 export default function SectionLogin(props) {
   const classes = useStyles();
   return (
-    <div>
-      <Parallax style={{ height: 10 + 'em', }} small filter image={require("../assets/img/profile-bg.jpg")} />
+    <div style={{backgroundColor: '#FAFAE2'}}>
+      <Parallax2 style={{ height: 10 + 'em', }} small filter image={require("../assets/img/profile-bg.jpg")} />
 
-      <div style={{ paddingTop: 3 + 'em', backgroundColor: '#058f6a' }} className={classNames(classes.main, classes.mainRaised)}>
+      <div style={{ paddingTop: 3 + 'em', height: 40+'em', backgroundImage: 'url("https://cdn.pixabay.com/photo/2016/11/22/19/15/dark-1850120_1280.jpg")' , backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center bottom'}} className={classNames(classes.main, classes.mainRaised)}>
 
         <div className={classes.section}>
           <div className={classes.container}>

@@ -39,7 +39,7 @@ export default function SectionAddSong(props) {
           ) : null}
         <div className={classes.section}>
            
-            <div className={classes.container2} >
+            <div className={classes.container2}>
          
                 <GridContainer justify="center">
            

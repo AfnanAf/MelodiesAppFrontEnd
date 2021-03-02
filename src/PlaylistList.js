@@ -20,28 +20,32 @@ export default class PlaylistList extends Component {
 
   render() {
     const failedMessage = this.state.failedMessage ? (
-           
+
       <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
     ) : null;
 
     const successMessage = this.state.successMessage ? (
-   
+
 
       <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
     ) : null;
     return (
-      <Router>
+      <Router >
         {successMessage}
         {failedMessage}
-       
-        <CardDeck>
-        {this.state.playlists.map((playlist, index) => (
+
+        <div style={{ height: 40+'em'}}>
+        <CardDeck style={{paddingLeft:2+'em'}}>
+          {this.state.playlists.map((playlist, index) => (
+            <div key={index}>
               <Playlist editPlaylist={this.props.editPlaylist} deletePlaylist={this.props.deletePlaylist} playlist={playlist} key={index} userId={this.props.userId} />
-            )
-            )}
-      </CardDeck>
-        
-       
+            </div>
+          )
+          )}
+        </CardDeck>
+        </div>
+
+
       </Router>
     );
   }

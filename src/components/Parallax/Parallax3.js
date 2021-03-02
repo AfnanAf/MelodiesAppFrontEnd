@@ -39,7 +39,6 @@ export default function Parallax(props) {
   const classes = useStyles();
   const parallaxClasses = classNames({
     [classes.parallax]: true,
-    [classes.filter]: filter,
     [classes.small]: small,
     [className]: className !== undefined
   });
@@ -48,7 +47,7 @@ export default function Parallax(props) {
       className={parallaxClasses}
       style={{
         ...style,
-        backgroundImage: "url(https://images.pexels.com/photos/6966/abstract-music-rock-bw.jpg)",
+        backgroundImage: "url(https://images.pexels.com/photos/144429/pexels-photo-144429.jpeg)",
         transform: transform
       }}
     >
