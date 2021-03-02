@@ -57,7 +57,7 @@ export default function SectionRegister(props) {
 
                             <Card>
                                 <form className={classes.form}>
-                                    <CardHeader color="primary" className={classes.cardHeader}>
+                                    <CardHeader style={{backgroundColor:"#9D319D", color:"white"}} className={classes.cardHeader}>
                                         <h4 style={{ fontWeight: 400, paddingBottom: 1 + 'em' }}>Sign Up</h4>
                                     </CardHeader>
                                     <CardBody>

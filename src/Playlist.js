@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SongsPlaylist from "./SongsPlaylist";
 import { Card } from 'react-bootstrap'
+
 import {MdDelete} from 'react-icons/md'
 import Button from "./components/CustomButtons/Button";
 import { TramRounded } from "@material-ui/icons";
@@ -72,14 +73,16 @@ export default class Playlist extends Component {
 <Router>
 {this.state.isDetail ?
     (
+        <div>
             <Card className="card">
             {/* {redirect} */}
 
             <Card.Img variant="top" src={this.props.playlist.image} />
             {this.state.isEdit ?
                 (<Card.Body>
-
-                    <Card.Title className="cardtitle"><Link to="/PlaylistSongsList" onClick={()=>this.goToDetail()}>{this.props.playlist.name}</Link>
+ 
+                    <Card.Title className="cardtitle">
+                        <span><Link style={{color:"#9D319D",}}to="/PlaylistSongsList" onClick={()=>this.goToDetail()}>{this.props.playlist.name}</Link></span>
                       
                         
                      
@@ -106,7 +109,8 @@ export default class Playlist extends Component {
                 
                 <span onClick={() => this.props.deletePlaylist(this.props.playlist.id)}> <MdDelete /> </span>
             </Card.Footer>
-        </Card>):(
+        </Card>
+        </div> ):(
         <div>
 <h1 onClick={this.goToDetail()}>{this.state.playlist.name}</h1>
     <Route path="/PlaylistSongsList" component={()=><SongsPlaylist playlistId={this.state.playlist.id}/> }></Route> </div>)}

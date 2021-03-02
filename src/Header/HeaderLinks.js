@@ -131,7 +131,7 @@ export default function HeaderLinks(props) {
             <CustomDropdown
               right
               caret={false}
-              hoverColor="black"
+              hoverColor="white"
               dropdownHeader=""
               buttonText={
 
@@ -144,30 +144,23 @@ export default function HeaderLinks(props) {
                 color: "transparent",
               }}
               dropdownList={[
-                <Link onMouseEnter={() => {
-                  setHover(true);
-                }}
-                  onMouseLeave={() => {
-                    setHover(false);
-                  }}
+                <Link 
                   style={{
                     paddingRight: 120 + 'px',
-                    textDecoration: 'none', color: 'black',
-                    ...(hover ? { color: 'white' } : { color: 'black' })
+                    textDecoration: 'none',
+                   color:"#5E2984"
+                   ,fontWeight:600,
+                
                   }}
 
                   to="/profile">Profile
            </Link>,
-                <Link onMouseEnter={() => {
-                  setHover(true);
-                }}
-                  onMouseLeave={() => {
-                    setHover(false);
-                  }}
+                <Link 
                   style={{
                     paddingRight: 120 + 'px',
-                    textDecoration: 'none', color: 'black',
-                    ...(hover ? { color: 'white' } : { color: 'black' })
+                    textDecoration: 'none',
+                    color:"#5E2984"
+                    ,fontWeight:600
                   }}
 
                   to="/logout" onClick={props.onLogoutHandler}>Sign Out

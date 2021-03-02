@@ -70,9 +70,9 @@ this.getAllUsers()
             <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
           ) : null;
         return (
-          <div>          {failedMessage} {successMessage}
+          <div style={{height:50+"em"}}>          {failedMessage} {successMessage}
          
-            <Table striped bordered hover>
+            <Table style={{marginTop:5+"em"}}striped bordered hover>
             <thead>
               <tr>
                 <th>#</th>

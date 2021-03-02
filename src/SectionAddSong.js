@@ -46,7 +46,7 @@ export default function SectionAddSong(props) {
                     <GridItem xs={12} sm={12} md={4}>
                         <Card justify="center">
                             <form className={classes.form}>
-                                <CardHeader color="primary" className={classes.cardHeader}>
+                                <CardHeader style={{backgroundColor:"#9D319D", color:"white"}} className={classes.cardHeader}>
                                     <p style={{ fontWeight: 400, paddingBottom: 1 + 'em' }}>You couldn't find your song?</p>
                                     <h4 style={{ fontWeight: 400, paddingBottom: 1 + 'em' }}>Add Your Favorite Song</h4>
                                 </CardHeader>

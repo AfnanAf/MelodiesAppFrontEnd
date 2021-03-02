@@ -48,17 +48,20 @@ export default class SongsList extends Component {
     render() {
         
         return (
-            <div>
+            <div style={{color:"#9D319D",}}>
                 <Parallax style={{height: 30+'em', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center bottom'}} image={require("./assets/img/bg3.jpg")}>
+                   
                     <div >
                         <GridContainer style={{paddingLeft:3+'em'}}>
-                            <GridItem style={{paddingTop: 9+'em'}}>
+                            <GridItem style={{paddingTop: 4+'em'}}>
                                 <div >
-                                    <h1 >Music For Everyone.</h1>
-                                    <h3 >
-                                        Life Is One Grand Sweet Song So Start Searching Your Music.</h3>
-                                    <Input placeholder="Search..." style={{ width: 50 + '%' }} type="text" onChange={(e) => this.handleSearch(e)} />
-                                    <FaSearch />
+                                    <h1><mark style={{backgroundColor:"rgb(255,255,255,0.6)",color:"#5E2984"}}>Music For Everyone.</mark></h1>
+                                    <h3 ><mark style={{backgroundColor:"rgb(255,255,255,0.6)",color:"#5E2984"}}>
+                                        Life Is One Grand Sweet Song So Start Searching Your Music.</mark></h3>
+                                        <mark style={{backgroundColor:"rgb(255,255,255,0.6)",color:"#5E2984"}}> <Input placeholder="Search..." style={{ width: 50 + '%' }} type="text" onChange={(e) => this.handleSearch(e)} />
+                                        <FaSearch />
+                                   </mark>
+                                   
                                 </div>
                             </GridItem>
                         </GridContainer>

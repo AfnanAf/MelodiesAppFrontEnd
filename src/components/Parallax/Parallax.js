@@ -44,15 +44,21 @@ export default function Parallax(props) {
     [className]: className !== undefined
   });
   return (
-    <div
+    <div 
       className={parallaxClasses}
       style={{
+       
         ...style,
         backgroundImage: "url(https://images.pexels.com/photos/6966/abstract-music-rock-bw.jpg)",
         transform: transform
       }}
     >
+      {/* <div style={{backgroundColor:"rgb(255,255,255,0.5)", color:"#5E2984" ,width:60+"em",height:15+"em"}}> */}
       {children}
+   
+    
+     
+    {/* </div> */}
     </div>
   );
 }

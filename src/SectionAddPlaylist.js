@@ -41,7 +41,7 @@ export default function SectionAddPlaylist(props) {
                     <GridItem xs={12} sm={12} md={4}>
                         <Card justify="center">
                             <form className={classes.form}>
-                                <CardHeader color="primary" className={classes.cardHeader}>
+                                <CardHeader style={{backgroundColor:"#9D319D", color:"white"}} className={classes.cardHeader}>
                                     <h4 style={{ fontWeight: 400, paddingBottom: 1 + 'em' }}>Create Your Own Playlist</h4>
                                 </CardHeader>
                                 <CardBody>

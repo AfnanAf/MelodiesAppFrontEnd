@@ -8,7 +8,7 @@ import SongsPlaylist from "./SongsPlaylist";
 import SectionNotifications from './Snackbar/SectionNotifications'
 import { Alert, CardDeck } from "react-bootstrap";
 import Button from "./components/CustomButtons/Button";
-
+import SectionPlaylistList from './SectionPlaylistList';
 export default class PlaylistList extends Component {
 
   state = {
@@ -30,21 +30,14 @@ export default class PlaylistList extends Component {
       <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
     ) : null;
     return (
+
       <Router >
+        
         {successMessage}
         {failedMessage}
 
-        <div style={{ height: 40+'em'}}>
-        <CardDeck style={{paddingLeft:2+'em'}}>
-          {this.state.playlists.map((playlist, index) => (
-            <div key={index}>
-              <Playlist editPlaylist={this.props.editPlaylist} deletePlaylist={this.props.deletePlaylist} playlist={playlist} key={index} userId={this.props.userId} />
-            </div>
-          )
-          )}
-        </CardDeck>
-        </div>
-
+<SectionPlaylistList editedPlaylist={this.props.editedPlaylist} deletePlaylist={this.props.deletePlaylist}
+userId={this.props.userId} playlists={this.state.playlists} />
 
       </Router>
     );

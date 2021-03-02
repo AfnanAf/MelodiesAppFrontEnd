@@ -84,7 +84,7 @@ export default class Song extends Component {
                     <Card.Img variant="top" src={this.props.song.album.cover_big} />
                     <Card.Body>
 
-                        <Card.Title className="cardtitle"><span>{this.props.song.title}</span>
+                        <Card.Title style={{color:"#5E2984"}} className="cardtitle"><span>{this.props.song.title}</span>
                             {this.props.isAuth ? (
                                 this.state.isFav ?
                                     <span> <MdFavorite /></span>
@@ -96,7 +96,7 @@ export default class Song extends Component {
                             {this.props.isAuth ? (
                                 playlistsNum > 0 ? (
 
-                                    <DropdownButton id="dropdown-basic-button" title="+">
+                                    <DropdownButton style={{color:"#5E2984"}} variant="secondary" title="+">
                                         {this.props.playlists.map((playlist, index) => (
                                             <Dropdown.Item onClick={() => this.addSongToPlaylist(playlist.id, this.props.song)} key={index} href={`#/playlist-${index}`}>{playlist.name}</Dropdown.Item>
                                         ))}
