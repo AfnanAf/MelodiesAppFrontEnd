@@ -39,7 +39,7 @@ export default class App extends Component {
   }
 
   getProfile = () => {
-    axios.get(`${process.env.REACT_APP_Back_END_URL}/user/profile?email=` + this.state.userEmail, {
+    axios.get("/user/profile?email=" + this.state.userEmail, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
@@ -62,7 +62,7 @@ export default class App extends Component {
 
   registerHandler = (user) => {
     axios
-      .post(`${process.env.REACT_APP_Back_END_URL}/user/registration`, user)
+      .post("/user/registration", user)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -78,7 +78,7 @@ export default class App extends Component {
 
   loginHandler = (user) => {
     axios
-      .post(`${process.env.REACT_APP_Back_END_URL}/user/login`, user)
+      .post("/user/login", user)
       .then((response) => {
         console.log(response);
         console.log(response.data.token);
@@ -115,7 +115,7 @@ export default class App extends Component {
   }
 
   addPlaylist = (playlist) => {
-    axios.post(`${process.env.REACT_APP_Back_END_URL}/playlist/add`, playlist, {
+    axios.post("/playlist/add", playlist, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token"),
         "Access-Control-Allow-Origin": "*"
@@ -141,7 +141,7 @@ export default class App extends Component {
   }
 
   addSong = (song) => {
-    axios.post(`${process.env.REACT_APP_Back_END_URL}/song/add`, song, {
+    axios.post("/song/add", song, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token"),
         "Access-Control-Allow-Origin": "*"
@@ -167,7 +167,7 @@ export default class App extends Component {
   }
 
   editSong = (song) => {
-    axios.put(`${process.env.REACT_APP_Back_END_URL}/song/edit`, song, {
+    axios.put("/song/edit", song, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
@@ -194,7 +194,7 @@ export default class App extends Component {
     console.log("unfav clicked !!!!!");
 
     if (songId != null) {
-      axios.delete(`${process.env.REACT_APP_Back_END_URL}/song/delete?id=` + songId, {
+      axios.delete("/song/delete?id=" + songId, {
         headers: {
           "Authorization": "Bearer " + localStorage.getItem("token")
         }
@@ -234,7 +234,7 @@ export default class App extends Component {
     song1["user"] = this.state.userId
     console.log(song1)
 
-    axios.post(`${process.env.REACT_APP_Back_END_URL}/song/add`, song1, {
+    axios.post("/song/add", song1, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
@@ -262,7 +262,7 @@ export default class App extends Component {
   }
 
   loadFavSongs = () => {
-    axios.get(`${process.env.REACT_APP_Back_END_URL}/song/index`)
+    axios.get("/song/index")
       .then(res => {
         console.log("fav songs loaded");
         console.log(res.data);
@@ -281,7 +281,7 @@ export default class App extends Component {
   }
 
   getUsers = () => {
-    axios.get(`${process.env.REACT_APP_Back_END_URL}/user/index`)
+    axios.get("/user/index")
       .then(res => {
         console.log("users are loaded");
         console.log(res.data);
@@ -295,7 +295,7 @@ export default class App extends Component {
   }
 
   loadPlaylists() {
-    axios.get(`${process.env.REACT_APP_Back_END_URL}/user/profile?email=` + this.props.email, {
+    axios.get("/user/profile?email=" + this.props.email, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
@@ -315,7 +315,7 @@ export default class App extends Component {
   deletePlaylist = (playlistId) => {
     console.log(playlistId)
 
-    axios.delete(`${process.env.REACT_APP_Back_END_URL}/playlist/delete?id=` + playlistId, {
+    axios.delete("/playlist/delete?id=" + playlistId, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
@@ -339,7 +339,7 @@ export default class App extends Component {
   }
 
   editPlaylist = (playlist) => {
-    axios.put(`${process.env.REACT_APP_Back_END_URL}/playlist/edit`, playlist, {
+    axios.put("/playlist/edit", playlist, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
