@@ -70,7 +70,7 @@ export default class Song extends Component {
                                     </DropdownButton>
                                 )
                                     : (
-                                        <DropdownButton id="dropdown-basic-button" title="+">
+                                        <DropdownButton variant="secondary" title="+">
                                             <Dropdown.Item onClick={() => this.redirectToAddPlaylist()}>you don't have any playlist, create one from here</Dropdown.Item>
                                         </DropdownButton>
                                     )

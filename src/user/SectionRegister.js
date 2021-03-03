@@ -20,8 +20,6 @@ import classNames from "classnames";
 // import styles from "../assets/jss/material-kit-react/views/componentsSections/loginStyle";
 import styles from "../assets/jss/material-kit-react/views/profilePage";
 
-import { useState } from 'react';
-
 import { BsFillLockFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { RiUser3Fill } from "react-icons/ri";
