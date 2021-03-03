@@ -28,13 +28,10 @@ export default class SongsPlaylist extends Component {
             for (var j = 0; j < res.data[i].playlists.length; j++) {
               console.log("for loop j: " + j);
               if (res.data[i].playlists[j].id == this.props.playlistId) {
-                console.log(res.data);
                 playlistSong = res.data[i];
               }
-              console.log(playlistSong)
             }
             playlistSongs.push(playlistSong);
-            console.log(playlistSongs);
           }
         }
         this.setState({
