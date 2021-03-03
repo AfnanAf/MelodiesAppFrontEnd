@@ -64,6 +64,8 @@ Here are the technologies we used building this app.
 * JS
 * HTML
 * CSS
+* SCSS
+* JSS
 
 ### User Stories and Wireframes 
 
