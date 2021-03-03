@@ -4,7 +4,7 @@
 <br />
 <p align="center">
   <a href="">
-    <img src="../public/MelodiesLogo.png" alt="Logo" width="80" height="80">
+    <img src="public/MelodiesLogo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Melodies App</h3>
@@ -73,9 +73,9 @@ _link to [Wireframes](./wireframes/Wireframes.md)_
 
 
 ### Screenshot of the App
-![](../src/assets/img/screenshotHome.jpg)
-![](../src/assets/img/screenshotSongsList.jpg)
-![](../src/assets/img/screenshotSongsList.jpg)
+![](src/assets/img/screenshotHome.jpg)
+![](src/assets/img/screenshotSongsList.jpg)
+![](src/assets/img/screenshotSongsList.jpg)
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
