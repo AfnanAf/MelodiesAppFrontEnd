@@ -14,7 +14,7 @@ export default class SongsPlaylist extends Component {
   }
 
   loadPlaylistSongs = () => {
-    axios.get("/song/index")
+    axios.get(`${process.env.REACT_APP_TMDB_API_KEY}/song/index`)
       .then(res => {
         console.log("playlist songs loaded");
         console.log(res.data);

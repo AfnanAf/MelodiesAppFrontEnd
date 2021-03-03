@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { decode } from 'jsonwebtoken'
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Route } from "react-router-dom"
 import AddPlaylist from './AddPlaylist'
 import AddSong from './AddSong'
 import PlaylistList from './PlaylistList'
@@ -39,7 +39,7 @@ export default class App extends Component {
   }
 
   getProfile = () => {
-    axios.get("/user/profile?email=" + this.state.userEmail, {
+    axios.get(`${process.env.REACT_APP_TMDB_API_KEY}/user/profile?email=` + this.state.userEmail, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
@@ -62,7 +62,7 @@ export default class App extends Component {
 
   registerHandler = (user) => {
     axios
-      .post("/user/registration", user)
+      .post(`${process.env.REACT_APP_TMDB_API_KEY}/user/registration`, user)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -78,7 +78,7 @@ export default class App extends Component {
 
   loginHandler = (user) => {
     axios
-      .post("/user/login", user)
+      .post(`${process.env.REACT_APP_TMDB_API_KEY}/user/login`, user)
       .then((response) => {
         console.log(response);
         console.log(response.data.token);
@@ -115,7 +115,7 @@ export default class App extends Component {
   }
 
   addPlaylist = (playlist) => {
-    axios.post("/playlist/add", playlist, {
+    axios.post(`${process.env.REACT_APP_TMDB_API_KEY}/playlist/add`, playlist, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token"),
         "Access-Control-Allow-Origin": "*"
@@ -141,7 +141,7 @@ export default class App extends Component {
   }
 
   addSong = (song) => {
-    axios.post("/song/add", song, {
+    axios.post(`${process.env.REACT_APP_TMDB_API_KEY}/song/add`, song, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token"),
         "Access-Control-Allow-Origin": "*"
@@ -167,7 +167,7 @@ export default class App extends Component {
   }
 
   editSong = (song) => {
-    axios.put("/song/edit", song, {
+    axios.put(`${process.env.REACT_APP_TMDB_API_KEY}/song/edit`, song, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
@@ -195,7 +195,7 @@ export default class App extends Component {
     console.log("unfav clicked !!!!!");
 
     if (songId != null) {
-      axios.delete("/song/delete?id=" + songId, {
+      axios.delete(`${process.env.REACT_APP_TMDB_API_KEY}/song/delete?id=` + songId, {
         headers: {
           "Authorization": "Bearer " + localStorage.getItem("token")
         }
@@ -235,7 +235,7 @@ export default class App extends Component {
     song1["user"] = this.state.userId
     console.log(song1)
 
-    axios.post("/song/add", song1, {
+    axios.post(`${process.env.REACT_APP_TMDB_API_KEY}/song/add`, song1, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
@@ -263,7 +263,7 @@ export default class App extends Component {
   }
 
   loadFavSongs = () => {
-    axios.get("/song/index")
+    axios.get(`${process.env.REACT_APP_TMDB_API_KEY}/song/index`)
       .then(res => {
         console.log("fav songs loaded");
         console.log(res.data);
@@ -282,7 +282,7 @@ export default class App extends Component {
   }
 
   getUsers = () => {
-    axios.get("/user/index")
+    axios.get(`${process.env.REACT_APP_TMDB_API_KEY}/user/index`)
       .then(res => {
         console.log("users are loaded");
         console.log(res.data);
@@ -296,7 +296,7 @@ export default class App extends Component {
   }
 
   loadPlaylists() {
-    axios.get("/user/profile?email=" + this.props.email, {
+    axios.get(`${process.env.REACT_APP_TMDB_API_KEY}/user/profile?email=` + this.props.email, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
@@ -316,7 +316,7 @@ export default class App extends Component {
   deletePlaylist = (playlistId) => {
     console.log(playlistId)
 
-    axios.delete("/playlist/delete?id=" + playlistId, {
+    axios.delete(`${process.env.REACT_APP_TMDB_API_KEY}/playlist/delete?id=` + playlistId, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
@@ -340,7 +340,7 @@ export default class App extends Component {
   }
 
   editPlaylist = (playlist) => {
-    axios.put("/playlist/edit", playlist, {
+    axios.put(`${process.env.REACT_APP_TMDB_API_KEY}/playlist/edit`, playlist, {
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("token")
       }
