@@ -15,9 +15,9 @@
     <a href="https://pages.git.generalassemb.ly/xloli20/MelodiesAppFrontEnd/"><strong>Go to the app »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Melodies App Back End</a>
+    <a href="https://git.generalassemb.ly/xloli20/MelodiesAppBackEnd">Melodies App Back End</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template">API URL</a>
+    <a href="http://melodieswebapp-env.eba-kgzwebax.us-east-2.elasticbeanstalk.com/">API URL</a>
   </p>
 </p>
 
@@ -75,7 +75,9 @@ _link to [Wireframes](./wireframes/Wireframes.md)_
 ### Screenshot of the App
 ![](src/assets/img/screenshotHome.jpg)
 ![](src/assets/img/screenshotSongsList.jpg)
-![](src/assets/img/screenshotSongsList.jpg)
+![](src/assets/img/Screenshot1.jpg)
+![](src/assets/img/Screenshot2.jpg)
+
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
