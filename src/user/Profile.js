@@ -19,7 +19,7 @@ export default class Profile extends Component {
     };
 
     editUserInfo = (user, email) => {
-        axios.put(`${process.env.REACT_APP_Back_END_URL}/user/edit?email=` + email, user, {
+        axios.put("/user/edit?email=" + email, user, {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token"),
             },
@@ -50,7 +50,7 @@ export default class Profile extends Component {
         user["password"] = newPassword;
         console.log("user with new Password " + user);
 
-        axios.put(`${process.env.REACT_APP_Back_END_URL}/user/changePassword?currentPassword=` + currentPassword, user, {
+        axios.put("/user/changePassword?currentPassword=" + currentPassword, user, {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token"),
             },
