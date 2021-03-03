@@ -406,12 +406,12 @@ export default class App extends Component {
         <Route
           path="/PlaylistList"
           component={
-            () => this.state.isAuth ? <PlaylistList deletePlaylist={this.deletePlaylist} editPlaylist={this.editPlaylist} playlists={playLists} userId={this.state.userId} email={this.state.userEmail} /> : null}
+            () => this.state.isAuth ? <PlaylistList deletePlaylist={this.deletePlaylist} editPlaylist={this.editPlaylist} playlists={playLists} userId={this.state.userId} email={this.state.userEmail} successMessage={this.state.successMessage} /> : null}
         ></Route>
 
         <Route
           path="/AddPlaylist"
-          component={() => <AddPlaylist userId={this.state.userId} addPlaylist={this.addPlaylist} />}
+          component={() => <AddPlaylist userId={this.state.userId} addPlaylist={this.addPlaylist} successMessage={this.state.successMessage} />}
         ></Route>
 
         <Route

@@ -1,70 +1,130 @@
-# Getting Started with Create React App
+# Melodies App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="">
+    <img src="../melodies-app/public/MelodiesLogo.png" alt="Logo" width="80" height="80">
+  </a>
 
-## Available Scripts
+  <h3 align="center">Melodies App</h3>
 
-In the project directory, you can run:
+  <p align="center">
+    A Music App Allows Users To Listen, Explore And Search For Their Music !
+    <br />
+    <a href="https://pages.git.generalassemb.ly/xloli20/MelodiesAppFrontEnd/"><strong>Go to the app »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Melodies App Back End</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template">API URL</a>
+  </p>
+</p>
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#user-stories-and-wireframes">User Stories and Wireframes</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributers">Contributers</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-### `npm run build`
+Home Page             |  Songs List Page
+:-------------------------:|:-------------------------:
+![](../melodies-app/src/assets/img/screenshotHome.jpg)  |  ![](../melodies-app/src/assets/img/screenshotSongsList.jpg)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Melodies is a music app that allows the user to listen, explore and search for their music (the data will be fetched from a third-party API). And the user can click on a (heart icon) to store her/his favorite song so s/he can reach it easily. Also, there's a (plus icon) with a dropdown list so the user can add the song to one of her/his pre-created playlists. and if s/he doesn't have there's a button to redirect them to add playlist page. Also, the users can add their own custom song by filling the form if it's not in the API. The user also can delete/unfavorite, edit their song/playlist.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Built With
+Here are the technologies we used building this app.
+* React
+* Axios
+* Bootstrap
+* JS
+* HTML
+* CSS
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### User Stories and Wireframes 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+_link to [User Stories](./UserStories.md)_
 
-## Learn More
+_link to [Wireframes](./wireframes/Wireframes.md)_
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## Getting Started
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+To get a local copy up and running follow these simple example steps.
 
-### Analyzing the Bundle Size
+### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This is an example of how to list things you need to use the software and how to install them.
+* npm
 
-### Making a Progressive Web App
+### Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Go to https://cors-anywhere.herokuapp.com/corsdemo and press : Request temporary access to the demo server.
+2. Create env variable to store the API URL.
+ ```sh
+$ nano .env.local 
+  ```
+3. then add this to the .env.local file.
 
-### Advanced Configuration
+```
+REACT_APP_Back_END_URL=https://cors-anywhere.herokuapp.com/http://melodieswebapp-env.eba-kgzwebax.us-east-2.elasticbeanstalk.com/
+   ```
+ 3. Open the app from https://pages.git.generalassemb.ly/xloli20/MelodiesAppFrontEnd/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+<!-- ROADMAP -->
+## Roadmap
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- CONTACT -->
+## Contributers
+
+Alaa Alzahrani - [LinkedIn](https://www.linkedin.com/in/alaa-alz/) - [Github](https://github.com/xloli20)
+
+Afnan Alfulaij - [LinkedIn](https://www.linkedin.com/in/afnan-alfulaij/
+) - [Github](https://git.generalassemb.ly/afnanaaf)
+
+
+
+
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+* [Deezer API](https://developers.deezer.com/api)
+* [React Boostrap](https://react-bootstrap.github.io/)
+* [React Icon](https://react-icons.github.io/react-icons)
+* [Material UI](https://choosealicense.com)
+* [Material Kit React Creative Tim](https://www.creative-tim.com/product/material-kit-react?ref=njsmk-download-section&_ga=2.235236033.112608220.1614763543-388038995.1614174832)
+* [Google Fonts](https://fonts.google.com/)
+

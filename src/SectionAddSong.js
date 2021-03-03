@@ -3,8 +3,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
-// @material-ui/icons
-import Email from "@material-ui/icons/Email";
 // core components
 import GridContainer from "./components/Grid/GridContainer.js";
 import GridItem from "./components/Grid/GridItem.js";
