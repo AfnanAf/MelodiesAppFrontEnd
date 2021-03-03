@@ -64,6 +64,8 @@ Here are the technologies we used building this app.
 * JS
 * HTML
 * CSS
+* SCSS
+* JSS
 
 ### User Stories and Wireframes 
 
@@ -75,8 +77,17 @@ _link to [Wireframes](./wireframes/Wireframes.md)_
 ### Screenshot of the App
 ![](src/assets/img/screenshotHome.jpg)
 ![](src/assets/img/screenshotSongsList.jpg)
+![](src/assets/img/Screenshot3.jpg)
 ![](src/assets/img/Screenshot1.jpg)
 ![](src/assets/img/Screenshot2.jpg)
+![](src/assets/img/Screenshot4.jpg)
+![](src/assets/img/Screenshot5.jpg)
+![](src/assets/img/Screenshot6.jpg)
+![](src/assets/img/Screenshot7.jpg)
+![](src/assets/img/Screenshot8.jpg)
+![](src/assets/img/Screenshot9.jpg)
+![](src/assets/img/Screenshot10.jpg)
+![](src/assets/img/ScreenshotResponsive.jpg)
 
 ## Getting Started
 
