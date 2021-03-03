@@ -4,7 +4,7 @@
 <br />
 <p align="center">
   <a href="">
-    <img src="../melodies-app/public/MelodiesLogo.png" alt="Logo" width="80" height="80">
+    <img src="public/MelodiesLogo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Melodies App</h3>
@@ -15,9 +15,9 @@
     <a href="https://pages.git.generalassemb.ly/xloli20/MelodiesAppFrontEnd/"><strong>Go to the app »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Melodies App Back End</a>
+    <a href="https://git.generalassemb.ly/xloli20/MelodiesAppBackEnd">Melodies App Back End</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template">API URL</a>
+    <a href="http://melodieswebapp-env.eba-kgzwebax.us-east-2.elasticbeanstalk.com/">API URL</a>
   </p>
 </p>
 
@@ -29,7 +29,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#technologies">Technologies</a></li>
         <li><a href="#user-stories-and-wireframes">User Stories and Wireframes</a></li>
       </ul>
     </li>
@@ -51,17 +51,12 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Home Page             |  Songs List Page
-:-------------------------:|:-------------------------:
-![](../melodies-app/src/assets/img/screenshotHome.jpg)  |  ![](../melodies-app/src/assets/img/screenshotSongsList.jpg)
-
-
 Melodies is a music app that allows the user to listen, explore and search for their music (the data will be fetched from a third-party API). And the user can click on a (heart icon) to store her/his favorite song so s/he can reach it easily. Also, there's a (plus icon) with a dropdown list so the user can add the song to one of her/his pre-created playlists. and if s/he doesn't have there's a button to redirect them to add playlist page. Also, the users can add their own custom song by filling the form if it's not in the API. The user also can delete/unfavorite, edit their song/playlist.
 
 
 
 
-### Built With
+### Technologies
 Here are the technologies we used building this app.
 * React
 * Axios
@@ -77,6 +72,11 @@ _link to [User Stories](./UserStories.md)_
 _link to [Wireframes](./wireframes/Wireframes.md)_
 
 
+### Screenshot of the App
+![](src/assets/img/screenshotHome.jpg)
+![](src/assets/img/screenshotSongsList.jpg)
+![](src/assets/img/Screenshot1.jpg)
+![](src/assets/img/Screenshot2.jpg)
 
 ## Getting Started
 
@@ -84,7 +84,6 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * npm
 
 ### Installation
@@ -105,7 +104,6 @@ REACT_APP_Back_END_URL=https://cors-anywhere.herokuapp.com/http://melodieswebapp
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
 
 
 <!-- CONTACT -->
