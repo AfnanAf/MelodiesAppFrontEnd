@@ -1,4 +1,4 @@
-# Melodies App
+# Melodies App Front End
 
 <!-- PROJECT LOGO -->
 <br />
