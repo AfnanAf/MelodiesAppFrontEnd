@@ -29,11 +29,7 @@ export default function SectionAddPlaylist(props) {
     const classes = useStyles();
     return (
         <div>
-              {/* {props.failedMessage ? (
-                <SectionNotifications type='failure' message={props.failedMessage}></SectionNotifications>
-            ) : null} */}
         <div className={classes.section}>
-          
             <div className={classes.container2} >
                 <GridContainer justify="center">
                     <GridItem xs={12} sm={12} md={4}>
