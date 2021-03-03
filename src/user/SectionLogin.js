@@ -32,6 +32,7 @@ export default function SectionLogin(props) {
   const classes = useStyles();
   return (
     <div style={{ backgroundColor: '#FAFAE2' }}>
+      
       <Parallax2 style={{ height: 10 + 'em', }} small filter image={require("../assets/img/profile-bg.jpg")} />
 
       <div style={{ paddingTop: 3 + 'em', height: 40 + 'em', backgroundImage: 'url("https://cdn.pixabay.com/photo/2016/11/22/19/15/dark-1850120_1280.jpg")', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center bottom' }} className={classNames(classes.main, classes.mainRaised)}>

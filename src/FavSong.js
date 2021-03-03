@@ -4,7 +4,7 @@ import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import ReactAudioPlayer from 'react-audio-player';
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
-import { Button } from 'react-bootstrap';
+import Button from "./components/CustomButtons/Button";
 import { Redirect } from 'react-router-dom';
 
 export default class FavSong extends Component {
@@ -127,7 +127,7 @@ export default class FavSong extends Component {
                 <Card.Img variant="top" src={this.props.song.image} />
                 {this.state.isEdit ?
                     (<Card.Body>
-                        <Card.Title className="cardtitle"><span>{this.props.song.name}</span>
+                        <Card.Title style={{color:"#5E2984"}}  className="cardtitle"><span>{this.props.song.name}</span>
                             {this.props.isAuth ? (this.state.isFav ? <span onClick={() => this.unfavorite(this.props.song.id)}> <MdFavorite /> </span>
                                 : <span><MdFavoriteBorder /> </span>
                             ) : null}
@@ -147,7 +147,7 @@ export default class FavSong extends Component {
                                 )}
                         </Card.Title>
 
-                        <Card.Text>
+                        <Card.Text  style={{ color: "#9D319D" ,textAlign:'left'}}>
                             {this.props.song.artistName}
                         </Card.Text>
                         <ReactAudioPlayer className="audioplayer"
@@ -164,16 +164,16 @@ export default class FavSong extends Component {
                             <input value={this.state.artistName} name="artistName" onChange={this.artistNameChange} />
                         </Card.Text>
                         <input value={this.state.mp3Url} name="mp3Url" onChange={this.mp3UrlChange} />
-                        <Button variant="primary" block onClick={this.editHandler}>Save</Button>
+                        <Button  onClick={this.editHandler}>Save</Button>
                     </Card.Body>
 
                     )
                 }
-
-                <Card.Footer>
-                    <small className="text-muted">From Album</small>
-                    <br />
-                    <small className="text-muted" onClick={() => this.editSongForm()}>Edit Song</small>
+ 
+                <Card.Footer className="cardtitle">
+                    {/* <small className="text-muted">From Album</small>
+                    <br /> */}
+                    <small style={{cursor:"pointer"}}className="text-muted" onClick={() => this.editSongForm()}>Edit Song</small>
                 </Card.Footer>
             </Card>
         )

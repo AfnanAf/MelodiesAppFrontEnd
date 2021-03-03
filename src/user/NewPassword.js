@@ -62,7 +62,7 @@ export default class NewPassword extends Component {
         <Container>
           <Input
             style={{ width: 90 + '%', marginBottom: 0.7 + 'em', marginTop: 2 + 'em' }}
-            placeholder="Password"
+            placeholder="Current Password"
             id="pass"
             name="currentPassword"
             onChange={this.changeHandler}
@@ -78,7 +78,7 @@ export default class NewPassword extends Component {
 
           <Input
             style={{ width: 90 + '%', marginBottom: 0.7 + 'em', marginTop: 2 + 'em' }}
-            placeholder="Password"
+            placeholder="New Password"
             id="pass"
             name="password"
             onChange={this.passwordHandler}
@@ -93,7 +93,7 @@ export default class NewPassword extends Component {
           <BsFillLockFill style={{ width: 1.5 + 'em', height: 1.5 + 'em' }} />
           <Input
             style={{ width: 90 + '%', marginBottom: 0.7 + 'em', marginTop: 2 + 'em' }}
-            placeholder="Confirm Password"
+            placeholder="Confirm New Password"
             id="pass"
             name="passwordConfirm"
             onChange={this.confirmPassword}

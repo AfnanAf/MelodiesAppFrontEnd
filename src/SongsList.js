@@ -47,7 +47,7 @@ export default class SongsList extends Component {
     render() {
 
         return (
-            <div style={{ color: "#9D319D", }}>
+            <div style={{ color: "#9D319D" }}>
                 <Parallax style={{ height: 30 + 'em', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center bottom' }} image={require("./assets/img/bg3.jpg")}>
 
                     <div >
