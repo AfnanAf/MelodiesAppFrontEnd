@@ -30,14 +30,15 @@ export default function SectionAddSong(props) {
     const classes = useStyles();
     return (
         <div>
-            {props.failedMessage ? (
-                <SectionNotifications type='failure' message={props.failedMessage}></SectionNotifications>
-            ) : null}
 
-            {props.successMessage ? (<SectionNotifications type='success' message={props.successMessage}></SectionNotifications>
-            ) : null}
 
             <div className={classes.section}>
+                {props.failedMessage ? (
+                    <SectionNotifications type='failure' message={props.failedMessage}></SectionNotifications>
+                ) : null}
+
+                {props.successMessage ? (<SectionNotifications type='success' message={props.successMessage}></SectionNotifications>
+                ) : null}
                 <div className={classes.container2}>
                     <GridContainer justify="center">
                         <GridItem xs={12} sm={12} md={4}>

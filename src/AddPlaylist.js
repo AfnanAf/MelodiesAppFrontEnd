@@ -37,17 +37,17 @@ export default class AddPlaylist extends Component {
     }
   };
   render() {
-    // const failedMessage = this.state.failedMessage ? (
-    //   <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
-    // ) : null;
+    const failedMessage = this.state.failedMessage ? (
+      <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
+    ) : null;
 
-    // const successMessage = this.state.successMessage ? (
-    //   <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
-    // ) : null;
+    const successMessage = this.state.successMessage ? (
+      <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
+    ) : null;
     
     return (
       <div>
-        {/* {failedMessage}{successMessage} */}
+        {failedMessage}{successMessage}
         <SectionAddPlaylist handleChange={this.handleChange} handleSubmit={this.handleSubmit} failedMessage={this.state.failedMessage} />
       </div>
     );

@@ -179,7 +179,6 @@ export default class App extends Component {
         this.setState({
           successMessage: "The Song is edited successfully",
           failedMessage: null,
-          // redirect: "/profile",
         })
       })
       .catch(err => {
@@ -392,18 +391,8 @@ export default class App extends Component {
         />
 
         {redirect}
-        <div style={{marginTop:50+"px", position:'absolute'}}>
-        {/* {failedMessage} {successMessage} */}
-
+        {failedMessage} {successMessage}
         
-               {/* {this.state.failedMessage ? (
-                <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications>
-            ) : null} 
-
-{this.state.successMessage ? (
-                <SectionNotifications type='success' message={this.state.successMessage}></SectionNotifications>
-            ) : null}  */}
-        </div>
         <Route
           path="/home"
           component={() => <Home />}
