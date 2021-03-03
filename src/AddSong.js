@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SectionAddSong from "./SectionAddSong";
+import SectionNotifications from './Snackbar/SectionNotifications'
 
 export default class AddSong extends Component {
   constructor(props) {

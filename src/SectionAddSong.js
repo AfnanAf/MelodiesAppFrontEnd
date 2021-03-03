@@ -13,7 +13,6 @@ import CardHeader from "./components/Card/CardHeader.js";
 import CardBody from "./components/Card/CardBody.js";
 import CardFooter from "./components/Card/CardFooter.js";
 import Button from "./components/CustomButtons/Button.js";
-import SectionNotifications from './Snackbar/SectionNotifications'
 
 import styles from "./assets/jss/material-kit-react/views/componentsSections/loginStyle";
 
