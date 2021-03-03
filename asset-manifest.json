@@ -1,30 +1,30 @@
 {
   "files": {
     "main.css": "/xloli20/MelodiesAppFrontEnd/static/css/main.9e43f7ea.chunk.css",
-    "main.js": "/xloli20/MelodiesAppFrontEnd/static/js/main.faf40592.chunk.js",
-    "main.js.map": "/xloli20/MelodiesAppFrontEnd/static/js/main.faf40592.chunk.js.map",
-    "runtime-main.js": "/xloli20/MelodiesAppFrontEnd/static/js/runtime-main.d29be8aa.js",
-    "runtime-main.js.map": "/xloli20/MelodiesAppFrontEnd/static/js/runtime-main.d29be8aa.js.map",
+    "main.js": "/xloli20/MelodiesAppFrontEnd/static/js/main.7b4a78ca.chunk.js",
+    "main.js.map": "/xloli20/MelodiesAppFrontEnd/static/js/main.7b4a78ca.chunk.js.map",
+    "runtime-main.js": "/xloli20/MelodiesAppFrontEnd/static/js/runtime-main.1452b203.js",
+    "runtime-main.js.map": "/xloli20/MelodiesAppFrontEnd/static/js/runtime-main.1452b203.js.map",
     "static/css/2.150d169a.chunk.css": "/xloli20/MelodiesAppFrontEnd/static/css/2.150d169a.chunk.css",
-    "static/js/2.01dc7f41.chunk.js": "/xloli20/MelodiesAppFrontEnd/static/js/2.01dc7f41.chunk.js",
-    "static/js/2.01dc7f41.chunk.js.map": "/xloli20/MelodiesAppFrontEnd/static/js/2.01dc7f41.chunk.js.map",
-    "static/js/3.1918d3ad.chunk.js": "/xloli20/MelodiesAppFrontEnd/static/js/3.1918d3ad.chunk.js",
-    "static/js/3.1918d3ad.chunk.js.map": "/xloli20/MelodiesAppFrontEnd/static/js/3.1918d3ad.chunk.js.map",
+    "static/js/2.87018290.chunk.js": "/xloli20/MelodiesAppFrontEnd/static/js/2.87018290.chunk.js",
+    "static/js/2.87018290.chunk.js.map": "/xloli20/MelodiesAppFrontEnd/static/js/2.87018290.chunk.js.map",
+    "static/js/3.661cd4e9.chunk.js": "/xloli20/MelodiesAppFrontEnd/static/js/3.661cd4e9.chunk.js",
+    "static/js/3.661cd4e9.chunk.js.map": "/xloli20/MelodiesAppFrontEnd/static/js/3.661cd4e9.chunk.js.map",
     "index.html": "/xloli20/MelodiesAppFrontEnd/index.html",
     "static/css/2.150d169a.chunk.css.map": "/xloli20/MelodiesAppFrontEnd/static/css/2.150d169a.chunk.css.map",
     "static/css/main.9e43f7ea.chunk.css.map": "/xloli20/MelodiesAppFrontEnd/static/css/main.9e43f7ea.chunk.css.map",
-    "static/js/2.01dc7f41.chunk.js.LICENSE.txt": "/xloli20/MelodiesAppFrontEnd/static/js/2.01dc7f41.chunk.js.LICENSE.txt",
-    "static/js/main.faf40592.chunk.js.LICENSE.txt": "/xloli20/MelodiesAppFrontEnd/static/js/main.faf40592.chunk.js.LICENSE.txt",
+    "static/js/2.87018290.chunk.js.LICENSE.txt": "/xloli20/MelodiesAppFrontEnd/static/js/2.87018290.chunk.js.LICENSE.txt",
+    "static/js/main.7b4a78ca.chunk.js.LICENSE.txt": "/xloli20/MelodiesAppFrontEnd/static/js/main.7b4a78ca.chunk.js.LICENSE.txt",
     "static/media/MelodiesLogo.71e7bb5f.png": "/xloli20/MelodiesAppFrontEnd/static/media/MelodiesLogo.71e7bb5f.png",
     "static/media/avatar.37d93aaa.jpg": "/xloli20/MelodiesAppFrontEnd/static/media/avatar.37d93aaa.jpg",
     "static/media/bg3.jpg": "/xloli20/MelodiesAppFrontEnd/static/media/bg3.6584b707.jpg",
     "static/media/profile-bg.jpg": "/xloli20/MelodiesAppFrontEnd/static/media/profile-bg.8129069f.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d29be8aa.js",
+    "static/js/runtime-main.1452b203.js",
     "static/css/2.150d169a.chunk.css",
-    "static/js/2.01dc7f41.chunk.js",
+    "static/js/2.87018290.chunk.js",
     "static/css/main.9e43f7ea.chunk.css",
-    "static/js/main.faf40592.chunk.js"
+    "static/js/main.7b4a78ca.chunk.js"
   ]
 }
