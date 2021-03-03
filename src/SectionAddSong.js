@@ -13,6 +13,7 @@ import CardHeader from "./components/Card/CardHeader.js";
 import CardBody from "./components/Card/CardBody.js";
 import CardFooter from "./components/Card/CardFooter.js";
 import Button from "./components/CustomButtons/Button.js";
+import SectionNotifications from './Snackbar/SectionNotifications'
 
 import styles from "./assets/jss/material-kit-react/views/componentsSections/loginStyle";
 
@@ -29,7 +30,12 @@ export default function SectionAddSong(props) {
     const classes = useStyles();
     return (
         <div>
+            {props.failedMessage ? (
+                <SectionNotifications type='failure' message={props.failedMessage}></SectionNotifications>
+            ) : null}
 
+            {props.successMessage ? (<SectionNotifications type='success' message={props.successMessage}></SectionNotifications>
+            ) : null}
 
             <div className={classes.section}>
                 <div className={classes.container2}>

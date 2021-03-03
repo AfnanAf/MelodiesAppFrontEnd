@@ -48,7 +48,7 @@ export default class AddPlaylist extends Component {
     return (
       <div>
         {failedMessage}{successMessage}
-        <SectionAddPlaylist handleChange={this.handleChange} handleSubmit={this.handleSubmit} failedMessage={this.state.failedMessage} />
+        <SectionAddPlaylist handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
       </div>
     );
   }
