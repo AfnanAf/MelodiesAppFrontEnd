@@ -7,7 +7,7 @@ export default class AddSong extends Component {
     this.state = {
       newSong: {},
       failedMessage: this.props.failedMessage,
-      successMessage: this.props.successMessage
+       successMessage: this.props.successMessage
     };
   }
 
@@ -55,6 +55,8 @@ export default class AddSong extends Component {
         failedMessage: "the Song must have a name and artist name !",
       });
     } else {
+      this.setState({successMessage:"The Song is added successfully"})
+
       this.props.addSong(this.state.newSong);
     }
   }

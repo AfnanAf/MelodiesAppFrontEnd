@@ -34,6 +34,10 @@ export default function ProfilePage(props) {
     classes.imgRoundedCircle,
     classes.imgFluid
   );
+
+    const editProfileBtnText = props.isProfileEdit ? "Cancel":"Edit Profile";
+    const changePasswordText = props.isPasswordChange ? "Cancel":"Change Password";
+
   return (
     <div>
       <Parallax3 small filter image={require("../../assets/img/profile-bg.jpg")} />
@@ -61,7 +65,7 @@ export default function ProfilePage(props) {
                           <h6>{props.profile.emailAddress}</h6>
                         </div>
                       )}
-                    <Button onClick={props.editProfile}>Edit Profile</Button>
+                    <Button onClick={props.editProfile}>{editProfileBtnText}</Button>
 
                   </div>
                 </div>
@@ -69,6 +73,13 @@ export default function ProfilePage(props) {
             </GridContainer>
 
             <div className={classes.description}>
+            {props.isPasswordChange ? (
+                <NewPassword
+                  path="/NewPassword"
+                  userCurrentPassword={props.profile.password}
+                  changePasswordHandler={props.changePasswordHandler}
+                ></NewPassword>
+              ) : null}
               <p>
                 <a onMouseEnter={() => {
                   setHover(true);
@@ -79,18 +90,12 @@ export default function ProfilePage(props) {
                   style={{
                     cursor: 'pointer',
                     textDecoration: 'none', color: 'black',
-                    ...(hover ? { color: 'grey' } : { color: 'black' })
+                    ...(hover ? { color: '#9D319D' } : { color: 'black' })
                   }}
-                  onClick={props.changePasswordForm}>Change Password</a>
+                  onClick={props.changePasswordForm}>{changePasswordText}</a>
                 {" "}
               </p>
-              {props.isPasswordChange ? (
-                <NewPassword
-                  path="/NewPassword"
-                  userCurrentPassword={props.profile.password}
-                  changePasswordHandler={props.changePasswordHandler}
-                ></NewPassword>
-              ) : null}
+              
             </div>
 
             <GridContainer justify="center">

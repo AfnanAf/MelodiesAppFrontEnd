@@ -34,7 +34,7 @@ export default function HeaderLinks(props) {
 
   return (
     <div>
-      <List className={classes.list}>
+      <List className={classes.list} >
         <ListItem className={classes.listItem}>
         </ListItem>
 

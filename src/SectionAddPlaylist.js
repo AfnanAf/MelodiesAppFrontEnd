@@ -28,11 +28,12 @@ const useStyles = makeStyles(styles);
 export default function SectionAddPlaylist(props) {
     const classes = useStyles();
     return (
-        <div className={classes.section}>
-            {props.failedMessage ? (
+        <div>
+              {/* {props.failedMessage ? (
                 <SectionNotifications type='failure' message={props.failedMessage}></SectionNotifications>
-            ) : null}
-
+            ) : null} */}
+        <div className={classes.section}>
+          
             <div className={classes.container2} >
                 <GridContainer justify="center">
                     <GridItem xs={12} sm={12} md={4}>
@@ -84,6 +85,7 @@ export default function SectionAddPlaylist(props) {
                     </GridItem>
                 </GridContainer>
             </div>
+        </div>
         </div>
     );
 }
