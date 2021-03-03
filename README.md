@@ -103,7 +103,10 @@ REACT_APP_Back_END_URL=https://cors-anywhere.herokuapp.com/http://melodieswebapp
 
 <!-- ROADMAP -->
 ## Roadmap
-
+We begon with brain storming to define the main idea of the project and exploring APIs to find an appropriate one to use it on our app.Then we listing the user stories .Then we 
+jumped to design our wireframes and relational database using (ERD) model. We choose the Deezer API to use it in our app and we implement it in the front end and implement the 
+search functionality for it.Therafter we started with the websit's backend that illustes the Models, then adding the routes in Controllers and test them in Postman and if it is 
+done successfully, add it to the front end React App. And at the end we design the pages using outsource template (Material Kit React Creative Tim),SCSS, CSS, and Bootstrap.
 
 
 <!-- CONTACT -->
