@@ -29,7 +29,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#technologies">Technologies</a></li>
         <li><a href="#user-stories-and-wireframes">User Stories and Wireframes</a></li>
       </ul>
     </li>
@@ -61,7 +61,7 @@ Melodies is a music app that allows the user to listen, explore and search for t
 
 
 
-### Built With
+### Technologies
 Here are the technologies we used building this app.
 * React
 * Axios
