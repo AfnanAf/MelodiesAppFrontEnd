@@ -10,8 +10,8 @@ export default class Profile extends Component {
         playlists: this.props.profile.playlists,
         isPasswordChange: false,
         isProfileEdit: false,
-        successMessage: this.props.successMessage,
-        failedMessage: this.props.failedMessage
+        successMessage: "",
+        failedMessage: ""
     };
 
     redirectToLogin = () => {

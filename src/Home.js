@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel'
+import SectionNotifications from './Snackbar/SectionNotifications'
 
-export default function Home() {
+export default function Home(props) {
 
   const [index, setIndex] = useState(0);
 
@@ -11,6 +12,9 @@ export default function Home() {
 
   return (
     <div >
+     { props.successMessage ? (
+      <SectionNotifications type='success' message={props.successMessage}></SectionNotifications>
+    ) : null}
       <Carousel activeIndex={index} onSelect={handleSelect}>
 
         <Carousel.Item>

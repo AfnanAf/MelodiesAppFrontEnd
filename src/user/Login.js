@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import SectionLogin from './SectionLogin';
+import SectionNotifications from '../Snackbar/SectionNotifications'
 
 export default class Login extends Component {
-    state = {}
+    state = {
+        successMessage:"",
+        failedMessage:""
+    }
 
     loginHandler = () => {
         this.props.login(this.state);
@@ -17,8 +21,16 @@ export default class Login extends Component {
     }
 
     render() {
+        const successMessage = this.props.successMessage ? (
+            <div style={{ paddingTop:40+'px' }}>
+              <SectionNotifications type='success' message={this.props.successMessage}></SectionNotifications></div>
+          ) : null;
+
+          
+  
         return (
             <div>
+                {successMessage}
                 <SectionLogin changeHandler={this.changeHandler} loginHandler={this.loginHandler} />
             </div>
         )

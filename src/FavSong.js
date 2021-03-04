@@ -141,7 +141,7 @@ export default class FavSong extends Component {
                                 </DropdownButton>
                             )
                                 : (
-                                    <DropdownButton id="dropdown-basic-button" title="+">
+                                    <DropdownButton variant="secondary" title="+">
                                         <Dropdown.Item onClick={() => this.redirectToAddPlaylist()}>you don't have any playlist, create one from here</Dropdown.Item>
                                     </DropdownButton>
                                 )}
@@ -171,8 +171,7 @@ export default class FavSong extends Component {
                 }
  
                 <Card.Footer className="cardtitle">
-                    {/* <small className="text-muted">From Album</small>
-                    <br /> */}
+                   
                     <small style={{cursor:"pointer"}}className="text-muted" onClick={() => this.editSongForm()}>Edit Song</small>
                 </Card.Footer>
             </Card>

@@ -18,7 +18,7 @@ export default class UsersList extends Component {
   }
 
   getAllUsers = () => {
-    axios.get(`${process.env.REACT_APP_Back_END_URL}/user/index`)
+    axios.get('/user/index')
       .then(res => {
         console.log("users are loaded");
         console.log(res.data);
@@ -33,7 +33,7 @@ export default class UsersList extends Component {
 
   handleDeleteUser = (userId) => {
     console.log(userId)
-    axios.delete(`${process.env.REACT_APP_Back_END_URL}/user/delete?id=` + userId)
+    axios.delete('/user/delete?id=' + userId)
       .then(res => {
         console.log("user deleted !");
         console.log(res.data);

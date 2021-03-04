@@ -7,8 +7,8 @@ export default class PlaylistList extends Component {
   state = {
     playlists: this.props.playlists,
     editedPlaylist: {},
-    failedMessage: this.props.failedMessage,
-    successMessage: this.props.successMessage,
+    failedMessage: "",
+    successMessage: "",
     isDetail: false,
     clickedPlaylist: {}
   }

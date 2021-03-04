@@ -421,7 +421,7 @@ export default class App extends Component {
 
         <Route
           path="/login"
-          component={() => <Login login={this.loginHandler} />}
+          component={() => <Login login={this.loginHandler} successMessage={this.state.successMessage}/>}
         ></Route>
 
         <Route

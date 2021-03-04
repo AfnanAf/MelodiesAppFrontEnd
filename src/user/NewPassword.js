@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap'
 import { BsFillLockFill } from "react-icons/bs";
 import { Input } from "@material-ui/core";
 import Button from "../../src/components/CustomButtons/Button";
+import SectionNotifications from '../Snackbar/SectionNotifications'
 
 export default class NewPassword extends Component {
   state = {
@@ -57,8 +58,14 @@ export default class NewPassword extends Component {
   };
 
   render() {
+    const failedMessage = this.state.failedMessage ? (
+      
+      <div style={{paddingTop:40+'px' }}>
+       <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications></div>
+    ) : null;
     return (
       <div>
+        {failedMessage}
         <Container>
           <Input
             style={{ width: 90 + '%', marginBottom: 0.7 + 'em', marginTop: 2 + 'em' }}

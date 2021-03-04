@@ -7,8 +7,8 @@ export default class AddPlaylist extends Component {
     super(props);
     this.state = {
       newPlaylist: {},
-      failedMessage: this.props.failedMessage,
-      successMessage: this.props.successMessage
+      failedMessage: "",
+      successMessage: ""
     };
   }
 

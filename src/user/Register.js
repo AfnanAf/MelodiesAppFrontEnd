@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Alert } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
 import SectionRegister from "./SectionRegister"
+import SectionNotifications from '../Snackbar/SectionNotifications'
 
 export default class Register extends Component {
   state = {
@@ -9,6 +10,7 @@ export default class Register extends Component {
     passwordConfirm: "",
     temp: {},
     failedMessage: "",
+    notMatchedPasswords:""
   };
 
   validateEmail = (email) => {
@@ -28,7 +30,7 @@ export default class Register extends Component {
 
     if (this.state.password != this.state.passwordConfirm) {
       this.setState({
-        failedMessage: "Passwords doesn't match ",
+        notMatchedPasswords: "Passwords doesn't match ",
       });
     } else if (!this.validateEmail(this.state.temp["emailAddress"])) {
       this.setState({
@@ -86,14 +88,20 @@ export default class Register extends Component {
 
   render() {
     const failedMessage = this.state.failedMessage ? (
-      <Alert variant="danger" transition={Fade}>
-        {this.state.failedMessage}
-      </Alert>
+      
+      <div style={{paddingTop:40+'px' }}>
+       <SectionNotifications type='failure' message={this.state.failedMessage}></SectionNotifications></div>
+    ) : null;
+
+    const notMatchedPasswords = this.state.notMatchedPasswords ? (
+
+    <div style={{paddingTop:40+'px' }}>
+       <SectionNotifications type='failure' message={this.state.notMatchedPasswords}></SectionNotifications></div>
     ) : null;
 
     return (
       <div>
-        {failedMessage}
+        {failedMessage} {notMatchedPasswords}
         <SectionRegister changeHandler={this.changeHandler} passwordHandler={this.passwordHandler} confirmPassword={this.confirmPassword} registerHandler={this.registerHandler} />
       </div>
     );
