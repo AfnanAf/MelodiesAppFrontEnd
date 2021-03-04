@@ -64,6 +64,7 @@ Here are the technologies we used building this app.
 * React Bootstrap
 * Material UI
 * Material Kit React Creative Tim
+* React Icons
 * HTML
 * CSS
 * SCSS
