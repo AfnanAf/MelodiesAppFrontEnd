@@ -59,9 +59,11 @@ Melodies is a music app that allows the user to listen, explore and search for t
 ### Technologies
 Here are the technologies we used building this app.
 * React
-* Axios
-* Bootstrap
 * JS
+* Axios
+* React Bootstrap
+* Material UI
+* Material Kit React Creative Tim
 * HTML
 * CSS
 * SCSS
@@ -91,13 +93,7 @@ _link to [Wireframes](./wireframes/Wireframes.md)_
 
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-* npm
-
-### Installation
+### How to run the app
 
 1. Go to https://cors-anywhere.herokuapp.com/corsdemo and press : Request temporary access to the demo server.
 2. Create env variable to store the API URL.
